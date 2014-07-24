@@ -12,6 +12,17 @@
 		6C8580E9433D4949BE12EDF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3118CAD3F2374DF1875B9B2F /* CoreGraphics.framework */; };
 		824AAC9B2D154FFDA1B16F7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A04529585CA542C1B292B3B8 /* main.m */; };
 		8D5DEF1486934D3B8B9E6004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB3E3257C7E4852AB3F03F2 /* Foundation.framework */; };
+		8F073ADA19760EF9000B15B6 /* CJMMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F073AD919760EF9000B15B6 /* CJMMenuTableViewController.m */; };
+		8F073ADD19760F08000B15B6 /* CJMDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F073ADC19760F08000B15B6 /* CJMDetailTableViewController.m */; };
+		8F073AE019761002000B15B6 /* CJMBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F073ADF19761002000B15B6 /* CJMBaseNavigationController.m */; };
+		8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DD19809D0D0019DB87 /* sidebar.png */; };
+		8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DF19809EF40019DB87 /* detail-background.png */; };
+		8F3EA4E21980A10D0019DB87 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E11980A10D0019DB87 /* logo.png */; };
+		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
+		8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */; };
+		8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */; };
+		8F3EA4F01980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */; };
+		8F3EA4F11980A5DE0019DB87 /* FWMSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -34,6 +45,25 @@
 		45FD7EA321594EF1B62B765D /* CJM-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CJM-Prefix.pch"; sourceTree = "<group>"; };
 		682304D381F24A7C8BBBD214 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6DB6004BBA314B83A9940C0A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F073AD819760EF9000B15B6 /* CJMMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMMenuTableViewController.h; sourceTree = "<group>"; };
+		8F073AD919760EF9000B15B6 /* CJMMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMMenuTableViewController.m; sourceTree = "<group>"; };
+		8F073ADB19760F08000B15B6 /* CJMDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMDetailTableViewController.h; sourceTree = "<group>"; };
+		8F073ADC19760F08000B15B6 /* CJMDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMDetailTableViewController.m; sourceTree = "<group>"; };
+		8F073ADE19761002000B15B6 /* CJMBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMBaseNavigationController.h; sourceTree = "<group>"; };
+		8F073ADF19761002000B15B6 /* CJMBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMBaseNavigationController.m; sourceTree = "<group>"; };
+		8F3EA4DD19809D0D0019DB87 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sidebar.png; path = ../../Desktop/CJM/sidebar.png; sourceTree = "<group>"; };
+		8F3EA4DF19809EF40019DB87 /* detail-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detail-background.png"; path = "../../Desktop/CJM/detail-background.png"; sourceTree = "<group>"; };
+		8F3EA4E11980A10D0019DB87 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../Desktop/CJM/logo.png; sourceTree = "<group>"; };
+		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
+		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
+		8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMArtistsTableViewController.h; sourceTree = "<group>"; };
+		8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMArtistsTableViewController.m; sourceTree = "<group>"; };
+		8F3EA4E81980A5DE0019DB87 /* FWMGenreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMGenreTableViewController.h; sourceTree = "<group>"; };
+		8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMGenreTableViewController.m; sourceTree = "<group>"; };
+		8F3EA4EA1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMPerformanceYearTableViewController.h; sourceTree = "<group>"; };
+		8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMPerformanceYearTableViewController.m; sourceTree = "<group>"; };
+		8F3EA4EC1980A5DE0019DB87 /* FWMSongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMSongsTableViewController.h; sourceTree = "<group>"; };
+		8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMSongsTableViewController.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
@@ -68,6 +98,8 @@
 		00A79AEB2B444BE2B61ED0A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */,
+				8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +239,20 @@
 		DCAAB5D1E8D144DA93E56EEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */,
+				8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */,
+				8F3EA4E81980A5DE0019DB87 /* FWMGenreTableViewController.h */,
+				8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */,
+				8F3EA4EA1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.h */,
+				8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */,
+				8F3EA4EC1980A5DE0019DB87 /* FWMSongsTableViewController.h */,
+				8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */,
+				8F073ADE19761002000B15B6 /* CJMBaseNavigationController.h */,
+				8F073ADF19761002000B15B6 /* CJMBaseNavigationController.m */,
+				8F073ADB19760F08000B15B6 /* CJMDetailTableViewController.h */,
+				8F073ADC19760F08000B15B6 /* CJMDetailTableViewController.m */,
+				8F073AD819760EF9000B15B6 /* CJMMenuTableViewController.h */,
+				8F073AD919760EF9000B15B6 /* CJMMenuTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -228,6 +274,9 @@
 		FDD7770F36E94E189413202E = {
 			isa = PBXGroup;
 			children = (
+				8F3EA4E11980A10D0019DB87 /* logo.png */,
+				8F3EA4DF19809EF40019DB87 /* detail-background.png */,
+				8F3EA4DD19809D0D0019DB87 /* sidebar.png */,
 				4BE8E659EA624CDD84899175 /* CJM */,
 				9AE67DD9CDC8433493A71FF1 /* UnitTests */,
 				7747BCACCD6746ECBB8AC86C /* Frameworks */,
@@ -320,7 +369,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3EA4E21980A10D0019DB87 /* logo.png in Resources */,
+				8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */,
 				D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */,
+				8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +415,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
+				8F073AE019761002000B15B6 /* CJMBaseNavigationController.m in Sources */,
+				8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */,
+				8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */,
+				8F3EA4F01980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m in Sources */,
+				8F073ADD19760F08000B15B6 /* CJMDetailTableViewController.m in Sources */,
+				8F073ADA19760EF9000B15B6 /* CJMMenuTableViewController.m in Sources */,
+				8F3EA4F11980A5DE0019DB87 /* FWMSongsTableViewController.m in Sources */,
 				824AAC9B2D154FFDA1B16F7C /* main.m in Sources */,
+				8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +451,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CJM/Resources/Other-Sources/CJM-Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"$(inherited)",
@@ -405,6 +465,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -428,12 +489,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CJM/Resources/Other-Sources/CJM-Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
