@@ -12,6 +12,8 @@
 @interface FWMArtistsTableViewController ()
 
 @property (nonatomic, copy) NSArray *artists;
+@property (nonatomic, copy) NSArray *dictionaryArray;
+@property (nonatomic, copy) NSArray *sectionHeaders;
 
 @end
 
@@ -43,14 +45,22 @@
 
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionHeaders objectAtIndex:section];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.sectionHeaders count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.artists.count;
+    NSString *key = [self.sectionHeaders objectAtIndex:section];
+    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
+    NSArray *songs = [dictionary objectForKey:key];
+    return songs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,9 +71,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    MPMediaItem *song = [self.artists objectAtIndex:indexPath.row];
+    NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
+    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
+    NSArray *songs = [dictionary objectForKey:key];
+    
+    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
-    cell.detailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
     
     return cell;
 }
@@ -72,20 +85,40 @@
 
 - (void)_initialize
 {
-    MPMediaQuery *query = [[MPMediaQuery alloc] init];
-    [query setGroupingType:MPMediaGroupingArtist];
+    NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
+    MPMediaQuery *artistsQuery = [MPMediaQuery artistsQuery];
+    NSArray *artists = [artistsQuery items];
     
-    NSMutableOrderedSet *orderedSet = [NSMutableOrderedSet orderedSet];
-    _artists = [query items];
+    NSMutableArray *allArtists = [NSMutableArray array];
+    for (MPMediaItem *item in artists) {
+        NSString *song = [item valueForKey:MPMediaItemPropertyAlbumArtist];
+        if (song) [allArtists addObject:song];
+    }
     
-    for (MPMediaItem *item in _artists) {
-        NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
-        if (artist) [orderedSet addObject:artist];
+    NSArray *uniqueArtists = [[NSSet setWithArray:allArtists] allObjects];
+    NSLog(@"Unique Artists: %@", uniqueArtists);
+    
+    for (NSString *artist in uniqueArtists) {
+        MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:artist
+                                                                                     forProperty:MPMediaItemPropertyAlbumArtist
+                                                                                  comparisonType:MPMediaPredicateComparisonEqualTo];
+        
+        MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+        [songsQuery addFilterPredicate:artistPredicate];
+        NSArray *songsArray = [songsQuery items];
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:songsArray forKey:artist];
+        [arrayOfDictionaries addObject:dictionary];
     }
-    NSArray *artists = [orderedSet array];
-    for (NSString *artist in artists) {
-        NSLog(@"%@", artist);
+
+    self.dictionaryArray = [arrayOfDictionaries copy];
+    
+    NSMutableArray *mutableKeys = [NSMutableArray array];
+    for (NSDictionary *dictionary in arrayOfDictionaries) {
+        NSArray *keys =[dictionary allKeys];
+        NSString *key = [keys firstObject];
+        [mutableKeys addObject:key];
     }
+    self.sectionHeaders = [mutableKeys copy];
 }
 
 @end
