@@ -57,9 +57,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *key = [self.sectionHeaders objectAtIndex:section];
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
-    NSArray *songs = [dictionary objectForKey:key];
+    NSArray *songs = [dictionary objectForKey:[self.sectionHeaders objectAtIndex:section]];
     return songs.count;
 }
 
@@ -74,10 +73,11 @@
     NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
     NSArray *songs = [dictionary objectForKey:key];
-    
     MPMediaItem *song = [songs objectAtIndex:indexPath.row];
-    cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
-    
+    NSString *string = [NSString stringWithFormat:@"%@ - %@",
+                        [song valueForProperty:MPMediaItemPropertyTitle],
+                        [song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
+    cell.textLabel.text = string; 
     return cell;
 }
 
@@ -111,14 +111,7 @@
     }
 
     self.dictionaryArray = [arrayOfDictionaries copy];
-    
-    NSMutableArray *mutableKeys = [NSMutableArray array];
-    for (NSDictionary *dictionary in arrayOfDictionaries) {
-        NSArray *keys =[dictionary allKeys];
-        NSString *key = [keys firstObject];
-        [mutableKeys addObject:key];
-    }
-    self.sectionHeaders = [mutableKeys copy];
+    self.sectionHeaders = [uniqueArtists copy];
 }
 
 @end

@@ -65,7 +65,15 @@
     
     // MPMediaItem *song = [self.songs objectAtIndex:indexPath.row];
     MPMediaItem *song = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle]; 
+    
+    NSNumber *duration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    int songDuration = [duration intValue];
+    int minutes = songDuration / 60;
+    int seconds = songDuration % 60;
+    NSString *string = [NSString stringWithFormat:@"%@ - %d:%02d",
+                        [song valueForProperty:MPMediaItemPropertyTitle], minutes, seconds];
+    
+    cell.textLabel.text = string;
     
     return cell;
 }
