@@ -7,7 +7,11 @@
 //
 
 #import "FWMSongsTableViewController.h"
+#import "CJMTableViewCell.h"
+#import "CJMTableHeaderView.h"
 #import <MediaPlayer/MediaPlayer.h>
+
+#define kCellIdentifier @"SongCellIdentifier"
 
 @interface FWMSongsTableViewController ()
 
@@ -55,12 +59,18 @@
     return [[self.tableData objectAtIndex:section] count];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+//    CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
+//    tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
+//    return tableHeaderView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"SongCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CJMTableViewCell *cell = (CJMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]; 
+        cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
     }
     
     // MPMediaItem *song = [self.songs objectAtIndex:indexPath.row];
@@ -70,10 +80,8 @@
     int songDuration = [duration intValue];
     int minutes = songDuration / 60;
     int seconds = songDuration % 60;
-    NSString *string = [NSString stringWithFormat:@"%@ - %d:%02d",
-                        [song valueForProperty:MPMediaItemPropertyTitle], minutes, seconds];
-    
-    cell.textLabel.text = string;
+    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     return cell;
 }
@@ -100,6 +108,12 @@
 {
     MPMediaQuery *query = [[MPMediaQuery alloc] init];
     _songs = [query items];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.image = [UIImage imageNamed:@"detail-background"];
+    self.tableView.backgroundView = imageView;
+    
+    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier]; 
 }
 
 - (NSArray *)_partitionObjects:(NSArray *)objects collationStringSelector:(SEL)selector

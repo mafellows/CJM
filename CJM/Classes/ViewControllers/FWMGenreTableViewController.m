@@ -7,7 +7,10 @@
 //
 
 #import "FWMGenreTableViewController.h"
+#import "CJMTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
+
+#define KCellIdentifier @"GenreCellIdentifier"
 
 @interface FWMGenreTableViewController ()
 @property (nonatomic, copy) NSArray *dictionaryArray;
@@ -87,21 +90,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"GenreCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CJMTableViewCell *cell = (CJMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:KCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]; 
+        cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KCellIdentifier];
     }
     
     NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
     NSArray *genres = [dictionary objectForKey:key];
     MPMediaItem *song = [genres objectAtIndex:indexPath.row];
-    NSString *string = [NSString stringWithFormat:@"%@ - %@",
-                        [song valueForProperty:MPMediaItemPropertyTitle],
-                        [song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
+    NSString *string = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
     
-    cell.textLabel.text = string;
+    cell.songLabel.text = string;
+    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
     
     return cell;
 }
@@ -110,7 +111,11 @@
 
 - (void)_initialize
 {
-
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.image = [UIImage imageNamed:@"detail-background"];
+    self.tableView.backgroundView = imageView;
+    
+    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:KCellIdentifier];
 }
 
 @end

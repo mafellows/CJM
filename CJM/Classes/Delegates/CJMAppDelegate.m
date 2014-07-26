@@ -8,7 +8,7 @@
 
 #import "CJMAppDelegate.h"
 #import "CJMMenuTableViewController.h"
-#import "CJMDetailTableViewController.h"
+#import "FWMSongsTableViewController.h"
 #import "CJMBaseNavigationController.h"
 
 @implementation CJMAppDelegate 
@@ -18,12 +18,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     CJMMenuTableViewController *menuTableViewController = [[CJMMenuTableViewController alloc] init];
-    CJMDetailTableViewController *detailTableViewController = [[CJMDetailTableViewController alloc] init];
+    FWMSongsTableViewController *detailTableViewController = [[FWMSongsTableViewController alloc] init];
     CJMBaseNavigationController *navController = [[CJMBaseNavigationController alloc] initWithRootViewController:menuTableViewController];
     CJMBaseNavigationController *detailNav = [[CJMBaseNavigationController alloc] initWithRootViewController:detailTableViewController];
     
     self.splitViewController = [[UISplitViewController alloc] init];
-    self.splitViewController.delegate = detailTableViewController; 
     self.splitViewController.viewControllers = @[ navController, detailNav ];
     self.window.rootViewController = self.splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
