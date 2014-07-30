@@ -9,6 +9,7 @@
 #import "FWMSongsTableViewController.h"
 #import "CJMTableViewCell.h"
 #import "CJMTableHeaderView.h"
+#import "CJMSearchHeaderView.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define kCellIdentifier @"SongCellIdentifier"
@@ -61,9 +62,16 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
-//    tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
-//    return tableHeaderView;
+    CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
+    BOOL showSection = [[self.tableData objectAtIndex:section] count] != 0;
+    NSString *header;
+    if (showSection) {
+        header = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+    } else {
+        header = nil;
+    }
+    tableHeaderView.sectionTitleLabel.text = [header stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return tableHeaderView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,16 +88,17 @@
     int songDuration = [duration intValue];
     int minutes = songDuration / 60;
     int seconds = songDuration % 60;
-    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+    NSNumber *year = [song valueForProperty:@"year"];
+    NSString *yearString;
+    if (year) {
+        yearString = [NSString stringWithFormat:@"%@", year];
+    } else {
+        yearString = @"2004";
+    }
+    cell.songLabel.text = [NSString stringWithFormat:@"%@ (%@)", [song valueForProperty:MPMediaItemPropertyTitle], yearString];
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    BOOL showSection = [[self.tableData objectAtIndex:section] count] != 0;
-    return (showSection) ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -102,6 +111,11 @@
     return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60.0f;
+}
+
 #pragma mark - Private
 
 - (void)_initialize
@@ -112,8 +126,15 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"detail-background"];
     self.tableView.backgroundView = imageView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone; 
+    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
     
-    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier]; 
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexColor = [UIColor lightGrayColor];
+    
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    tableHeaderView.titleLabel.text = @"SONGS";
+    self.tableView.tableHeaderView = tableHeaderView;
 }
 
 - (NSArray *)_partitionObjects:(NSArray *)objects collationStringSelector:(SEL)selector

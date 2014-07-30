@@ -21,13 +21,26 @@
 
 - (void)_initialize
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 350)];
+    UIImageView *imageView = [[UIImageView alloc] init];
     imageView.center = self.center;
     imageView.image = [UIImage imageNamed:@"logo"];
-    imageView.backgroundColor = [UIColor clearColor]; 
+    imageView.backgroundColor = [UIColor clearColor];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:imageView];
     
     self.backgroundColor = [UIColor clearColor];
+    
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(imageView);
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[imageView]-40-|"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[imageView]-40-|"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:viewsDictionary]];
 }
 
 @end

@@ -25,4 +25,9 @@
     return [UIFont fontWithName:@"Avenir-Black" size:20.0f];
 }
 
++ (UIFont *)titleFont
+{
+    return [UIFont fontWithName:@"Avenir-Medium" size:36.0f];
+}
+
 @end

@@ -12,13 +12,14 @@
 #import "FWMSongsTableViewController.h"
 #import "FWMGenreTableViewController.h"
 #import "FWMPerformanceYearTableViewController.h"
+#import "CJMTaglineView.h"
 #import "CJMAppDelegate.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
-    RowSongs,
     RowArtists,
-    RowGenre,
     RowYear,
+    RowSongs,
+    RowGenre,
     RowCount
 };
 
@@ -42,6 +43,11 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     return self;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; 
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -52,6 +58,17 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return RowCount;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CJMTaglineView *taglineView = [[CJMTaglineView alloc] init];
+    return taglineView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 125.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,6 +83,8 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = [self _titleForIndexPath:indexPath];
+    cell.textLabel.font = [UIFont tableViewHeaderFont];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -107,7 +126,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"sidebar"];
     self.tableView.backgroundView = imageView;
-    CJMMenuHeaderView *headerView = [[CJMMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 400.0f)];
+    CJMMenuHeaderView *headerView = [[CJMMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     self.tableView.tableHeaderView = headerView;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -122,7 +141,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 {
     switch (indexPath.row) {
         case RowSongs:
-            return NSLocalizedString(@"SONGS", nil);
+            return NSLocalizedString(@"SONG TITLE", nil);
             break;
             
         case RowArtists:
@@ -130,7 +149,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
             break;
             
         case RowGenre:
-            return NSLocalizedString(@"GENRES", nil);
+            return NSLocalizedString(@"GENRE", nil);
             break;
             
         case RowYear:

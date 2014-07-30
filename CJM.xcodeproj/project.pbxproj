@@ -18,9 +18,17 @@
 		8F23F2371982EA75002648CE /* CJMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2361982EA75002648CE /* CJMTableViewCell.m */; };
 		8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F239198328AD002648CE /* UIFont+CJMFonts.m */; };
 		8F23F23D198329FA002648CE /* CJMTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F23C198329FA002648CE /* CJMTableHeaderView.m */; };
+		8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F24219834037002648CE /* CJMSearchHeaderView.m */; };
+		8F23F2451983454E002648CE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F2441983454E002648CE /* search.png */; };
+		8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F24719834723002648CE /* CJMSplitViewController.m */; };
+		8F23F24D19834ACD002648CE /* UIERealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F24A19834ACD002648CE /* UIERealTimeBlurView.m */; };
+		8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F24C19834ACD002648CE /* UIImage+BoxBlur.m */; };
+		8F23F25219835186002648CE /* CJMTaglineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F25119835186002648CE /* CJMTaglineView.m */; };
+		8F23F25419835458002648CE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F25319835458002648CE /* logo.png */; };
+		8F23F2561983566D002648CE /* funky-edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F2551983566D002648CE /* funky-edge.png */; };
+		8F23F27B19887ED4002648CE /* CJMAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F27A19887ED4002648CE /* CJMAudioController.m */; };
 		8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DD19809D0D0019DB87 /* sidebar.png */; };
 		8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DF19809EF40019DB87 /* detail-background.png */; };
-		8F3EA4E21980A10D0019DB87 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E11980A10D0019DB87 /* logo.png */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
 		8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */; };
 		8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */; };
@@ -60,9 +68,23 @@
 		8F23F239198328AD002648CE /* UIFont+CJMFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CJMFonts.m"; sourceTree = "<group>"; };
 		8F23F23B198329FA002648CE /* CJMTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMTableHeaderView.h; sourceTree = "<group>"; };
 		8F23F23C198329FA002648CE /* CJMTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMTableHeaderView.m; sourceTree = "<group>"; };
+		8F23F24119834037002648CE /* CJMSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMSearchHeaderView.h; path = ../ViewControllers/CJMSearchHeaderView.h; sourceTree = "<group>"; };
+		8F23F24219834037002648CE /* CJMSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMSearchHeaderView.m; path = ../ViewControllers/CJMSearchHeaderView.m; sourceTree = "<group>"; };
+		8F23F2441983454E002648CE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		8F23F24619834723002648CE /* CJMSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSplitViewController.h; sourceTree = "<group>"; };
+		8F23F24719834723002648CE /* CJMSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSplitViewController.m; sourceTree = "<group>"; };
+		8F23F24919834ACD002648CE /* UIERealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIERealTimeBlurView.h; sourceTree = "<group>"; };
+		8F23F24A19834ACD002648CE /* UIERealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIERealTimeBlurView.m; sourceTree = "<group>"; };
+		8F23F24B19834ACD002648CE /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		8F23F24C19834ACD002648CE /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		8F23F25019835186002648CE /* CJMTaglineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMTaglineView.h; sourceTree = "<group>"; };
+		8F23F25119835186002648CE /* CJMTaglineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMTaglineView.m; sourceTree = "<group>"; };
+		8F23F25319835458002648CE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		8F23F2551983566D002648CE /* funky-edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "funky-edge.png"; sourceTree = "<group>"; };
+		8F23F27919887ED4002648CE /* CJMAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMAudioController.h; sourceTree = "<group>"; };
+		8F23F27A19887ED4002648CE /* CJMAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMAudioController.m; sourceTree = "<group>"; };
 		8F3EA4DD19809D0D0019DB87 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sidebar.png; path = ../../Desktop/CJM/sidebar.png; sourceTree = "<group>"; };
 		8F3EA4DF19809EF40019DB87 /* detail-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detail-background.png"; path = "../../Desktop/CJM/detail-background.png"; sourceTree = "<group>"; };
-		8F3EA4E11980A10D0019DB87 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../Desktop/CJM/logo.png; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
 		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
 		8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMArtistsTableViewController.h; sourceTree = "<group>"; };
@@ -107,6 +129,10 @@
 		00A79AEB2B444BE2B61ED0A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F23F25019835186002648CE /* CJMTaglineView.h */,
+				8F23F25119835186002648CE /* CJMTaglineView.m */,
+				8F23F24119834037002648CE /* CJMSearchHeaderView.h */,
+				8F23F24219834037002648CE /* CJMSearchHeaderView.m */,
 				8F23F23B198329FA002648CE /* CJMTableHeaderView.h */,
 				8F23F23C198329FA002648CE /* CJMTableHeaderView.m */,
 				8F23F2351982EA75002648CE /* CJMTableViewCell.h */,
@@ -209,6 +235,17 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		8F23F24F19834AD7002648CE /* Blur */ = {
+			isa = PBXGroup;
+			children = (
+				8F23F24919834ACD002648CE /* UIERealTimeBlurView.h */,
+				8F23F24A19834ACD002648CE /* UIERealTimeBlurView.m */,
+				8F23F24B19834ACD002648CE /* UIImage+BoxBlur.h */,
+				8F23F24C19834ACD002648CE /* UIImage+BoxBlur.m */,
+			);
+			name = Blur;
+			sourceTree = "<group>";
+		};
 		9AE67DD9CDC8433493A71FF1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +289,8 @@
 		DCAAB5D1E8D144DA93E56EEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F23F24619834723002648CE /* CJMSplitViewController.h */,
+				8F23F24719834723002648CE /* CJMSplitViewController.m */,
 				8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */,
 				8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */,
 				8F3EA4E81980A5DE0019DB87 /* FWMGenreTableViewController.h */,
@@ -273,6 +312,8 @@
 		F3A4B757F76947BEB1C5E1AD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F23F27919887ED4002648CE /* CJMAudioController.h */,
+				8F23F27A19887ED4002648CE /* CJMAudioController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,7 +330,10 @@
 		FDD7770F36E94E189413202E = {
 			isa = PBXGroup;
 			children = (
-				8F3EA4E11980A10D0019DB87 /* logo.png */,
+				8F23F2551983566D002648CE /* funky-edge.png */,
+				8F23F25319835458002648CE /* logo.png */,
+				8F23F24F19834AD7002648CE /* Blur */,
+				8F23F2441983454E002648CE /* search.png */,
 				8F3EA4DF19809EF40019DB87 /* detail-background.png */,
 				8F3EA4DD19809D0D0019DB87 /* sidebar.png */,
 				4BE8E659EA624CDD84899175 /* CJM */,
@@ -384,9 +428,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F3EA4E21980A10D0019DB87 /* logo.png in Resources */,
+				8F23F2451983454E002648CE /* search.png in Resources */,
+				8F23F25419835458002648CE /* logo.png in Resources */,
 				8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */,
 				D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */,
+				8F23F2561983566D002648CE /* funky-edge.png in Resources */,
 				8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,11 +476,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */,
+				8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */,
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
 				8F073AE019761002000B15B6 /* CJMBaseNavigationController.m in Sources */,
 				8F23F2371982EA75002648CE /* CJMTableViewCell.m in Sources */,
 				8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */,
+				8F23F25219835186002648CE /* CJMTaglineView.m in Sources */,
 				8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */,
+				8F23F24D19834ACD002648CE /* UIERealTimeBlurView.m in Sources */,
+				8F23F27B19887ED4002648CE /* CJMAudioController.m in Sources */,
+				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
+				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
 				8F23F23D198329FA002648CE /* CJMTableHeaderView.m in Sources */,
 				8F3EA4F01980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m in Sources */,
 				8F073ADD19760F08000B15B6 /* CJMDetailTableViewController.m in Sources */,

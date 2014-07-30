@@ -1,18 +1,18 @@
 //
-//  CJMBaseNavigationController.m
+//  CJMSplitViewController.m
 //  CJM
 //
-//  Created by Michael Fellows on 7/15/14.
+//  Created by Michael Fellows on 7/25/14.
 //  Copyright (c) 2014 CJM. All rights reserved.
 //
 
-#import "CJMBaseNavigationController.h"
+#import "CJMSplitViewController.h"
 
-@interface CJMBaseNavigationController ()
+@interface CJMSplitViewController ()
 
 @end
 
-@implementation CJMBaseNavigationController
+@implementation CJMSplitViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,9 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self.navigationBar setHidden:YES]; 
 }
 
 - (void)didReceiveMemoryWarning

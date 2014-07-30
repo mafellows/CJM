@@ -8,6 +8,8 @@
 
 #import "FWMGenreTableViewController.h"
 #import "CJMTableViewCell.h"
+#import "CJMTableHeaderView.h"
+#import "CJMSearchHeaderView.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define KCellIdentifier @"GenreCellIdentifier"
@@ -69,11 +71,23 @@
     self.sectionHeaders = [uniqueGenres copy];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; 
+}
+
 #pragma mark - Table view data source
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return [self.sectionHeaders objectAtIndex:section];
+    return 60.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CJMTableHeaderView *headerView = [[CJMTableHeaderView alloc] init];
+    headerView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
+    return headerView;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -99,10 +113,12 @@
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
     NSArray *genres = [dictionary objectForKey:key];
     MPMediaItem *song = [genres objectAtIndex:indexPath.row];
-    NSString *string = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
-    
-    cell.songLabel.text = string;
-    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
+    NSNumber *duration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    int songDuration = [duration intValue];
+    int minutes = songDuration / 60;
+    int seconds = songDuration % 60;
+    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     return cell;
 }
@@ -114,8 +130,12 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"detail-background"];
     self.tableView.backgroundView = imageView;
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:KCellIdentifier];
+    
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    tableHeaderView.titleLabel.text = @"GENRE";
+    self.tableView.tableHeaderView = tableHeaderView;
 }
 
 @end

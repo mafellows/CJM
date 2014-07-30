@@ -8,6 +8,8 @@
 
 #import "FWMPerformanceYearTableViewController.h"
 #import "CJMTableViewCell.h"
+#import "CJMSearchHeaderView.h"
+#import "CJMTableHeaderView.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define kCellIdentifier @"PerformanceYearCellIdentifier"
@@ -76,12 +78,19 @@
     self.sectionHeaders = [sortedUniqueYears copy];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; 
+}
+
 #pragma mark - Table view data source
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    CJMTableHeaderView *headerView = [[CJMTableHeaderView alloc] init];
     NSNumber *year = [self.sectionHeaders objectAtIndex:section];
-    return [NSString stringWithFormat:@"%@", year];
+    headerView.sectionTitleLabel.text = [NSString stringWithFormat:@"%@", year];
+    return headerView;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -117,6 +126,11 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60.0f; 
+}
+
 #pragma mark - Private
 
 - (void)_initialize
@@ -124,8 +138,12 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"detail-background"];
     self.tableView.backgroundView = imageView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone; 
+    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
     
-    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier]; 
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    tableHeaderView.titleLabel.text = @"PERFORMANCE YEAR";
+    self.tableView.tableHeaderView = tableHeaderView;
 }
 
 @end

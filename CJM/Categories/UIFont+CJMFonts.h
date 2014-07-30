@@ -12,6 +12,7 @@
 
 + (UIFont *)tableViewFont;
 + (UIFont *)tableViewHeaderFont;
-+ (UIFont *)menuFont; 
++ (UIFont *)menuFont;
++ (UIFont *)titleFont;
 
 @end

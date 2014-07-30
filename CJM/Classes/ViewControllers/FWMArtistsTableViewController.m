@@ -9,6 +9,9 @@
 #import "FWMArtistsTableViewController.h"
 #import "CJMTableViewCell.h"
 #import "CJMTableHeaderView.h"
+#import "CJMSearchHeaderView.h"
+#import "UIERealTimeBlurView.h"
+#import "CJMAudioController.h"
 #import <MediaPlayer/MediaPlayer.h> 
 
 #define kCellIdentifier @"ArtistCellIdentifier"
@@ -38,6 +41,11 @@
         [self _initialize];
     }
     return self;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; 
 }
 
 - (void)viewDidLoad
@@ -116,12 +124,12 @@
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
     NSArray *songs = [dictionary objectForKey:key];
     MPMediaItem *song = [songs objectAtIndex:indexPath.row];
-    NSString *string = [NSString stringWithFormat:@"%@ - %@",
-                        [song valueForProperty:MPMediaItemPropertyTitle],
-                        [song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
-    
-    cell.songLabel.text = string;
-    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyPlaybackDuration]]; 
+    NSNumber *duration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    int songDuration = [duration intValue];
+    int minutes = songDuration / 60;
+    int seconds = songDuration % 60;
+    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     cell.backgroundColor = [UIColor clearColor]; 
     return cell;
 }
@@ -134,8 +142,11 @@
     imageView.image = [UIImage imageNamed:@"detail-background"];
     self.tableView.backgroundView = imageView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
     
-    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier]; 
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    tableHeaderView.titleLabel.text = @"ARTISTS";
+    self.tableView.tableHeaderView = tableHeaderView;
 }
 
 @end

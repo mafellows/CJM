@@ -36,6 +36,11 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     [super viewDidLoad];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES; 
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

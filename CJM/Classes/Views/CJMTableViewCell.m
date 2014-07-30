@@ -29,21 +29,20 @@
     self.backgroundColor = [UIColor clearColor]; 
     UILabel *songLabel = [[UILabel alloc] init];
     songLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    songLabel.font = [UIFont tableViewFont]; 
+    songLabel.font = [UIFont tableViewFont];
     [self addSubview:songLabel];
     _songLabel = songLabel;
     
-    UILabel *trackLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(500.0f, 10, 200.0f, CGRectGetHeight(self.frame))];
+    UILabel *trackLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(550.0f, 10, 80.0f, CGRectGetHeight(self.frame))];
     trackLengthLabel.textAlignment = NSTextAlignmentRight;
-    trackLengthLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:trackLengthLabel];
     _trackLengthLabel = trackLengthLabel;
     
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(40.0f,
                                                                      CGRectGetHeight(self.frame),
-                                                                     800.0f,
+                                                                     610.0f,
                                                                      1.0f)];
-    separatorView.backgroundColor = [UIColor lightGrayColor]; 
+    separatorView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0f];
     [self addSubview:separatorView];
     
 
@@ -58,12 +57,6 @@
                                                                  options:0
                                                                  metrics:nil
                                                                    views:viewsCDictionary]];
-}
-
-- (void)updateConstraints
-{
-    [super updateConstraints];
-
 }
 
 @end

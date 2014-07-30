@@ -10,6 +10,7 @@
 #import "CJMMenuTableViewController.h"
 #import "FWMSongsTableViewController.h"
 #import "CJMBaseNavigationController.h"
+#import "CJMSplitViewController.h"
 
 @implementation CJMAppDelegate 
 
@@ -22,11 +23,15 @@
     CJMBaseNavigationController *navController = [[CJMBaseNavigationController alloc] initWithRootViewController:menuTableViewController];
     CJMBaseNavigationController *detailNav = [[CJMBaseNavigationController alloc] initWithRootViewController:detailTableViewController];
     
-    self.splitViewController = [[UISplitViewController alloc] init];
+    self.splitViewController = [[CJMSplitViewController alloc] init];
     self.splitViewController.viewControllers = @[ navController, detailNav ];
     self.window.rootViewController = self.splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    UIImageView *funkyEdgeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 700, self.window.frame.size.width, 30)];
+    funkyEdgeImageView.backgroundColor = [UIColor blueColor];
+    funkyEdgeImageView.image = [UIImage imageNamed:@"funky-edge"];
+    // [self.window addSubview:funkyEdgeImageView];
     return YES;
 }
 

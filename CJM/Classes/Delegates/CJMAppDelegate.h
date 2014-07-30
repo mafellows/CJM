@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 CJM. All rights reserved.
 //
 
+#import "CJMSplitViewController.h"
+
 @interface CJMAppDelegate : UIResponder <UIApplicationDelegate>
 
+
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UISplitViewController *splitViewController; 
+@property (strong, nonatomic) CJMSplitViewController *splitViewController;
 
 @end
