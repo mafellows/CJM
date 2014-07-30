@@ -35,7 +35,7 @@
     _searchBar = searchBar;
     
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(titleLabel, searchBar);
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[titleLabel]-[searchBar(==200)]-50-|"
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[titleLabel]-[searchBar(==200)]-110-|"
                                                                  options:0
                                                                  metrics:nil
                                                                    views:viewsDictionary]];

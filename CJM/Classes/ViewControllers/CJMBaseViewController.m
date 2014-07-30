@@ -1,23 +1,23 @@
 //
-//  FWMArtistsTableViewController.m
-//  Music-Fun
+//  CJMBaseViewController.m
+//  CJM
 //
-//  Created by Michael Fellows on 7/15/14.
-//  Copyright (c) 2014 broadwaylab. All rights reserved.
+//  Created by Michael Fellows on 7/29/14.
+//  Copyright (c) 2014 CJM. All rights reserved.
 //
 
-#import "FWMArtistsTableViewController.h"
+#import "CJMBaseViewController.h"
 #import "CJMTableViewCell.h"
 #import "CJMTableHeaderView.h"
 #import "CJMSearchHeaderView.h"
 #import "UIERealTimeBlurView.h"
 #import "CJMAudioController.h"
 #import "CJMTrackPlayingView.h"
-#import <MediaPlayer/MediaPlayer.h> 
+#import <MediaPlayer/MediaPlayer.h>
 
 #define kCellIdentifier @"ArtistCellIdentifier"
 
-@interface FWMArtistsTableViewController ()
+@interface CJMBaseViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, copy) NSArray *artists;
 @property (nonatomic, copy) NSArray *dictionaryArray;
@@ -26,28 +26,28 @@
 
 @end
 
-@implementation FWMArtistsTableViewController
+@implementation CJMBaseViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self _initialize];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (id)init
 {
-    if ((self = [super initWithCoder:aDecoder])) {
+    if ((self = [super init])) {
         [self _initialize];
     }
-    return self;
+    return self; 
 }
 
 - (BOOL)prefersStatusBarHidden
 {
-    return YES; 
+    return YES;
 }
 
 - (void)viewDidLoad
@@ -100,7 +100,7 @@
 {
     CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
     tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
-    return tableHeaderView; 
+    return tableHeaderView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -132,7 +132,7 @@
     int seconds = songDuration % 60;
     cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-    cell.backgroundColor = [UIColor clearColor]; 
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,26 +144,40 @@
     
     CJMAudioController *controller = [CJMAudioController sharedController];
     controller.currentItem = song;
-    [controller playItem]; 
+    [controller playItem];
 }
 
 #pragma mark - Private
 
 - (void)_initialize
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds]; 
     imageView.image = [UIImage imageNamed:@"detail-background"];
-    self.tableView.backgroundView = imageView;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
+    [self.view addSubview:imageView];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    CGRect newFrame = tableView.frame;
+    newFrame.size.height = [[UIScreen mainScreen] bounds].size.width - 150.0f;
+    tableView.frame = newFrame;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
+    _tableView = tableView;
     
     CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
     tableHeaderView.titleLabel.text = @"ARTISTS";
-    self.tableView.tableHeaderView = tableHeaderView;
+    tableView.tableHeaderView = tableHeaderView;
     
     CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:trackPlayingView]; 
     _trackPlayingView = trackPlayingView;
+    [self.view addSubview:trackPlayingView];
+    [self.view bringSubviewToFront:trackPlayingView];
 }
+
+
 
 @end

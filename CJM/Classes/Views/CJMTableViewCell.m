@@ -26,7 +26,8 @@
 
 - (void)_initialize
 {
-    self.backgroundColor = [UIColor clearColor]; 
+    self.backgroundColor = [UIColor clearColor];
+    self.selectionStyle = UITableViewCellSelectionStyleNone; 
     UILabel *songLabel = [[UILabel alloc] init];
     songLabel.translatesAutoresizingMaskIntoConstraints = NO;
     songLabel.font = [UIFont tableViewFont];

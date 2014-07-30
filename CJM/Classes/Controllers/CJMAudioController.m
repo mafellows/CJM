@@ -23,15 +23,17 @@
 - (id)init
 {
     if ((self = [super init])) {
-        _audioPlayer = [[AVAudioPlayer alloc] init];
+        
     }
     return self;
 }
 
 - (void)playItem
 {
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[self.currentItem valueForProperty:MPMediaItemPropertyAssetURL]
+    NSURL *audioURL = [self.currentItem valueForProperty:MPMediaItemPropertyAssetURL];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL
                                                               error:nil];
+    [self.audioPlayer prepareToPlay];
     [self.audioPlayer play];
 }
 

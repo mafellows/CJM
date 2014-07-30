@@ -13,7 +13,8 @@
 @interface CJMAudioController : NSObject
 
 @property (nonatomic, strong) MPMediaItem *currentItem;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer; 
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, copy) NSArray *shufflePlaylist; 
 
 + (instancetype)sharedController; 
 

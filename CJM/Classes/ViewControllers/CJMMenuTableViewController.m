@@ -14,6 +14,7 @@
 #import "FWMPerformanceYearTableViewController.h"
 #import "CJMTaglineView.h"
 #import "CJMAppDelegate.h"
+#import "CJMBaseViewController.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
     RowArtists,
@@ -25,7 +26,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 @interface CJMMenuTableViewController ()
 
-@property (nonatomic, strong) FWMArtistsTableViewController *artistsVC;
+@property (nonatomic, strong) CJMBaseViewController *artistsVC;
 @property (nonatomic, strong) FWMSongsTableViewController *songsVC;
 @property (nonatomic, strong) FWMGenreTableViewController *genreVC;
 @property (nonatomic, strong) FWMPerformanceYearTableViewController *performanceYearVC;
@@ -131,7 +132,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _artistsVC = [[FWMArtistsTableViewController alloc] init];
+    _artistsVC = [[CJMBaseViewController alloc] init];
     _songsVC = [[FWMSongsTableViewController alloc] init];
     _genreVC = [[FWMGenreTableViewController alloc] init];
     _performanceYearVC = [[FWMPerformanceYearTableViewController alloc] init];
