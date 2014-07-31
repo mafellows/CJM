@@ -81,12 +81,41 @@
     double minutes = floor(remaining / 60);
     double seconds = floor(remaining - minutes * 60);
     NSString *timeString = [NSString stringWithFormat:@"%02.0f:%02.0f", minutes, seconds];
-    NSLog(@"Time: %@", timeString);
     self.trackPlayingView.secondsRemainingLabel.text = timeString;
     
     
     CGFloat percentage = player.currentTime / player.duration;
     self.trackPlayingView.timeSlider.value = percentage;
+}
+
+- (void)playPressed:(NSNotification *)aNotification
+{
+    if ([[aNotification name] isEqualToString:Play_Pressed_Notification]) {
+        AVAudioPlayer *controller = [[CJMAudioController sharedController] audioPlayer];
+        if ([controller isPlaying]) {
+            [controller pause];
+            // TODO: Update Pause Label
+        } else {
+            [controller play];
+            // TODO: Update play label
+        }
+    }
+}
+
+- (void)nextPressed:(NSNotification *)aNotification
+{
+    if ([[aNotification name] isEqualToString:Next_Pressed_Notification]) {
+        [[CJMAudioController sharedController] nextItem];
+        [self populateTrackView];
+    }
+}
+
+- (void)backPressed:(NSNotification *)aNotification
+{
+    if ([[aNotification name] isEqualToString:Back_Pressed_Notification]) {
+        [[CJMAudioController sharedController] previousItem];
+        [self populateTrackView];
+    }
 }
 
 #pragma mark - Helper Methods
@@ -150,12 +179,33 @@
 
 - (void)_registerForNotifications
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(backPressed:)
+                                                 name:Back_Pressed_Notification
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playPressed:)
+                                                 name:Play_Pressed_Notification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(nextPressed:)
+                                                 name:Next_Pressed_Notification
+                                               object:nil];
 }
 
 - (void)_unregisterForNotifications
 {
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:Back_Pressed_Notification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:Play_Pressed_Notification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:Next_Pressed_Notification
+                                                  object:nil];
 }
 
 @end

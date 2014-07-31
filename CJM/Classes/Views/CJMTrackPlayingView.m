@@ -167,18 +167,6 @@
                                                               userInfo:nil];
             break;
             
-        case CJMSongControlTimeSlider:
-            [[NSNotificationCenter defaultCenter] postNotificationName:Time_Slider_Notification
-                                                                object:self
-                                                              userInfo:nil];
-            break;
-            
-        case CJMSongControlVolumeSlider:
-            [[NSNotificationCenter defaultCenter] postNotificationName:Volume_Slider_Notification
-                                                                object:self
-                                                              userInfo:nil];
-            break;
-            
         default:
             break;
     }

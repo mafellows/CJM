@@ -13,25 +13,23 @@
 #define Back_Pressed_Notification @"backPressed"
 #define Play_Pressed_Notification @"playPressed"
 #define Next_Pressed_Notification @"nextPressed"
-#define Time_Slider_Notification @"timeSlider"
-#define Volume_Slider_Notification @"volumeSlider"
-
 
 @interface CJMAudioController : NSObject
 
 @property (nonatomic, strong) MPMediaItem *currentItem;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, copy) NSArray *shufflePlaylist;
-@property (nonatomic, assign) CGFloat volumeLevel; 
+@property (nonatomic, copy) NSArray *songsList;
+@property (nonatomic, assign) NSUInteger currentIndex; 
+@property (nonatomic, assign) CGFloat volumeLevel;
 
 + (instancetype)sharedController; 
 
-- (void)playItem;
-- (void)pauseItem;
+- (void)playItem; 
 - (void)nextItem;
 - (void)previousItem;
 - (void)setVolume:(CGFloat)volume;
-- (void)timeRemaining:(int)seconds;
-- (CGFloat)currentVolume; 
+- (CGFloat)currentVolume;
+- (void)setArrayOfSongs:(NSArray *)songs
+       withCurrentIndex:(NSUInteger)index;
 
 @end

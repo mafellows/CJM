@@ -13,8 +13,6 @@ typedef NS_ENUM(NSInteger, CJMSongControl) {
     CJMSongControlBack,
     CJMSongControlPlay,
     CJMSongControlNext,
-    CJMSongControlTimeSlider,
-    CJMSongControlVolumeSlider
 };
 
 @interface CJMTrackPlayingView : UIView

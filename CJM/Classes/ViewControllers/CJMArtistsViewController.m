@@ -80,9 +80,9 @@
     NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
     NSArray *songs = [dictionary objectForKey:artist];
     MPMediaItem *song = [songs objectAtIndex:indexPath.row];
-    
     CJMAudioController *controller = [CJMAudioController sharedController];
     controller.currentItem = song;
+    [controller setArrayOfSongs:songs withCurrentIndex:indexPath.row]; 
     [controller playItem];
     
     [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];

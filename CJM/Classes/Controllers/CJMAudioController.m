@@ -23,7 +23,9 @@
 - (id)init
 {
     if ((self = [super init])) {
-        _volumeLevel = 0.5; 
+        _volumeLevel = 0.5;
+        _currentIndex = 0;
+        _songsList = [NSArray array];
     }
     return self;
 }
@@ -38,19 +40,34 @@
     [self.audioPlayer play];
 }
 
-- (void)pauseItem
-{
-    [self.audioPlayer pause];
-}
-
 - (void)nextItem
 {
-    
+    NSUInteger index = self.currentIndex;
+    if (index > self.songsList.count) {
+        self.currentIndex = 0;
+    } else {
+        self.currentIndex++;
+    }
+    self.currentItem = [self.songsList objectAtIndex:self.currentIndex];
+    [self playItem];
 }
 
 - (void)previousItem
 {
-    
+    NSUInteger index = self.currentIndex;
+    if (index == 0) {
+        self.currentIndex = self.songsList.count -1;
+    } else {
+        self.currentIndex -= 1;
+    }
+    self.currentItem = [self.songsList objectAtIndex:self.currentIndex];
+    [self playItem];
+}
+
+- (void)setArrayOfSongs:(NSArray *)songs withCurrentIndex:(NSUInteger)index
+{
+    self.songsList = songs;
+    self.currentIndex = index;
 }
 
 - (void)setVolume:(CGFloat)volume
@@ -58,11 +75,6 @@
     self.volumeLevel = volume;
     NSLog(@"Current Volume: %f", self.volumeLevel);
     [self.audioPlayer setVolume:volume];
-}
-
-- (void)timeRemaining:(int)seconds
-{
-    
 }
 
 - (CGFloat)currentVolume
