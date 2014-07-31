@@ -38,9 +38,18 @@
     [self _sendNotification:CJMSongControlNext];
 }
 
-- (void)timeSliderChanged:(id)sender
+- (void)timeSliderChanged:(UISlider *)slider
 {
-    
+    MPMediaItem *song = [[CJMAudioController sharedController] currentItem];
+    if (slider == self.timeSlider && song != nil) {
+        AVAudioPlayer *player = [[CJMAudioController sharedController] audioPlayer];
+        [player pause];
+        CGFloat currentTime = slider.value * player.duration;
+        NSLog(@"New time: %f", currentTime);
+        [player setCurrentTime:currentTime];
+        [player prepareToPlay];
+        [player play];
+    }
 }
 
 - (void)volumeChanged:(UISlider *)slider

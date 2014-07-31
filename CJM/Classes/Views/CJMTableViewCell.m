@@ -43,7 +43,7 @@
                                                                      CGRectGetHeight(self.frame),
                                                                      610.0f,
                                                                      1.0f)];
-    separatorView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0f];
+    separatorView.backgroundColor = [UIColor blackColor]; //[UIColor colorWithWhite:0.9 alpha:1.0f];
     [self addSubview:separatorView];
     
 

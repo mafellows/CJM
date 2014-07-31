@@ -114,6 +114,7 @@
 {
     AVAudioPlayer *player = [[CJMAudioController sharedController] audioPlayer];
     NSTimeInterval remaining = player.duration - player.currentTime;
+    NSLog(@"%f", remaining); 
     double minutes = floor(remaining / 60);
     double seconds = floor(remaining - minutes * 60);
     NSString *timeString = [NSString stringWithFormat:@"%02.0f:%02.0f", minutes, seconds];
