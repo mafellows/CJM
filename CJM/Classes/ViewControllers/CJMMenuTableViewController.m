@@ -139,10 +139,22 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _artistsVC = [[CJMArtistsViewController alloc] init];
-    _songsVC = [[CJMSongsViewController alloc] init];
-    _genreVC = [[CJMGenreViewController alloc] init];
-    _performanceYearVC = [[CJMPerformanceYearViewController alloc] init];
+    if (!_artistsVC) {
+        _artistsVC = [[CJMArtistsViewController alloc] init];
+    }
+    
+    if (!_songsVC) {
+        _songsVC = [[CJMSongsViewController alloc] init];
+    }
+    
+    if (!_genreVC) {
+        _genreVC = [[CJMGenreViewController alloc] init];
+    }
+    
+    if (!_performanceYearVC) {
+        _performanceYearVC = [[CJMPerformanceYearViewController alloc] init];
+    }
+    
 }
 
 - (NSString *)_titleForIndexPath:(NSIndexPath *)indexPath

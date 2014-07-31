@@ -14,15 +14,6 @@
 
 @implementation CJMBaseViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self _initialize];
-    }
-    return self;
-}
-
 - (id)init
 {
     if ((self = [super init])) {
@@ -36,18 +27,11 @@
     return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
-    self.trackPlayingView.hidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
     
-    self.trackPlayingView.hidden = YES;
 }
 
 #pragma mark - Table view data source
@@ -87,6 +71,7 @@
 
 - (void)_initialize
 {
+    self.view.backgroundColor = [UIColor whiteColor]; 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds]; 
     imageView.image = [UIImage imageNamed:@"detail-background"];
     [self.view addSubview:imageView];
@@ -105,7 +90,6 @@
     _tableView = tableView;
     
     CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
-    tableHeaderView.titleLabel.text = @"ARTISTS";
     tableView.tableHeaderView = tableHeaderView;
     _tableHeaderView = tableHeaderView;
     
@@ -114,9 +98,12 @@
     searchController.searchResultsDataSource = self;
     searchController.searchResultsDelegate = self;
     
-    CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
-    [self.view addSubview:trackPlayingView];
-    _trackPlayingView = trackPlayingView; 
+    _trackPlayingView = [[CJMTrackPlayingView alloc] init];
+    if (![_trackPlayingView isDescendantOfView:self.view]) {
+        [self.view addSubview:_trackPlayingView];
+    } else {
+        [_trackPlayingView removeFromSuperview];
+    }
 }
 
 

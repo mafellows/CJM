@@ -19,7 +19,7 @@
 @interface CJMBaseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, weak) CJMTrackPlayingView *trackPlayingView;
+@property (nonatomic, strong) CJMTrackPlayingView *trackPlayingView;
 @property (nonatomic, weak) CJMSearchHeaderView *tableHeaderView;
 
 - (NSString *)timeRemainingForDuration:(NSNumber *)duration; 
