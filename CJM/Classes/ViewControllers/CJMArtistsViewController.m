@@ -36,43 +36,58 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.sectionHeaders objectAtIndex:section];
+    if (tableView == self.tableView) {
+        return [self.sectionHeaders objectAtIndex:section];
+    }
+    return nil; 
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sectionHeaders count];
+    if (tableView == self.tableView) {
+        return [self.sectionHeaders count];
+    }
+    return 1;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
-    tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
-    return tableHeaderView;
+    if (tableView == self.tableView) {
+        CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
+        tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
+        return tableHeaderView;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
-    NSArray *songs = [dictionary objectForKey:[self.sectionHeaders objectAtIndex:section]];
-    return songs.count;
+    if (tableView == self.tableView) {
+        NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
+        NSArray *songs = [dictionary objectForKey:[self.sectionHeaders objectAtIndex:section]];
+        return songs.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CJMTableViewCell *cell = (CJMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    if (!cell) {
-        cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier];
+    if (tableView == self.tableView) {
+        CJMTableViewCell *cell = (CJMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        if (!cell) {
+            cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier];
+        }
+        
+        NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
+        NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
+        NSArray *songs = [dictionary objectForKey:key];
+        MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+        cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+        cell.trackLengthLabel.text = [self timeRemainingForDuration:[song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
     }
-    
-    NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
-    NSArray *songs = [dictionary objectForKey:key];
-    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
-    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
-    cell.trackLengthLabel.text = [self timeRemainingForDuration:[song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
-    cell.backgroundColor = [UIColor clearColor];
-    return cell;
+    return nil;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

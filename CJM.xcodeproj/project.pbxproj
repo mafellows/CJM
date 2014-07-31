@@ -41,6 +41,9 @@
 		8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DD19809D0D0019DB87 /* sidebar.png */; };
 		8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DF19809EF40019DB87 /* detail-background.png */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
+		8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */; };
+		8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */; };
+		8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -111,6 +114,12 @@
 		8F3EA4DF19809EF40019DB87 /* detail-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detail-background.png"; path = "../../Desktop/CJM/detail-background.png"; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
 		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
+		8FAD0BD6198ADB4B002B0603 /* CJMSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchDisplayController.h; sourceTree = "<group>"; };
+		8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSearchDisplayController.m; sourceTree = "<group>"; };
+		8FAD0BD9198AED65002B0603 /* CJMSearchResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchResultsDataSource.h; sourceTree = "<group>"; };
+		8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSearchResultsDataSource.m; sourceTree = "<group>"; };
+		8FAD0BDC198AF2A1002B0603 /* CJMSearchControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMSearchControllerDelegate.h; path = ../../../CJMSearchControllerDelegate.h; sourceTree = "<group>"; };
+		8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMSearchControllerDelegate.m; path = ../../../CJMSearchControllerDelegate.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
@@ -231,6 +240,8 @@
 		5C5AEB0681994893A9CF69C4 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				8FAD0BDC198AF2A1002B0603 /* CJMSearchControllerDelegate.h */,
+				8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */,
 				F4C094F4C5CA45119304B1BC /* CJMAppDelegate.h */,
 				E67BF58BC542476B9B5D34E5 /* CJMAppDelegate.m */,
 			);
@@ -298,6 +309,8 @@
 		A540FBA23D3B4EAE9FC29221 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				8FAD0BD9198AED65002B0603 /* CJMSearchResultsDataSource.h */,
+				8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -322,6 +335,8 @@
 		DCAAB5D1E8D144DA93E56EEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8FAD0BD6198ADB4B002B0603 /* CJMSearchDisplayController.h */,
+				8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */,
 				8F23F29D1989D525002648CE /* Subclassed From Base */,
 				8F23F27F19888AAD002648CE /* CJMBaseViewController.h */,
 				8F23F28019888AAD002648CE /* CJMBaseViewController.m */,
@@ -437,6 +452,11 @@
 				CLASSPREFIX = CJM;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = CJM;
+				TargetAttributes = {
+					A846AC02A5474B79B7431DFD = {
+						DevelopmentTeam = UW63NW2D6H;
+					};
+				};
 			};
 			buildConfigurationList = BEED3862DA8B4A64A0651089 /* Build configuration list for PBXProject "CJM" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -523,6 +543,7 @@
 				8F23F24D19834ACD002648CE /* UIERealTimeBlurView.m in Sources */,
 				8F23F27B19887ED4002648CE /* CJMAudioController.m in Sources */,
 				8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */,
+				8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
 				8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */,
 				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
@@ -534,6 +555,8 @@
 				8F23F2A01989D556002648CE /* CJMArtistsViewController.m in Sources */,
 				8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */,
 				8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */,
+				8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */,
+				8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +575,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -561,7 +585,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CJM/Resources/Other-Sources/CJM-Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"$(inherited)",
@@ -572,9 +596,10 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -584,6 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -599,12 +625,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CJM/Resources/Other-Sources/CJM-Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -628,7 +655,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: michael fellows (UW63NW2D6H)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -648,6 +676,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -690,7 +719,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -717,6 +747,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

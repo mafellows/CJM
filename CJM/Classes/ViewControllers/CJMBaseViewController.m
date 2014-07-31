@@ -7,8 +7,10 @@
 //
 
 #import "CJMBaseViewController.h"
+#import "CJMSearchResultsDataSource.h"
+#import "CJMSearchControllerDelegate.h"
 
-@interface CJMBaseViewController() <UISearchDisplayDelegate> {
+@interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate> {
     NSTimer *_timer;
 }
 
@@ -50,6 +52,35 @@
     [self _unregisterForNotifications];
 }
 
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    UITableViewController *popoverTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.dataSource = [[CJMSearchResultsDataSource alloc] init];
+    self.delegate = [[CJMSearchControllerDelegate alloc] init];
+    popoverTableViewController.tableView.delegate = self.delegate;
+    popoverTableViewController.tableView.dataSource = self.dataSource;
+    _popoverTableViewcontroller = popoverTableViewController;
+    self.searchPopoverController = [[UIPopoverController alloc] initWithContentViewController:popoverTableViewController];
+    self.searchPopoverController.delegate = self;
+    self.searchPopoverController.passthroughViews = @[ self.tableHeaderView.searchBar ];
+    
+    [self.searchPopoverController presentPopoverFromRect:self.tableHeaderView.searchBar.bounds
+                                                  inView:self.tableHeaderView.searchBar
+                                permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                animated:YES];
+    
+}
+
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.searchPopoverController = nil;
+    [self.tableHeaderView.searchBar resignFirstResponder]; 
+}
+
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,6 +101,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return nil; 
 }
 
 #pragma mark - Selector
@@ -164,17 +200,19 @@
     _tableView = tableView;
     
     CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    tableHeaderView.searchBar.delegate = self; 
     tableView.tableHeaderView = tableHeaderView;
     _tableHeaderView = tableHeaderView;
     
-    UISearchDisplayController *searchController = [[UISearchDisplayController alloc] initWithSearchBar:_tableHeaderView.searchBar contentsController:self];
-    searchController.delegate = self;
-    searchController.searchResultsDataSource = self;
-    searchController.searchResultsDelegate = self;
-    
     CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
     [self.view addSubview:trackPlayingView];
-    _trackPlayingView = trackPlayingView; 
+    _trackPlayingView = trackPlayingView;
+    
+    UISearchDisplayController *searchController = [[UISearchDisplayController alloc] initWithSearchBar:_tableHeaderView.searchBar contentsController:self];
+    searchController.delegate = self;
+    searchController.searchResultsDelegate = self;
+    searchController.searchResultsDataSource = self;
+    _searchController = searchController;
 }
 
 - (void)_registerForNotifications

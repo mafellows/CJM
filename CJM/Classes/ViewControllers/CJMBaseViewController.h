@@ -14,13 +14,21 @@
 #import "CJMTableHeaderView.h"
 #import "CJMTrackPlayingView.h"
 
+@class CJMSearchControllerDelegate;
+@class CJMSearchResultsDataSource;
+
 #define kCellIdentifier @"CellIdentifier"
 
 @interface CJMBaseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) CJMSearchHeaderView *tableHeaderView;
-@property (nonatomic, weak) CJMTrackPlayingView *trackPlayingView; 
+@property (nonatomic, weak) CJMTrackPlayingView *trackPlayingView;
+@property (nonatomic, weak) UISearchDisplayController *searchController;
+@property (nonatomic, strong) UIPopoverController *searchPopoverController; 
+@property (nonatomic, weak) UITableViewController *popoverTableViewcontroller;
+@property (nonatomic, strong) CJMSearchResultsDataSource *dataSource;
+@property (nonatomic, strong) CJMSearchControllerDelegate *delegate;
 
 - (NSString *)timeRemainingForDuration:(NSNumber *)duration; 
 - (void)populateTrackView; 
