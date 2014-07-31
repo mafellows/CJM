@@ -8,13 +8,12 @@
 
 #import "CJMMenuTableViewController.h"
 #import "CJMMenuHeaderView.h"
-#import "FWMArtistsTableViewController.h"
-#import "FWMSongsTableViewController.h"
-#import "FWMGenreTableViewController.h"
-#import "FWMPerformanceYearTableViewController.h"
 #import "CJMTaglineView.h"
 #import "CJMAppDelegate.h"
-#import "CJMBaseViewController.h"
+#import "CJMArtistsViewController.h"
+#import "CJMPerformanceYearViewController.h"
+#import "CJMSongsViewController.h"
+#import "CJMGenreViewController.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
     RowArtists,
@@ -26,10 +25,10 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 @interface CJMMenuTableViewController ()
 
-@property (nonatomic, strong) CJMBaseViewController *artistsVC;
-@property (nonatomic, strong) FWMSongsTableViewController *songsVC;
-@property (nonatomic, strong) FWMGenreTableViewController *genreVC;
-@property (nonatomic, strong) FWMPerformanceYearTableViewController *performanceYearVC;
+@property (nonatomic, strong) CJMArtistsViewController *artistsVC;
+@property (nonatomic, strong) CJMSongsViewController *songsVC;
+@property (nonatomic, strong) CJMGenreViewController *genreVC;
+@property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
 
 @end
 
@@ -67,6 +66,11 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     return taglineView;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0f;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 125.0f;
@@ -86,6 +90,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.textLabel.text = [self _titleForIndexPath:indexPath];
     cell.textLabel.font = [UIFont tableViewHeaderFont];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(140.0f, 56.0f, 40.0f, 4.0f)];
+    separatorView.backgroundColor = [UIColor whiteColor];
+    [cell addSubview:separatorView];
     return cell;
 }
 
@@ -132,10 +139,10 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _artistsVC = [[CJMBaseViewController alloc] init];
-    _songsVC = [[FWMSongsTableViewController alloc] init];
-    _genreVC = [[FWMGenreTableViewController alloc] init];
-    _performanceYearVC = [[FWMPerformanceYearTableViewController alloc] init];
+    _artistsVC = [[CJMArtistsViewController alloc] init];
+    _songsVC = [[CJMSongsViewController alloc] init];
+    _genreVC = [[CJMGenreViewController alloc] init];
+    _performanceYearVC = [[CJMPerformanceYearViewController alloc] init];
 }
 
 - (NSString *)_titleForIndexPath:(NSIndexPath *)indexPath

@@ -1,4 +1,4 @@
-//
+ //
 //  CJMBaseViewController.m
 //  CJM
 //
@@ -7,22 +7,8 @@
 //
 
 #import "CJMBaseViewController.h"
-#import "CJMTableViewCell.h"
-#import "CJMTableHeaderView.h"
-#import "CJMSearchHeaderView.h"
-#import "UIERealTimeBlurView.h"
-#import "CJMAudioController.h"
-#import "CJMTrackPlayingView.h"
-#import <MediaPlayer/MediaPlayer.h>
 
-#define kCellIdentifier @"ArtistCellIdentifier"
-
-@interface CJMBaseViewController () <UITableViewDataSource, UITableViewDelegate>
-
-@property (nonatomic, copy) NSArray *artists;
-@property (nonatomic, copy) NSArray *dictionaryArray;
-@property (nonatomic, copy) NSArray *sectionHeaders;
-@property (nonatomic, weak) CJMTrackPlayingView *trackPlayingView;
+@interface CJMBaseViewController() <UISearchDisplayDelegate>
 
 @end
 
@@ -50,57 +36,35 @@
     return YES;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    self.navigationItem.title = @"Artists";
+    [super viewWillAppear:animated];
     
-    NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
-    MPMediaQuery *artistsQuery = [MPMediaQuery artistsQuery];
-    NSArray *artists = [artistsQuery items];
+    self.trackPlayingView.hidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
-    NSMutableArray *allArtists = [NSMutableArray array];
-    for (MPMediaItem *item in artists) {
-        NSString *song = [item valueForKey:MPMediaItemPropertyAlbumArtist];
-        if (song) [allArtists addObject:song];
-    }
-    
-    NSArray *uniqueArtists = [[NSSet setWithArray:allArtists] allObjects];
-    NSLog(@"Unique Artists: %@", uniqueArtists);
-    
-    for (NSString *artist in uniqueArtists) {
-        MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:artist
-                                                                                     forProperty:MPMediaItemPropertyAlbumArtist
-                                                                                  comparisonType:MPMediaPredicateComparisonEqualTo];
-        
-        MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
-        [songsQuery addFilterPredicate:artistPredicate];
-        NSArray *songsArray = [songsQuery items];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:songsArray forKey:artist];
-        [arrayOfDictionaries addObject:dictionary];
-    }
-    
-    self.dictionaryArray = [arrayOfDictionaries copy];
-    self.sectionHeaders = [uniqueArtists copy];
+    self.trackPlayingView.hidden = YES;
 }
 
 #pragma mark - Table view data source
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.sectionHeaders objectAtIndex:section];
+    return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sectionHeaders count];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
-    tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
-    return tableHeaderView;
+    return 0; 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -108,43 +72,15 @@
     return 60.0f;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
-    NSArray *songs = [dictionary objectForKey:[self.sectionHeaders objectAtIndex:section]];
-    return songs.count;
-}
+#pragma mark - Helper Methods
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)timeRemainingForDuration:(NSNumber *)duration
 {
-    CJMTableViewCell *cell = (CJMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    if (!cell) {
-        cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier];
-    }
-    
-    NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
-    NSArray *songs = [dictionary objectForKey:key];
-    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
-    NSNumber *duration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
     int songDuration = [duration intValue];
     int minutes = songDuration / 60;
     int seconds = songDuration % 60;
-    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
-    cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-    cell.backgroundColor = [UIColor clearColor];
-    return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *artist = [self.sectionHeaders objectAtIndex:indexPath.section];
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
-    NSArray *songs = [dictionary objectForKey:artist];
-    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+    return [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
-    CJMAudioController *controller = [CJMAudioController sharedController];
-    controller.currentItem = song;
-    [controller playItem];
 }
 
 #pragma mark - Private
@@ -171,11 +107,16 @@
     CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
     tableHeaderView.titleLabel.text = @"ARTISTS";
     tableView.tableHeaderView = tableHeaderView;
+    _tableHeaderView = tableHeaderView;
+    
+    UISearchDisplayController *searchController = [[UISearchDisplayController alloc] initWithSearchBar:_tableHeaderView.searchBar contentsController:self];
+    searchController.delegate = self;
+    searchController.searchResultsDataSource = self;
+    searchController.searchResultsDelegate = self;
     
     CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
-    _trackPlayingView = trackPlayingView;
     [self.view addSubview:trackPlayingView];
-    [self.view bringSubviewToFront:trackPlayingView];
+    _trackPlayingView = trackPlayingView; 
 }
 
 

@@ -30,6 +30,7 @@
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+    searchBar.placeholder = @"Search"; 
     [searchBar setSearchBarStyle:UISearchBarStyleMinimal];
     [self addSubview:searchBar];
     _searchBar = searchBar;

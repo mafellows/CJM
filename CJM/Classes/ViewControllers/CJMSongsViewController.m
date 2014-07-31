@@ -1,54 +1,32 @@
 //
-//  FWMSongsTableViewController.m
-//  Music-Fun
+//  CJMSongsViewController.m
+//  CJM
 //
-//  Created by Michael Fellows on 7/15/14.
-//  Copyright (c) 2014 broadwaylab. All rights reserved.
+//  Created by Michael Fellows on 7/30/14.
+//  Copyright (c) 2014 CJM. All rights reserved.
 //
 
-#import "FWMSongsTableViewController.h"
-#import "CJMTableViewCell.h"
-#import "CJMTableHeaderView.h"
-#import "CJMSearchHeaderView.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "CJMSongsViewController.h"
 
-#define kCellIdentifier @"SongCellIdentifier"
-
-@interface FWMSongsTableViewController ()
+@interface CJMSongsViewController ()
 
 @property (nonatomic, copy) NSArray *songs;
 @property (nonatomic, copy) NSArray *tableData;
 
 @end
 
-@implementation FWMSongsTableViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        [self _initialize];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    if ((self = [super initWithCoder:aDecoder])) {
-        [self _initialize];
-    }
-    return self; 
-}
+@implementation CJMSongsViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"Songs";
+    self.tableHeaderView.titleLabel.text = @"SONGS"; 
+    MPMediaQuery *query = [[MPMediaQuery alloc] init];
+    self.songs = [query items];
     self.tableData = [self _partitionObjects:self.songs collationStringSelector:@selector(title)];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -111,31 +89,7 @@
     return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 60.0f;
-}
-
 #pragma mark - Private
-
-- (void)_initialize
-{
-    MPMediaQuery *query = [[MPMediaQuery alloc] init];
-    _songs = [query items];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    imageView.image = [UIImage imageNamed:@"detail-background"];
-    self.tableView.backgroundView = imageView;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone; 
-    [self.tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
-    
-    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    self.tableView.sectionIndexColor = [UIColor lightGrayColor];
-    
-    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
-    tableHeaderView.titleLabel.text = @"SONGS";
-    self.tableView.tableHeaderView = tableHeaderView;
-}
 
 - (NSArray *)_partitionObjects:(NSArray *)objects collationStringSelector:(SEL)selector
 {

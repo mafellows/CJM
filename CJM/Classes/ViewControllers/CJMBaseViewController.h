@@ -7,9 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CJMTrackPlayingView.h"
+#import "CJMSearchHeaderView.h"
+#import "CJMTableViewCell.h"
+#import "CJMAudioController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "CJMTableHeaderView.h"
 
-@interface CJMBaseViewController : UIViewController
+#define kCellIdentifier @"CellIdentifier"
 
-@property (nonatomic, weak ) UITableView *tableView; 
+@interface CJMBaseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) CJMTrackPlayingView *trackPlayingView;
+@property (nonatomic, weak) CJMSearchHeaderView *tableHeaderView;
+
+- (NSString *)timeRemainingForDuration:(NSNumber *)duration; 
 
 @end
+

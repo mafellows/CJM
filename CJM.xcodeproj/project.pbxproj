@@ -34,13 +34,13 @@
 		8F23F289198895E9002648CE /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F284198895E9002648CE /* play.png */; };
 		8F23F28A198895E9002648CE /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F285198895E9002648CE /* previous.png */; };
 		8F23F28B198895E9002648CE /* quiet-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F23F286198895E9002648CE /* quiet-small.png */; };
+		8F23F2A01989D556002648CE /* CJMArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F29F1989D556002648CE /* CJMArtistsViewController.m */; };
+		8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A21989DC40002648CE /* CJMPerformanceYearViewController.m */; };
+		8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A51989DD73002648CE /* CJMSongsViewController.m */; };
+		8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */; };
 		8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DD19809D0D0019DB87 /* sidebar.png */; };
 		8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DF19809EF40019DB87 /* detail-background.png */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
-		8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */; };
-		8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */; };
-		8F3EA4F01980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */; };
-		8F3EA4F11980A5DE0019DB87 /* FWMSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -99,18 +99,18 @@
 		8F23F284198895E9002648CE /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = ../../Desktop/CJM/play.png; sourceTree = "<group>"; };
 		8F23F285198895E9002648CE /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = previous.png; path = ../../Desktop/CJM/previous.png; sourceTree = "<group>"; };
 		8F23F286198895E9002648CE /* quiet-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quiet-small.png"; path = "../../Desktop/CJM/quiet-small.png"; sourceTree = "<group>"; };
+		8F23F29E1989D556002648CE /* CJMArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMArtistsViewController.h; sourceTree = "<group>"; };
+		8F23F29F1989D556002648CE /* CJMArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMArtistsViewController.m; sourceTree = "<group>"; };
+		8F23F2A11989DC40002648CE /* CJMPerformanceYearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMPerformanceYearViewController.h; sourceTree = "<group>"; };
+		8F23F2A21989DC40002648CE /* CJMPerformanceYearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMPerformanceYearViewController.m; sourceTree = "<group>"; };
+		8F23F2A41989DD73002648CE /* CJMSongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSongsViewController.h; sourceTree = "<group>"; };
+		8F23F2A51989DD73002648CE /* CJMSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSongsViewController.m; sourceTree = "<group>"; };
+		8F23F2A71989DEF8002648CE /* CJMGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMGenreViewController.h; sourceTree = "<group>"; };
+		8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMGenreViewController.m; sourceTree = "<group>"; };
 		8F3EA4DD19809D0D0019DB87 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sidebar.png; path = ../../Desktop/CJM/sidebar.png; sourceTree = "<group>"; };
 		8F3EA4DF19809EF40019DB87 /* detail-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detail-background.png"; path = "../../Desktop/CJM/detail-background.png"; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
 		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
-		8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMArtistsTableViewController.h; sourceTree = "<group>"; };
-		8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMArtistsTableViewController.m; sourceTree = "<group>"; };
-		8F3EA4E81980A5DE0019DB87 /* FWMGenreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMGenreTableViewController.h; sourceTree = "<group>"; };
-		8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMGenreTableViewController.m; sourceTree = "<group>"; };
-		8F3EA4EA1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMPerformanceYearTableViewController.h; sourceTree = "<group>"; };
-		8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMPerformanceYearTableViewController.m; sourceTree = "<group>"; };
-		8F3EA4EC1980A5DE0019DB87 /* FWMSongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWMSongsTableViewController.h; sourceTree = "<group>"; };
-		8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWMSongsTableViewController.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
@@ -264,6 +264,21 @@
 			name = Blur;
 			sourceTree = "<group>";
 		};
+		8F23F29D1989D525002648CE /* Subclassed From Base */ = {
+			isa = PBXGroup;
+			children = (
+				8F23F2A71989DEF8002648CE /* CJMGenreViewController.h */,
+				8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */,
+				8F23F2A41989DD73002648CE /* CJMSongsViewController.h */,
+				8F23F2A51989DD73002648CE /* CJMSongsViewController.m */,
+				8F23F2A11989DC40002648CE /* CJMPerformanceYearViewController.h */,
+				8F23F2A21989DC40002648CE /* CJMPerformanceYearViewController.m */,
+				8F23F29E1989D556002648CE /* CJMArtistsViewController.h */,
+				8F23F29F1989D556002648CE /* CJMArtistsViewController.m */,
+			);
+			name = "Subclassed From Base";
+			sourceTree = "<group>";
+		};
 		9AE67DD9CDC8433493A71FF1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,18 +322,11 @@
 		DCAAB5D1E8D144DA93E56EEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F23F29D1989D525002648CE /* Subclassed From Base */,
 				8F23F27F19888AAD002648CE /* CJMBaseViewController.h */,
 				8F23F28019888AAD002648CE /* CJMBaseViewController.m */,
 				8F23F24619834723002648CE /* CJMSplitViewController.h */,
 				8F23F24719834723002648CE /* CJMSplitViewController.m */,
-				8F3EA4E61980A5DE0019DB87 /* FWMArtistsTableViewController.h */,
-				8F3EA4E71980A5DE0019DB87 /* FWMArtistsTableViewController.m */,
-				8F3EA4E81980A5DE0019DB87 /* FWMGenreTableViewController.h */,
-				8F3EA4E91980A5DE0019DB87 /* FWMGenreTableViewController.m */,
-				8F3EA4EA1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.h */,
-				8F3EA4EB1980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m */,
-				8F3EA4EC1980A5DE0019DB87 /* FWMSongsTableViewController.h */,
-				8F3EA4ED1980A5DE0019DB87 /* FWMSongsTableViewController.m */,
 				8F073ADE19761002000B15B6 /* CJMBaseNavigationController.h */,
 				8F073ADF19761002000B15B6 /* CJMBaseNavigationController.m */,
 				8F073ADB19760F08000B15B6 /* CJMDetailTableViewController.h */,
@@ -511,20 +519,20 @@
 				8F23F28119888AAD002648CE /* CJMBaseViewController.m in Sources */,
 				8F073AE019761002000B15B6 /* CJMBaseNavigationController.m in Sources */,
 				8F23F2371982EA75002648CE /* CJMTableViewCell.m in Sources */,
-				8F3EA4EF1980A5DE0019DB87 /* FWMGenreTableViewController.m in Sources */,
 				8F23F25219835186002648CE /* CJMTaglineView.m in Sources */,
-				8F3EA4EE1980A5DE0019DB87 /* FWMArtistsTableViewController.m in Sources */,
 				8F23F24D19834ACD002648CE /* UIERealTimeBlurView.m in Sources */,
 				8F23F27B19887ED4002648CE /* CJMAudioController.m in Sources */,
+				8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
+				8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */,
 				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
 				8F23F23D198329FA002648CE /* CJMTableHeaderView.m in Sources */,
-				8F3EA4F01980A5DE0019DB87 /* FWMPerformanceYearTableViewController.m in Sources */,
 				8F23F27E1988874C002648CE /* CJMTrackPlayingView.m in Sources */,
 				8F073ADD19760F08000B15B6 /* CJMDetailTableViewController.m in Sources */,
 				8F073ADA19760EF9000B15B6 /* CJMMenuTableViewController.m in Sources */,
-				8F3EA4F11980A5DE0019DB87 /* FWMSongsTableViewController.m in Sources */,
 				824AAC9B2D154FFDA1B16F7C /* main.m in Sources */,
+				8F23F2A01989D556002648CE /* CJMArtistsViewController.m in Sources */,
+				8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */,
 				8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

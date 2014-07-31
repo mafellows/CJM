@@ -8,9 +8,9 @@
 
 #import "CJMAppDelegate.h"
 #import "CJMMenuTableViewController.h"
-#import "FWMSongsTableViewController.h"
 #import "CJMBaseNavigationController.h"
 #import "CJMSplitViewController.h"
+#import "CJMArtistsViewController.h"
 
 @implementation CJMAppDelegate 
 
@@ -19,7 +19,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     CJMMenuTableViewController *menuTableViewController = [[CJMMenuTableViewController alloc] init];
-    FWMSongsTableViewController *detailTableViewController = [[FWMSongsTableViewController alloc] init];
+    CJMArtistsViewController *detailTableViewController = [[CJMArtistsViewController alloc] init];
     CJMBaseNavigationController *navController = [[CJMBaseNavigationController alloc] initWithRootViewController:menuTableViewController];
     CJMBaseNavigationController *detailNav = [[CJMBaseNavigationController alloc] initWithRootViewController:detailTableViewController];
     
@@ -28,6 +28,8 @@
     self.window.rootViewController = self.splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    // Image View
     UIImageView *funkyEdgeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 700, self.window.frame.size.width, 30)];
     funkyEdgeImageView.backgroundColor = [UIColor blueColor];
     funkyEdgeImageView.image = [UIImage imageNamed:@"funky-edge"];

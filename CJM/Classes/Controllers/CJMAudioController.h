@@ -10,6 +10,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
+#define Back_Pressed_Notification @"backPressed"
+#define Play_Pressed_Notification @"playPressed"
+#define Next_Pressed_Notification @"nextPressed"
+#define Time_Slider_Notification @"timeSlider"
+#define Volume_Slider_Notification @"volumeSlider"
+
+
 @interface CJMAudioController : NSObject
 
 @property (nonatomic, strong) MPMediaItem *currentItem;
