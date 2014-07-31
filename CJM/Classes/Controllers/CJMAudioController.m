@@ -43,7 +43,7 @@
 - (void)nextItem
 {
     NSUInteger index = self.currentIndex;
-    if (index > self.songsList.count) {
+    if (index >= (self.songsList.count -1)) {
         self.currentIndex = 0;
     } else {
         self.currentIndex++;

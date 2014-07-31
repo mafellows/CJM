@@ -74,6 +74,21 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *performanceYear = [self.sectionHeaders objectAtIndex:indexPath.section];
+    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
+    NSArray *songs = [dictionary objectForKey:performanceYear];
+    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+    CJMAudioController *controller = [CJMAudioController sharedController];
+    controller.currentItem = song;
+    [controller setArrayOfSongs:songs withCurrentIndex:indexPath.row];
+    [controller playItem];
+    
+    [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
+    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+}
+
 #pragma mark - Private
 
 - (void)_fetchPerformanceYears
