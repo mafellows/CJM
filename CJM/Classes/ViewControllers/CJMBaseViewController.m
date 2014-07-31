@@ -72,6 +72,23 @@
     return 60.0f;
 }
 
+#pragma mark - Selector
+
+- (void)updateTimeSlider:(id)sender
+{
+    AVAudioPlayer *player = [[CJMAudioController sharedController] audioPlayer];
+    NSTimeInterval remaining = player.duration - player.currentTime;
+    double minutes = floor(remaining / 60);
+    double seconds = floor(remaining - minutes * 60);
+    NSString *timeString = [NSString stringWithFormat:@"%02.0f:%02.0f", minutes, seconds];
+    NSLog(@"Time: %@", timeString);
+    self.trackPlayingView.secondsRemainingLabel.text = timeString;
+    
+    
+    CGFloat percentage = player.currentTime / player.duration;
+    self.trackPlayingView.timeSlider.value = percentage;
+}
+
 #pragma mark - Helper Methods
 
 - (NSString *)timeRemainingForDuration:(NSNumber *)duration
@@ -80,7 +97,6 @@
     int minutes = songDuration / 60;
     int seconds = songDuration % 60;
     return [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
-    
 }
 
 - (void)populateTrackView
@@ -91,6 +107,9 @@
         self.trackPlayingView.songTitleLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
     }
     self.trackPlayingView.volumeSlider.value = [[CJMAudioController sharedController] currentVolume];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeSlider:) userInfo:nil repeats:YES];
+    [_timer fire];
 }
 
 #pragma mark - Private
