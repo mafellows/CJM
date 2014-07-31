@@ -13,15 +13,6 @@
 
 @implementation CJMTrackPlayingView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self _initialize];
-    }
-    return self;
-}
-
 - (id)init
 {
     if ((self = [super init])) {
@@ -64,9 +55,7 @@
 #pragma mark - Private
 
 - (void)_initialize
-{
-    MPMediaItem *song = nil;
-    
+{    
     CGFloat height = 150.0f;
     self.frame = CGRectMake(40.0f,
                             [[UIScreen mainScreen] bounds].size.width - height,
@@ -80,22 +69,11 @@
     _artistLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20.0f, 610.0f, 20.0f)];
     _artistLabel.textAlignment = NSTextAlignmentCenter;
     _artistLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    
-    if (!song) {
-        _artistLabel.text = @"Select A Song";
-    } else {
-        _artistLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
-    }
-    
+    _artistLabel.text = @"Select A Song"; 
     [self addSubview:_artistLabel];
     
     _songTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 44.0f, 610.0f, 20.0f)];
     _songTitleLabel.textAlignment = NSTextAlignmentCenter;
-    if (!song) {
-        _songTitleLabel.text = @"";
-    } else {
-        _songTitleLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
-    }
     _songTitleLabel.font = [UIFont systemFontOfSize:18.0f];
     [self addSubview:_songTitleLabel];
     
@@ -138,7 +116,7 @@
     _timeSlider = timeSlider;
     
     UILabel *secondsRemainingLabel = [[UILabel alloc] initWithFrame:CGRectMake(390, 100.0f, 50.0F, 22.0f)];
-    secondsRemainingLabel.text = @"00:42";
+    secondsRemainingLabel.text = @"00:00";
     secondsRemainingLabel.textAlignment = NSTextAlignmentLeft;
     secondsRemainingLabel.font = [UIFont systemFontOfSize:14.0f];
     secondsRemainingLabel.textColor = [UIColor darkGrayColor];
@@ -153,6 +131,7 @@
     UISlider *volumeSlider = [[UISlider alloc] initWithFrame:CGRectMake(468.0f, 100.0f, 100.0f, 24.0f)];
     volumeSlider.minimumValue = 0.0f;
     volumeSlider.maximumValue = 1.0f;
+    volumeSlider.value = [[CJMAudioController sharedController] currentVolume]; 
     volumeSlider.minimumTrackTintColor = [UIColor whiteColor];
     volumeSlider.maximumTrackTintColor = [UIColor darkGrayColor];
     [volumeSlider addTarget:self

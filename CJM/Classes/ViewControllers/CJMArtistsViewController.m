@@ -18,11 +18,17 @@
 
 @implementation CJMArtistsViewController
 
+- (id)init
+{
+    if ((self = [super init])) {
+        self.tableHeaderView.titleLabel.text = @"ARTISTS";
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableHeaderView.titleLabel.text = @"ARTISTS";
-    
     [self _fetchArtists];
 }
 

@@ -17,10 +17,17 @@
 
 @implementation CJMPerformanceYearViewController
 
+- (id)init
+{
+    if ((self = [super init])) {
+        self.tableHeaderView.titleLabel.text = @"PERFORMANCE YEARS";
+    }
+    return self; 
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableHeaderView.titleLabel.text = @"PERFORMANCE YEARS"; 
     [self _fetchPerformanceYears];
 }
 
@@ -65,11 +72,6 @@
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 60.0f;
 }
 
 #pragma mark - Private

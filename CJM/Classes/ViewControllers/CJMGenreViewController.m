@@ -17,11 +17,17 @@
 
 @implementation CJMGenreViewController
 
+- (id)init
+{
+    if ((self = [super init])) {
+        self.tableHeaderView.titleLabel.text = @"GENRE";
+    }
+    return self; 
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableHeaderView.titleLabel.text = @"GENRE";     
     [self _fetchGenres];
 }
 

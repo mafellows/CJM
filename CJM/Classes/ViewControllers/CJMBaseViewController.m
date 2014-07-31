@@ -8,7 +8,9 @@
 
 #import "CJMBaseViewController.h"
 
-@interface CJMBaseViewController() <UISearchDisplayDelegate>
+@interface CJMBaseViewController() <UISearchDisplayDelegate> {
+    NSTimer *_timer;
+}
 
 @end
 
@@ -27,11 +29,25 @@
     return YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self populateTrackView];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    [self _registerForNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     
+    [self _unregisterForNotifications];
 }
 
 #pragma mark - Table view data source
@@ -67,6 +83,16 @@
     
 }
 
+- (void)populateTrackView
+{
+    MPMediaItem *song = [[CJMAudioController sharedController] currentItem];
+    if (song) {
+        self.trackPlayingView.artistLabel.text = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+        self.trackPlayingView.songTitleLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
+    }
+    self.trackPlayingView.volumeSlider.value = [[CJMAudioController sharedController] currentVolume];
+}
+
 #pragma mark - Private
 
 - (void)_initialize
@@ -98,14 +124,19 @@
     searchController.searchResultsDataSource = self;
     searchController.searchResultsDelegate = self;
     
-    _trackPlayingView = [[CJMTrackPlayingView alloc] init];
-    if (![_trackPlayingView isDescendantOfView:self.view]) {
-        [self.view addSubview:_trackPlayingView];
-    } else {
-        [_trackPlayingView removeFromSuperview];
-    }
+    CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
+    [self.view addSubview:trackPlayingView];
+    _trackPlayingView = trackPlayingView; 
 }
 
+- (void)_registerForNotifications
+{
+    
+}
 
+- (void)_unregisterForNotifications
+{
+    
+}
 
 @end

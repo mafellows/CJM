@@ -21,7 +21,8 @@
 
 @property (nonatomic, strong) MPMediaItem *currentItem;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, copy) NSArray *shufflePlaylist; 
+@property (nonatomic, copy) NSArray *shufflePlaylist;
+@property (nonatomic, assign) CGFloat volumeLevel; 
 
 + (instancetype)sharedController; 
 
@@ -30,6 +31,7 @@
 - (void)nextItem;
 - (void)previousItem;
 - (void)setVolume:(CGFloat)volume;
-- (void)timeRemaining:(int)seconds; 
+- (void)timeRemaining:(int)seconds;
+- (CGFloat)currentVolume; 
 
 @end

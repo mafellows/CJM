@@ -17,10 +17,18 @@
 
 @implementation CJMSongsViewController
 
+- (id)init
+{
+    if ((self = [super init])) {
+        self.tableHeaderView.titleLabel.text = @"SONGS"; 
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableHeaderView.titleLabel.text = @"SONGS"; 
+    
     MPMediaQuery *query = [[MPMediaQuery alloc] init];
     self.songs = [query items];
     self.tableData = [self _partitionObjects:self.songs collationStringSelector:@selector(title)];

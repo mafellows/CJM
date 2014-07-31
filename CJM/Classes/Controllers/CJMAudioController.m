@@ -23,7 +23,7 @@
 - (id)init
 {
     if ((self = [super init])) {
-        
+        _volumeLevel = 0.5; 
     }
     return self;
 }
@@ -33,6 +33,7 @@
     NSURL *audioURL = [self.currentItem valueForProperty:MPMediaItemPropertyAssetURL];
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL
                                                               error:nil];
+    self.audioPlayer.volume = self.volumeLevel; 
     [self.audioPlayer prepareToPlay];
     [self.audioPlayer play];
 }
@@ -54,12 +55,19 @@
 
 - (void)setVolume:(CGFloat)volume
 {
+    self.volumeLevel = volume;
+    NSLog(@"Current Volume: %f", self.volumeLevel);
     [self.audioPlayer setVolume:volume];
 }
 
 - (void)timeRemaining:(int)seconds
 {
     
+}
+
+- (CGFloat)currentVolume
+{
+    return self.volumeLevel;
 }
 
 @end
