@@ -38,6 +38,7 @@
 		8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A21989DC40002648CE /* CJMPerformanceYearViewController.m */; };
 		8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A51989DD73002648CE /* CJMSongsViewController.m */; };
 		8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */; };
+		8F30994C1990534500798902 /* CJMQueryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F30994B1990534500798902 /* CJMQueryStore.m */; };
 		8F3EA4DE19809D0D0019DB87 /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DD19809D0D0019DB87 /* sidebar.png */; };
 		8F3EA4E019809EF40019DB87 /* detail-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F3EA4DF19809EF40019DB87 /* detail-background.png */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
@@ -110,6 +111,8 @@
 		8F23F2A51989DD73002648CE /* CJMSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSongsViewController.m; sourceTree = "<group>"; };
 		8F23F2A71989DEF8002648CE /* CJMGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMGenreViewController.h; sourceTree = "<group>"; };
 		8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMGenreViewController.m; sourceTree = "<group>"; };
+		8F30994A1990534500798902 /* CJMQueryStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMQueryStore.h; sourceTree = "<group>"; };
+		8F30994B1990534500798902 /* CJMQueryStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMQueryStore.m; sourceTree = "<group>"; };
 		8F3EA4DD19809D0D0019DB87 /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sidebar.png; path = ../../Desktop/CJM/sidebar.png; sourceTree = "<group>"; };
 		8F3EA4DF19809EF40019DB87 /* detail-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "detail-background.png"; path = "../../Desktop/CJM/detail-background.png"; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 		AFBDE41F97BA49CA81241C8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8F30994A1990534500798902 /* CJMQueryStore.h */,
+				8F30994B1990534500798902 /* CJMQueryStore.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
 				8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */,
+				8F30994C1990534500798902 /* CJMQueryStore.m in Sources */,
 				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
 				8F23F23D198329FA002648CE /* CJMTableHeaderView.m in Sources */,
 				8F23F27E1988874C002648CE /* CJMTrackPlayingView.m in Sources */,
@@ -656,7 +662,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: michael fellows (UW63NW2D6H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

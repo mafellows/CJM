@@ -10,4 +10,6 @@
 
 @interface CJMSearchResultsDataSource : NSObject <UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView; 
+
 @end

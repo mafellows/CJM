@@ -7,12 +7,19 @@
 //
 
 #import "CJMSearchControllerDelegate.h"
+#import "CJMQueryStore.h"
+#import "CJMAudioController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation CJMSearchControllerDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSArray *songs = [[CJMQueryStore sharedStore] currentResults];
+    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+    CJMAudioController *controller = [CJMAudioController sharedController];
+    controller.currentItem = song;
+    [controller playItem];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -24,5 +31,7 @@
 {
     return 0; 
 }
+
+
 
 @end

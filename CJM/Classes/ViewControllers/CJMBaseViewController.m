@@ -9,6 +9,7 @@
 #import "CJMBaseViewController.h"
 #import "CJMSearchResultsDataSource.h"
 #import "CJMSearchControllerDelegate.h"
+#import "CJMQueryStore.h"
 
 @interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate> {
     NSTimer *_timer;
@@ -58,6 +59,7 @@
 {
     UITableViewController *popoverTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.dataSource = [[CJMSearchResultsDataSource alloc] init];
+    self.dataSource.tableView = popoverTableViewController.tableView; 
     self.delegate = [[CJMSearchControllerDelegate alloc] init];
     popoverTableViewController.tableView.delegate = self.delegate;
     popoverTableViewController.tableView.dataSource = self.dataSource;
@@ -71,6 +73,13 @@
                                 permittedArrowDirections:UIPopoverArrowDirectionAny
                                                 animated:YES];
     
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSArray *results = [[CJMQueryStore sharedStore] resultsForQuery:searchText];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CJMQueryNotificationSearchChanged
+                                                        object:results];
 }
 
 #pragma mark - UIPopoverControllerDelegate
