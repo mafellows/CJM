@@ -24,6 +24,17 @@
     [self _initialize];
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    if (highlighted) {
+        self.songLabel.textColor = [UIColor lightGrayColor];
+        self.trackLengthLabel.textColor = [UIColor lightGrayColor];
+    } else {
+        self.songLabel.textColor = [UIColor darkTextColor];
+        self.trackLengthLabel.textColor = [UIColor darkTextColor];
+    }
+}
+
 - (void)_initialize
 {
     self.backgroundColor = [UIColor clearColor];
@@ -38,6 +49,12 @@
     trackLengthLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview:trackLengthLabel];
     _trackLengthLabel = trackLengthLabel;
+    
+    UIImageView *speakerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(600.0f, 10.0f, 36.0f, 36.0f)];
+    speakerImageView.image = [UIImage imageNamed:@"now-playing"];
+    [self addSubview:speakerImageView];
+    speakerImageView.hidden = YES; 
+    _speakerImageView = speakerImageView;
     
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(40.0f,
                                                                      CGRectGetHeight(self.frame),

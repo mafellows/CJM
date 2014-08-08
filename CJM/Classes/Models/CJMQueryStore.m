@@ -21,6 +21,15 @@
     return sharedStore;
 }
 
+- (NSArray *)currentResults
+{
+    if (!_currentResults) {
+        MPMediaQuery *searchQuery = [MPMediaQuery songsQuery];
+        _currentResults = [searchQuery items];
+    }
+    return _currentResults;
+}
+
 - (NSArray *)resultsForQuery:(NSString *)query
 {
     MPMediaQuery *searchQuery = [[MPMediaQuery alloc] init];
@@ -29,8 +38,13 @@
                          query,
                          query];
     NSArray *filteredArray = [[searchQuery items] filteredArrayUsingPredicate:test];
-    NSLog(@"Search Results: %@", filteredArray);
-    return filteredArray;
+    if (filteredArray.count == 0) {
+        MPMediaQuery *allQuery = [MPMediaQuery songsQuery];
+        self.currentResults = [allQuery items];
+    } else {
+        self.currentResults = filteredArray;
+    }
+    return self.currentResults;
 }
 
 @end

@@ -17,9 +17,13 @@
 {
     NSArray *songs = [[CJMQueryStore sharedStore] currentResults];
     MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+    
     CJMAudioController *controller = [CJMAudioController sharedController];
     controller.currentItem = song;
+    [controller setArrayOfSongs:songs withCurrentIndex:indexPath.row];
     [controller playItem];
+    
+    [self.delegate selectedSongFromSearch:song];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

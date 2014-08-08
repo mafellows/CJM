@@ -68,6 +68,14 @@
     cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
+    if (song == [[CJMAudioController sharedController] currentItem]) {
+        cell.trackLengthLabel.hidden = YES;
+        cell.speakerImageView.hidden = NO;
+    } else {
+        cell.trackLengthLabel.hidden = NO;
+        cell.speakerImageView.hidden = YES;
+    }
+    
     return cell;
 }
 
@@ -84,6 +92,10 @@
     
     [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
     [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+    [self.tableView reloadData];
+    
+    [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
+                                      forState:UIControlStateNormal];
 }
 
 #pragma mark - Private

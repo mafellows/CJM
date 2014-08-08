@@ -13,5 +13,6 @@
 @property (nonatomic, weak) UILabel *songLabel;
 @property (nonatomic, weak) UILabel *trackLengthLabel;
 @property (nonatomic, assign, getter = isPlaying) BOOL playing;
+@property (nonatomic, weak) UIImageView *speakerImageView; 
 
 @end

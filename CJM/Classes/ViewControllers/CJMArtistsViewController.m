@@ -82,6 +82,14 @@
         NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
         NSArray *songs = [dictionary objectForKey:key];
         MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+        
+        if (song == [[CJMAudioController sharedController] currentItem]) {
+            cell.trackLengthLabel.hidden = YES;
+            cell.speakerImageView.hidden = NO;
+        } else {
+            cell.trackLengthLabel.hidden = NO;
+            cell.speakerImageView.hidden = YES;
+        }
         cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
         cell.trackLengthLabel.text = [self timeRemainingForDuration:[song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
         cell.backgroundColor = [UIColor clearColor];
@@ -101,7 +109,10 @@
     [controller playItem];
     
     [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
-    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]]; 
+    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]]; \
+    [self.tableView reloadData];
+    
+    [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal]; 
 }
 
 #pragma mark - Private

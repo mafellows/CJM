@@ -11,7 +11,7 @@
 #define CJMQueryNotificationSearchChanged @"searchChanged"
 
 @interface CJMQueryStore : NSObject
-@property (nonatomic, copy) NSArray *currentResults; 
+@property (nonatomic, strong) NSArray *currentResults;
 + (instancetype)sharedStore;
 - (NSArray *)resultsForQuery:(NSString *)query;
 

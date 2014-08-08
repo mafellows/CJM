@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CJMSearchControllerDelegate : NSObject <UITableViewDelegate>
+@class MPMediaItem;
 
+@protocol CJMSearchSelectedDelegate
+
+- (void)selectedSongFromSearch:(MPMediaItem *)song;
+
+@end
+
+@interface CJMSearchControllerDelegate : NSObject <UITableViewDelegate>
+@property (nonatomic, assign) id<CJMSearchSelectedDelegate> delegate; 
 @end

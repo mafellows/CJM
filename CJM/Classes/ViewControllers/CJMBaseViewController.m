@@ -11,7 +11,7 @@
 #import "CJMSearchControllerDelegate.h"
 #import "CJMQueryStore.h"
 
-@interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate> {
+@interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, CJMSearchSelectedDelegate> {
     NSTimer *_timer;
 }
 
@@ -53,14 +53,28 @@
     [self _unregisterForNotifications];
 }
 
+#pragma mark - CJMSearchSelectedDelegate
+
+- (void)selectedSongFromSearch:(MPMediaItem *)song
+{
+    [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
+    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+    
+    [self.tableHeaderView.searchBar resignFirstResponder];
+    [self.searchPopoverController dismissPopoverAnimated:YES];
+    self.tableHeaderView.searchBar.text = @"";
+    [self.tableView reloadData];
+}
+
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     UITableViewController *popoverTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.dataSource = [[CJMSearchResultsDataSource alloc] init];
-    self.dataSource.tableView = popoverTableViewController.tableView; 
+    self.dataSource.tableView = popoverTableViewController.tableView;
     self.delegate = [[CJMSearchControllerDelegate alloc] init];
+    self.delegate.delegate = self;
     popoverTableViewController.tableView.delegate = self.delegate;
     popoverTableViewController.tableView.dataSource = self.dataSource;
     _popoverTableViewcontroller = popoverTableViewController;
@@ -140,10 +154,12 @@
         AVAudioPlayer *controller = [[CJMAudioController sharedController] audioPlayer];
         if ([controller isPlaying]) {
             [controller pause];
-            // TODO: Update Pause Label
+            [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"play"]
+                                              forState:UIControlStateNormal];
         } else {
             [controller play];
-            // TODO: Update play label
+            [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
+                                              forState:UIControlStateNormal];
         }
     }
 }

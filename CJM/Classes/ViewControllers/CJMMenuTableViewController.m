@@ -14,6 +14,7 @@
 #import "CJMPerformanceYearViewController.h"
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
+#import "CJMMenuTableViewCell.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
     RowArtists,
@@ -29,6 +30,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMSongsViewController *songsVC;
 @property (nonatomic, strong) CJMGenreViewController *genreVC;
 @property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
+@property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
 
@@ -79,9 +81,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CJMMenuTableViewCell *cell = (CJMMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CJMMenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     cell.textLabel.textColor = [UIColor whiteColor];
@@ -90,6 +92,18 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.textLabel.text = [self _titleForIndexPath:indexPath];
     cell.textLabel.font = [UIFont tableViewHeaderFont];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [cell bringSubviewToFront:cell.textLabel];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+    if (self.selectedIndex == indexPath) {
+        cell.textLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"highlighted"]];
+    }
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.textLabel.bounds];
+    imageView.image = [UIImage imageNamed:@"highlighted"];
+    cell.selectedBackgroundView = imageView;
+    
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(140.0f, 56.0f, 40.0f, 4.0f)];
     separatorView.backgroundColor = [UIColor whiteColor];
     [cell addSubview:separatorView];
@@ -98,7 +112,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectedIndex = indexPath;
     id presentingViewController = nil;
+
     
     switch (indexPath.row) {
         case RowSongs:
@@ -124,18 +140,22 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     NSArray *newViewControllerStack = @[ [delegate.splitViewController.viewControllers firstObject], presentingViewController];
     delegate.splitViewController.viewControllers = newViewControllerStack;
-    delegate.splitViewController.delegate = self; 
+    delegate.splitViewController.delegate = self;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Private
 
 - (void)_initialize
 {
+    _selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0]; 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"sidebar"];
     self.tableView.backgroundView = imageView;
     CJMMenuHeaderView *headerView = [[CJMMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     self.tableView.tableHeaderView = headerView;
+    
+    [self.tableView registerClass:[CJMMenuTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
