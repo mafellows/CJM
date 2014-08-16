@@ -97,7 +97,7 @@
     
     UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [playButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-    playButton.frame = CGRectMake(44.0f, 100.0f, 24.0f, 24.0f);
+    playButton.frame = CGRectMake(38.0f, 94.0f, 36.0f, 36.0f);
     [playButton addTarget:self
                    action:@selector(playPressed:)
          forControlEvents:UIControlEventTouchUpInside];

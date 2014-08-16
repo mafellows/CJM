@@ -37,6 +37,15 @@
     [super viewWillAppear:animated];
     
     [self populateTrackView];
+    
+    AVAudioPlayer *sharedPlayer = [[CJMAudioController sharedController] audioPlayer];
+    if (sharedPlayer.isPlaying) {
+        [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
+                                          forState:UIControlStateNormal];
+    } else {
+        [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"play"]
+                                          forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,7 +71,6 @@
     
     [self.tableHeaderView.searchBar resignFirstResponder];
     [self.searchPopoverController dismissPopoverAnimated:YES];
-    self.tableHeaderView.searchBar.text = @"";
     [self.tableView reloadData];
 }
 
