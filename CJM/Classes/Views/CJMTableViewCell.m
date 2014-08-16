@@ -41,12 +41,13 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone; 
     UILabel *songLabel = [[UILabel alloc] init];
     songLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    songLabel.font = [UIFont tableViewFont];
+    songLabel.font = [UIFont cellFont];
     [self addSubview:songLabel];
     _songLabel = songLabel;
     
     UILabel *trackLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(550.0f, 10, 80.0f, CGRectGetHeight(self.frame))];
     trackLengthLabel.textAlignment = NSTextAlignmentRight;
+    trackLengthLabel.font = [UIFont cellFont]; 
     [self addSubview:trackLengthLabel];
     _trackLengthLabel = trackLengthLabel;
     
@@ -60,7 +61,7 @@
                                                                      CGRectGetHeight(self.frame),
                                                                      610.0f,
                                                                      1.0f)];
-    separatorView.backgroundColor = [UIColor blackColor]; //[UIColor colorWithWhite:0.9 alpha:1.0f];
+    separatorView.backgroundColor = [UIColor colorWithRed:229.0f / 255.0f green:227.0f / 255.0f blue:193.0f / 255.0f alpha:0.8f]; 
     [self addSubview:separatorView];
     
 

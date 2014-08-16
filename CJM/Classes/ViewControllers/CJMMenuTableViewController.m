@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = [self _titleForIndexPath:indexPath];
-    cell.textLabel.font = [UIFont tableViewHeaderFont];
+    cell.textLabel.font = [UIFont menuFont];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [cell bringSubviewToFront:cell.textLabel];

@@ -14,5 +14,10 @@
 + (UIFont *)tableViewHeaderFont;
 + (UIFont *)menuFont;
 + (UIFont *)titleFont;
++ (UIFont *)menuHeaderFont;
++ (UIFont *)nowPlayingArtistFont;
++ (UIFont *)nowPlayingTitleFont;
++ (UIFont *)cellFont;
++ (UIFont *)cellHeaderFont; 
 
 @end

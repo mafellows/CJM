@@ -7,6 +7,7 @@
 //
 
 #import "CJMTaglineView.h"
+#import "UIFont+CJMFonts.h"
 
 @implementation CJMTaglineView
 
@@ -25,7 +26,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.numberOfLines = 3;
     label.text = @"LISTEN TO SONGS BY EVERY\nARTIST WHO PERFORMED AT\nHARDLY STRICTLY BLUEGRASS";
-    label.font = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:20.0f];
+    label.font = [UIFont menuHeaderFont];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];

@@ -23,7 +23,7 @@
 {
     UILabel *sectionTitleLabel = [[UILabel alloc] init];
     sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    sectionTitleLabel.font = [UIFont tableViewHeaderFont]; 
+    sectionTitleLabel.font = [UIFont cellHeaderFont];
     [self addSubview:sectionTitleLabel];
     _sectionTitleLabel = sectionTitleLabel;
     

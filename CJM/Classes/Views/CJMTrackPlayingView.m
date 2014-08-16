@@ -77,13 +77,13 @@
     
     _artistLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20.0f, 610.0f, 20.0f)];
     _artistLabel.textAlignment = NSTextAlignmentCenter;
-    _artistLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    _artistLabel.font = [UIFont nowPlayingArtistFont];
     _artistLabel.text = @"Select A Song"; 
     [self addSubview:_artistLabel];
     
     _songTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 44.0f, 610.0f, 20.0f)];
     _songTitleLabel.textAlignment = NSTextAlignmentCenter;
-    _songTitleLabel.font = [UIFont systemFontOfSize:18.0f];
+    _songTitleLabel.font = [UIFont nowPlayingTitleFont]; 
     [self addSubview:_songTitleLabel];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
