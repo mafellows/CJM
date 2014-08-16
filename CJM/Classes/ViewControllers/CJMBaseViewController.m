@@ -95,6 +95,12 @@
                                 permittedArrowDirections:UIPopoverArrowDirectionAny
                                                 animated:YES];
     
+    if (![searchBar.text isEqualToString:@""]) {
+        NSArray *results = [[CJMQueryStore sharedStore] resultsForQuery:searchBar.text];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CJMQueryNotificationSearchChanged
+                                                            object:results];
+    }
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -145,7 +151,6 @@
 {
     AVAudioPlayer *player = [[CJMAudioController sharedController] audioPlayer];
     NSTimeInterval remaining = player.duration - player.currentTime;
-    NSLog(@"%f", remaining); 
     double minutes = floor(remaining / 60);
     double seconds = floor(remaining - minutes * 60);
     NSString *timeString = [NSString stringWithFormat:@"%02.0f:%02.0f", minutes, seconds];
