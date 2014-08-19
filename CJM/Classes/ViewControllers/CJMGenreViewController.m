@@ -7,28 +7,51 @@
 //
 
 #import "CJMGenreViewController.h"
+#import "CJMMenuTableViewController.h"
+#import "UIViewController+JASidePanel.h"
+#import "JASidePanelController.h"
 
 @interface CJMGenreViewController ()
 
 @property (nonatomic, copy) NSArray *dictionaryArray;
 @property (nonatomic, copy) NSArray *sectionHeaders;
+@property (nonatomic, strong) CJMMenuTableViewController *menuViewController;
 
 @end
 
 @implementation CJMGenreViewController
 
-- (id)init
+- (instancetype)initWithMenuViewController:(CJMMenuTableViewController *)menuViewController
 {
+    _menuViewController = menuViewController;
     if ((self = [super init])) {
         self.tableHeaderView.titleLabel.text = @"GENRE";
     }
-    return self; 
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self _fetchGenres];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.menuViewController.genreSidePanelController showLeftPanelAnimated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(genreSelected:)
+                                                 name:@"selectedGenre"
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"selectedGenre"
+                                                  object:nil];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -98,6 +121,17 @@
                                       forState:UIControlStateNormal];
 }
 
+#pragma mark - Selector
+
+- (void)genreSelected:(NSNotification *)aNotification
+{
+    if ([[aNotification name] isEqualToString:@"selectedGenre"]) {
+        NSString *genre = [[aNotification object] objectForKey:@"genre"];
+        self.tableHeaderView.titleLabel.text = [genre uppercaseString];
+        [self _fetchSongsForGenre:genre];
+    }
+}
+
 #pragma mark - Private
 
 - (void)_fetchGenres
@@ -129,6 +163,13 @@
     
     self.dictionaryArray = [arrayOfDictionaries copy];
     self.sectionHeaders = [uniqueGenres copy];
+}
+
+- (void)_fetchSongsForGenre:(NSString *)genre
+{
+    
+    
+    
 }
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "CJMArtistsViewController.h"
+#import "UIViewController+JASidePanel.h"
+#import "JASidePanelController.h"
+#import "CJMAppDelegate.h"
 
 @interface CJMArtistsViewController ()
 
@@ -30,6 +33,8 @@
 {
     [super viewDidLoad];
     [self _fetchArtists];
+    
+    
 }
 
 #pragma mark - Private

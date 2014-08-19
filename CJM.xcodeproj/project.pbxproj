@@ -36,6 +36,10 @@
 		8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */; };
 		8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */; };
 		8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */; };
+		8FEAC08819A3941E00FCB86C /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08519A3941E00FCB86C /* JASidePanelController.m */; };
+		8FEAC08919A3941E00FCB86C /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08719A3941E00FCB86C /* UIViewController+JASidePanel.m */; };
+		8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */; };
+		8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -106,6 +110,14 @@
 		8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSearchResultsDataSource.m; sourceTree = "<group>"; };
 		8FAD0BDC198AF2A1002B0603 /* CJMSearchControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMSearchControllerDelegate.h; path = ../../../CJMSearchControllerDelegate.h; sourceTree = "<group>"; };
 		8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMSearchControllerDelegate.m; path = ../../../CJMSearchControllerDelegate.m; sourceTree = "<group>"; };
+		8FEAC08419A3941E00FCB86C /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		8FEAC08519A3941E00FCB86C /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
+		8FEAC08619A3941E00FCB86C /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		8FEAC08719A3941E00FCB86C /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
+		8FEAC08A19A3A04900FCB86C /* CJMGenreMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMGenreMenuTableViewController.h; sourceTree = "<group>"; };
+		8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMGenreMenuTableViewController.m; sourceTree = "<group>"; };
+		8FEAC08E19A3A29600FCB86C /* CJMSidePanelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSidePanelTableViewCell.h; sourceTree = "<group>"; };
+		8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSidePanelTableViewCell.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
@@ -140,8 +152,7 @@
 		00A79AEB2B444BE2B61ED0A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8F3CE10B1994427800D99C74 /* CJMMenuTableViewCell.h */,
-				8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */,
+				8FEAC09119A3A2A100FCB86C /* Cells */,
 				8F23F27C1988874C002648CE /* CJMTrackPlayingView.h */,
 				8F23F27D1988874C002648CE /* CJMTrackPlayingView.m */,
 				8F23F25019835186002648CE /* CJMTaglineView.h */,
@@ -150,8 +161,6 @@
 				8F23F24219834037002648CE /* CJMSearchHeaderView.m */,
 				8F23F23B198329FA002648CE /* CJMTableHeaderView.h */,
 				8F23F23C198329FA002648CE /* CJMTableHeaderView.m */,
-				8F23F2351982EA75002648CE /* CJMTableViewCell.h */,
-				8F23F2361982EA75002648CE /* CJMTableViewCell.m */,
 				8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */,
 				8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */,
 			);
@@ -278,6 +287,39 @@
 			name = "Subclassed From Base";
 			sourceTree = "<group>";
 		};
+		8FEAC08319A3941E00FCB86C /* JASidePanels */ = {
+			isa = PBXGroup;
+			children = (
+				8FEAC08419A3941E00FCB86C /* JASidePanelController.h */,
+				8FEAC08519A3941E00FCB86C /* JASidePanelController.m */,
+				8FEAC08619A3941E00FCB86C /* UIViewController+JASidePanel.h */,
+				8FEAC08719A3941E00FCB86C /* UIViewController+JASidePanel.m */,
+			);
+			path = JASidePanels;
+			sourceTree = "<group>";
+		};
+		8FEAC08D19A3A05200FCB86C /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				8FEAC08A19A3A04900FCB86C /* CJMGenreMenuTableViewController.h */,
+				8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		8FEAC09119A3A2A100FCB86C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8FEAC08E19A3A29600FCB86C /* CJMSidePanelTableViewCell.h */,
+				8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */,
+				8F23F2351982EA75002648CE /* CJMTableViewCell.h */,
+				8F23F2361982EA75002648CE /* CJMTableViewCell.m */,
+				8F3CE10B1994427800D99C74 /* CJMMenuTableViewCell.h */,
+				8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		9AE67DD9CDC8433493A71FF1 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +367,7 @@
 		DCAAB5D1E8D144DA93E56EEA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8FEAC08D19A3A05200FCB86C /* Menus */,
 				8FAD0BD6198ADB4B002B0603 /* CJMSearchDisplayController.h */,
 				8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */,
 				8F23F29D1989D525002648CE /* Subclassed From Base */,
@@ -363,6 +406,7 @@
 		FDD7770F36E94E189413202E = {
 			isa = PBXGroup;
 			children = (
+				8FEAC08319A3941E00FCB86C /* JASidePanels */,
 				8F23F24F19834AD7002648CE /* Blur */,
 				4BE8E659EA624CDD84899175 /* CJM */,
 				9AE67DD9CDC8433493A71FF1 /* UnitTests */,
@@ -503,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */,
 				8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */,
 				8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */,
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
@@ -516,6 +561,8 @@
 				8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */,
 				8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
+				8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */,
+				8FEAC08919A3941E00FCB86C /* UIViewController+JASidePanel.m in Sources */,
 				8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */,
 				8F30994C1990534500798902 /* CJMQueryStore.m in Sources */,
 				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
@@ -526,6 +573,7 @@
 				824AAC9B2D154FFDA1B16F7C /* main.m in Sources */,
 				8F23F2A01989D556002648CE /* CJMArtistsViewController.m in Sources */,
 				8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */,
+				8FEAC08819A3941E00FCB86C /* JASidePanelController.m in Sources */,
 				8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */,
 				8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */,
 				8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */,

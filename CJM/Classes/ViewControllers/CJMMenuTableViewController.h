@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CJMMenuDelegate
+@class JASidePanelController; 
 
-@required
+@interface CJMMenuTableViewController : UITableViewController <UISplitViewControllerDelegate> \
 
-@end
-
-@interface CJMMenuTableViewController : UITableViewController <UISplitViewControllerDelegate> 
+@property (nonatomic, strong) JASidePanelController *genreSidePanelController;
 
 @end

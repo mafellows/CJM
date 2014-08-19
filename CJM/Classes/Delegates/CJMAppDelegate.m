@@ -27,6 +27,7 @@
     self.splitViewController.viewControllers = @[ navController, detailNav ];
     self.window.rootViewController = self.splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
+    
     [self.window makeKeyAndVisible];
     
     // Image View

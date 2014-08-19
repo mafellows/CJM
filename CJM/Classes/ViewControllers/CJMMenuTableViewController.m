@@ -12,9 +12,11 @@
 #import "CJMAppDelegate.h"
 #import "CJMArtistsViewController.h"
 #import "CJMPerformanceYearViewController.h"
+#import "CJMGenreMenuTableViewController.h"
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
 #import "CJMMenuTableViewCell.h"
+#import "JASidePanelController.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
     RowArtists,
@@ -30,6 +32,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMSongsViewController *songsVC;
 @property (nonatomic, strong) CJMGenreViewController *genreVC;
 @property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
+@property (nonatomic, strong) CJMGenreMenuTableViewController *genreMenuTableViewController;
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
@@ -114,7 +117,8 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 {
     self.selectedIndex = indexPath;
     id presentingViewController = nil;
-
+    
+    
     
     switch (indexPath.row) {
         case RowSongs:
@@ -126,7 +130,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
             break;
             
         case RowGenre:
-            presentingViewController = self.genreVC;
+            self.genreSidePanelController.leftPanel = self.genreMenuTableViewController;
+            self.genreSidePanelController.centerPanel = self.genreVC;
+            presentingViewController = self.genreSidePanelController;
             break;
             
         case RowYear:
@@ -168,11 +174,20 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     }
     
     if (!_genreVC) {
-        _genreVC = [[CJMGenreViewController alloc] init];
+        _genreVC = [[CJMGenreViewController alloc] initWithMenuViewController:self];
     }
     
     if (!_performanceYearVC) {
         _performanceYearVC = [[CJMPerformanceYearViewController alloc] init];
+    }
+    
+    if (!_genreMenuTableViewController) {
+        _genreMenuTableViewController = [[CJMGenreMenuTableViewController alloc] initWithMenuController:self];
+    }
+    
+    if (!_genreSidePanelController) {
+        _genreSidePanelController = [[JASidePanelController alloc] init];
+        _genreSidePanelController.leftFixedWidth = 400.0f;
     }
     
 }
