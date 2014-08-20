@@ -161,6 +161,7 @@
         }
     }
     
+    [artistsForGenre sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
     for (NSString *artist in artistsForGenre) {
         MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:artist

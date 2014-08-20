@@ -135,7 +135,9 @@
     }
     
     NSArray *uniqueArtists = [[NSSet setWithArray:allArtists] allObjects];
-    NSLog(@"Unique Artists: %@", uniqueArtists);
+    NSMutableArray *sortedArtists = [NSMutableArray arrayWithArray:uniqueArtists];
+    [sortedArtists sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    uniqueArtists = [sortedArtists copy]; 
     
     for (NSString *artist in uniqueArtists) {
         MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:artist

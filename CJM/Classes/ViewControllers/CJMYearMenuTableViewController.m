@@ -51,7 +51,10 @@ static NSString * const CellIdentifier = @"YearCellIdentifier";
         if (year) [allYears addObject:year];
     }
     
-    self.years = [[NSSet setWithArray:allYears] allObjects];
+    NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
+    NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+    NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
+    self.years = [sortedUniqueYears copy];
 }
 
 #pragma mark - Table view data source

@@ -153,6 +153,7 @@
 - (void)_fetchPerformancesForYear:(NSNumber *)year
 {
     NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
+    NSMutableArray *artistsForYear = [NSMutableArray array];
     MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
     NSArray *songs = [songsQuery items];
     
@@ -160,10 +161,34 @@
     for (MPMediaItem *song in songs) {
         if ([[song valueForProperty:@"year"] isEqualToNumber:year]) {
             [songsForYear addObject:song];
+            NSString *artist = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+            if (![artistsForYear containsObject:artist] && artist != nil) {
+                [artistsForYear addObject:artist];
+            }
         }
     }
     
-    NSLog(@"Songs for year: %@", songsForYear);
+    [artistsForYear sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)]; 
+    for (NSString *artist in artistsForYear) {
+        MPMediaQuery *thisSongsQuery = [MPMediaQuery songsQuery];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:artist
+                                                                               forProperty:MPMediaItemPropertyAlbumArtist
+                                                                            comparisonType:MPMediaPredicateComparisonEqualTo];
+        [thisSongsQuery addFilterPredicate:predicate];
+        NSArray *results = [thisSongsQuery items];
+        NSMutableArray *mutableResults = [NSMutableArray array];
+        for (MPMediaItem *song in results) {
+            if ([[song valueForProperty:@"year"] isEqualToNumber:year]) {
+                [mutableResults addObject:song];
+            }
+        }
+        NSDictionary *dictionary = @{ artist : [mutableResults copy] };
+        [arrayOfDictionaries addObject:dictionary];
+    }
+    
+    self.sectionHeaders = [artistsForYear copy];
+    self.dictionaryArray = [arrayOfDictionaries copy];
+    [self.tableView reloadData];
 }
 
 @end
