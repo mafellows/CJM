@@ -33,7 +33,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self _fetchGenres];
+    MPMediaQuery *genresQuery = [MPMediaQuery genresQuery];
+    NSArray *genres = [genresQuery items];
+    
+    NSMutableArray *allGenres = [NSMutableArray array];
+    for (MPMediaItem *item in genres) {
+        NSString *genre = [item valueForKey:MPMediaItemPropertyGenre];
+        if (genre) [allGenres addObject:genre];
+    }
+    
+    NSArray *uniqueGenres = [[NSSet setWithArray:allGenres] allObjects];
+    [self _fetchSongsForGenre:[uniqueGenres firstObject]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -134,42 +144,41 @@
 
 #pragma mark - Private
 
-- (void)_fetchGenres
-{
-    NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
-    MPMediaQuery *genresQuery = [MPMediaQuery genresQuery];
-    NSArray *genres = [genresQuery items];
-    
-    NSMutableArray *allGenres = [NSMutableArray array];
-    for (MPMediaItem *item in genres) {
-        NSString *genre = [item valueForKey:MPMediaItemPropertyGenre];
-        if (genre) [allGenres addObject:genre];
-    }
-    
-    NSArray *uniqueGenres = [[NSSet setWithArray:allGenres] allObjects];
-    NSLog(@"Unique Artists: %@", uniqueGenres);
-    
-    for (NSString *genre in uniqueGenres) {
-        MPMediaPropertyPredicate *genrePredicate = [MPMediaPropertyPredicate predicateWithValue:genre
-                                                                                    forProperty:MPMediaItemPropertyGenre
-                                                                                 comparisonType:MPMediaPredicateComparisonEqualTo];
-        
-        MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
-        [songsQuery addFilterPredicate:genrePredicate];
-        NSArray *songsArray = [songsQuery items];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:songsArray forKey:genre];
-        [arrayOfDictionaries addObject:dictionary];
-    }
-    
-    self.dictionaryArray = [arrayOfDictionaries copy];
-    self.sectionHeaders = [uniqueGenres copy];
-}
-
 - (void)_fetchSongsForGenre:(NSString *)genre
 {
+    MPMediaPropertyPredicate *genrePredicate = [MPMediaPropertyPredicate predicateWithValue:genre
+                                                                                forProperty:MPMediaItemPropertyGenre
+                                                                             comparisonType:MPMediaPredicateComparisonEqualTo];
     
+    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+    [songsQuery addFilterPredicate:genrePredicate];
+    NSArray *songsForGenre = [songsQuery items];
+    NSMutableArray *artistsForGenre = [NSMutableArray array];
+    for (MPMediaItem *song in songsForGenre) {
+        NSString *artist = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+        if (![artistsForGenre containsObject:artist] && artist != nil) {
+            [artistsForGenre addObject:artist];
+        }
+    }
     
+    NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
+    for (NSString *artist in artistsForGenre) {
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:artist
+                                                                               forProperty:MPMediaItemPropertyAlbumArtist
+                                                                            comparisonType:MPMediaPredicateComparisonContains];
+        MPMediaQuery *artistSongsQuery = [MPMediaQuery songsQuery];
+        [artistSongsQuery addFilterPredicate:predicate];
+        [artistSongsQuery addFilterPredicate:genrePredicate];
+        NSArray *results = [artistSongsQuery items];
+        if (results.count > 0 && ![artist isEqualToString:@""]) {
+            NSDictionary *dictionary = @{ artist : results };
+            [arrayOfDictionaries addObject:dictionary];
+        }
+    }
     
+    self.sectionHeaders = [artistsForGenre copy];
+    self.dictionaryArray  = [arrayOfDictionaries copy];
+    [self.tableView reloadData]; 
 }
 
 @end

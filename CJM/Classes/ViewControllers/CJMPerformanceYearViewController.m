@@ -7,28 +7,75 @@
 //
 
 #import "CJMPerformanceYearViewController.h"
+#import "CJMMenuTableViewController.h"
+#import "JASidePanelController.h"
 
 @interface CJMPerformanceYearViewController ()
 
 @property (nonatomic, copy) NSArray *sectionHeaders;
 @property (nonatomic, copy) NSArray *dictionaryArray;
+@property (nonatomic, strong) CJMMenuTableViewController *menuController;
 
 @end
 
 @implementation CJMPerformanceYearViewController
 
-- (id)init
+- (instancetype)initWithMenuController:(CJMMenuTableViewController *)menuController
 {
     if ((self = [super init])) {
+        _menuController = menuController;
         self.tableHeaderView.titleLabel.text = @"PERFORMANCE YEARS";
     }
-    return self; 
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self _fetchPerformanceYears];
+    
+    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+    NSArray *songs = [songsQuery items];
+    
+    NSMutableArray *allYears = [NSMutableArray array];
+    for (MPMediaItem *item in songs) {
+        NSNumber *year = [item valueForKey:@"year"];
+        if (year) [allYears addObject:year];
+    }
+    
+    NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
+    NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+    NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
+    NSNumber *firstYear = [sortedUniqueYears firstObject];
+    [self _fetchPerformancesForYear:firstYear];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.menuController.yearSidePanelController showLeftPanelAnimated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yearSelected:)
+                                                 name:@"selectedYear"
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                              forKeyPath:@"selectedYear"];
+}
+
+#pragma mark - Selector
+
+- (void)yearSelected:(NSNotification *)aNotification
+{
+    if ([[aNotification name] isEqualToString:@"selectedYear"]) {
+        NSNumber *year = [[aNotification object] objectForKey:@"year"];
+        self.tableHeaderView.titleLabel.text = [[NSString stringWithFormat:@"%@", year] uppercaseString];
+        [self _fetchPerformancesForYear:year];
+    }
 }
 
 #pragma mark - Table view data source
@@ -103,38 +150,20 @@
 
 #pragma mark - Private
 
-- (void)_fetchPerformanceYears
+- (void)_fetchPerformancesForYear:(NSNumber *)year
 {
     NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
     MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
     NSArray *songs = [songsQuery items];
     
-    NSMutableArray *allYears = [NSMutableArray array];
-    for (MPMediaItem *item in songs) {
-        NSNumber *year = [item valueForKey:@"year"];
-        if (year) [allYears addObject:year];
-    }
-    
-    NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
-    NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
-    
-    NSLog(@"Sorted Years: %@", sortedUniqueYears);
-    
-    for (NSNumber *year in sortedUniqueYears) {
-        NSMutableArray *songsForKey = [NSMutableArray array];
-        for (MPMediaItem *song in songs) {
-            if ([[song valueForProperty:@"year"] isEqualToNumber:year]) {
-                [songsForKey addObject:song];
-            }
+    NSMutableArray *songsForYear = [NSMutableArray array];
+    for (MPMediaItem *song in songs) {
+        if ([[song valueForProperty:@"year"] isEqualToNumber:year]) {
+            [songsForYear addObject:song];
         }
-        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:songsForKey
-                                                               forKey:year];
-        [arrayOfDictionaries addObject:dictionary];
     }
     
-    self.dictionaryArray = [arrayOfDictionaries copy];
-    self.sectionHeaders = [sortedUniqueYears copy];
+    NSLog(@"Songs for year: %@", songsForYear);
 }
 
 @end

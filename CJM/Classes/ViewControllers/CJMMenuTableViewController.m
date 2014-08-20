@@ -12,6 +12,7 @@
 #import "CJMAppDelegate.h"
 #import "CJMArtistsViewController.h"
 #import "CJMPerformanceYearViewController.h"
+#import "CJMYearMenuTableViewController.h"
 #import "CJMGenreMenuTableViewController.h"
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
@@ -33,6 +34,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMGenreViewController *genreVC;
 @property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
 @property (nonatomic, strong) CJMGenreMenuTableViewController *genreMenuTableViewController;
+@property (nonatomic, strong) CJMYearMenuTableViewController *yearMenuTableViewController;
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
@@ -118,8 +120,6 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     self.selectedIndex = indexPath;
     id presentingViewController = nil;
     
-    
-    
     switch (indexPath.row) {
         case RowSongs:
             presentingViewController = self.songsVC;
@@ -136,7 +136,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
             break;
             
         case RowYear:
-            presentingViewController = self.performanceYearVC;
+            self.yearSidePanelController.leftPanel = self.yearMenuTableViewController;
+            self.yearSidePanelController.centerPanel = self.performanceYearVC;
+            presentingViewController = self.yearSidePanelController;
             break;
             
         default:
@@ -178,11 +180,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     }
     
     if (!_performanceYearVC) {
-        _performanceYearVC = [[CJMPerformanceYearViewController alloc] init];
-    }
-    
-    if (!_genreMenuTableViewController) {
-        _genreMenuTableViewController = [[CJMGenreMenuTableViewController alloc] initWithMenuController:self];
+        _performanceYearVC = [[CJMPerformanceYearViewController alloc] initWithMenuController:self];
     }
     
     if (!_genreSidePanelController) {
@@ -190,6 +188,18 @@ typedef NS_ENUM(NSInteger, RowTitle) {
         _genreSidePanelController.leftFixedWidth = 400.0f;
     }
     
+    if (!_yearSidePanelController) {
+        _yearSidePanelController = [[JASidePanelController alloc] init];
+        _yearSidePanelController.leftFixedWidth = 400.0f;
+    }
+    
+    if (!_yearMenuTableViewController) {
+        _yearMenuTableViewController = [[CJMYearMenuTableViewController alloc] initWithMenuController:self];
+    }
+    
+    if (!_genreMenuTableViewController) {
+        _genreMenuTableViewController = [[CJMGenreMenuTableViewController alloc] initWithMenuController:self];
+    }
 }
 
 - (NSString *)_titleForIndexPath:(NSIndexPath *)indexPath

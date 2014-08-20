@@ -40,6 +40,7 @@
 		8FEAC08919A3941E00FCB86C /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08719A3941E00FCB86C /* UIViewController+JASidePanel.m */; };
 		8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */; };
 		8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */; };
+		8FEAC0A719A410C300FCB86C /* CJMYearMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,8 @@
 		8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMGenreMenuTableViewController.m; sourceTree = "<group>"; };
 		8FEAC08E19A3A29600FCB86C /* CJMSidePanelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSidePanelTableViewCell.h; sourceTree = "<group>"; };
 		8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSidePanelTableViewCell.m; sourceTree = "<group>"; };
+		8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMYearMenuTableViewController.h; sourceTree = "<group>"; };
+		8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMYearMenuTableViewController.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 		8FEAC08D19A3A05200FCB86C /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */,
+				8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */,
 				8FEAC08A19A3A04900FCB86C /* CJMGenreMenuTableViewController.h */,
 				8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */,
 			);
@@ -548,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */,
+				8FEAC0A719A410C300FCB86C /* CJMYearMenuTableViewController.m in Sources */,
 				8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */,
 				8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */,
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
