@@ -44,7 +44,7 @@
                                                                              metrics:nil
                                                                                views:viewsDictionary]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[itemLabel]-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[itemLabel]|"
                                                                              options:0
                                                                              metrics:nil
                                                                                views:viewsDictionary]];

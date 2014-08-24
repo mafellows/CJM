@@ -8,7 +8,10 @@
 
 #import "CJMArtistsMenuTableViewController.h"
 #import "CJMMenuTableViewController.h"
+#import "CJMSidePanelTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
+
+static NSString * const CellIdentifier = @"MenuCellIdentifier";
 
 @interface CJMArtistsMenuTableViewController ()
 
@@ -23,6 +26,8 @@
 {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         _menuController = menuController;
+        [self.tableView registerClass:[CJMSidePanelTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -35,6 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 25.0f)];
+    headerView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = headerView;
     
     MPMediaQuery *artistsQuery = [MPMediaQuery artistsQuery];
     NSArray *artists = [artistsQuery items];
@@ -61,16 +70,38 @@
     return self.artists.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *artist = self.artists[indexPath.row];
+    return [self _heightForString:artist]; 
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CJMSidePanelTableViewCell *cell = (CJMSidePanelTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CJMSidePanelTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = self.artists[indexPath.row];
+    cell.itemLabel.text = self.artists[indexPath.row];
     return cell;
+}
+
+#pragma mark - Private
+
+- (CGFloat)_heightForString:(NSString *)string
+{
+    CGFloat labelWidth = 290.0f;
+    CGSize labelConstraints = CGSizeMake(labelWidth, 9999.0f);
+    NSStringDrawingContext *context = [[NSStringDrawingContext alloc] init];
+    CGRect labelRect = [string boundingRectWithSize:labelConstraints
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{NSFontAttributeName : [UIFont cellHeaderFont]}
+                                            context:context];
+    if (labelRect.size.height + 30 > 60) {
+        return labelRect.size.height + 30;
+    }
+    return 60.0f;
 }
 
 @end
