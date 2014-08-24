@@ -40,7 +40,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor clearColor];
-    headerView.frame = CGRectMake(0, 0, 400.0f, 100.0f);
+    headerView.frame = CGRectMake(0, 0, 400.0f, 25.0f);
     self.tableView.tableHeaderView = headerView;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

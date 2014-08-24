@@ -38,7 +38,7 @@ static NSString * const CellIdentifier = @"YearCellIdentifier";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UIView *headerView = [[UIView alloc] init];
-    headerView.frame = CGRectMake(0, 0, 400.0f, 200.0f);
+    headerView.frame = CGRectMake(0, 0, 400.0f, 25.0f);
     headerView.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = headerView; 
     

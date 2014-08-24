@@ -8,6 +8,10 @@
 
 #import "CJMBaseViewController.h"
 
+@class CJMMenuTableViewController;
+
 @interface CJMArtistsViewController : CJMBaseViewController
+
+- (instancetype)initWithMenuController:(CJMMenuTableViewController *)menuController; 
 
 @end

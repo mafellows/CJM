@@ -7,6 +7,7 @@
 //
 
 #import "CJMArtistsViewController.h"
+#import "CJMMenuTableViewController.h"
 #import "UIViewController+JASidePanel.h"
 #import "JASidePanelController.h"
 #import "CJMAppDelegate.h"
@@ -16,28 +17,49 @@
 @property (nonatomic, copy) NSArray *artists;
 @property (nonatomic, copy) NSArray *dictionaryArray;
 @property (nonatomic, copy) NSArray *sectionHeaders;
+@property (nonatomic, strong) CJMMenuTableViewController *menuController;
 
 @end
 
 @implementation CJMArtistsViewController
 
-- (id)init
+- (instancetype)initWithMenuController:(CJMMenuTableViewController *)menuController
 {
     if ((self = [super init])) {
+        _menuController = menuController;
         self.tableHeaderView.titleLabel.text = @"ARTISTS";
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithMenuController:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self _fetchArtists];
-    
-    
 }
 
-#pragma mark - Private
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableHeaderView.caretButton addTarget:self
+                                         action:@selector(showMenu:)
+                               forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark - Selector
+
+- (void)showMenu:(id)sender
+{
+    [self.menuController.artistSidePanelController showLeftPanelAnimated:YES]; 
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

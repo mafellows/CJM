@@ -13,6 +13,7 @@
 @interface CJMMenuTableViewController : UITableViewController <UISplitViewControllerDelegate> \
 
 @property (nonatomic, strong) JASidePanelController *genreSidePanelController;
-@property (nonatomic, strong) JASidePanelController *yearSidePanelController; 
+@property (nonatomic, strong) JASidePanelController *yearSidePanelController;
+@property (nonatomic, strong) JASidePanelController *artistSidePanelController; 
 
 @end

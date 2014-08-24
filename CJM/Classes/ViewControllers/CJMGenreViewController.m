@@ -26,13 +26,16 @@
     _menuViewController = menuViewController;
     if ((self = [super init])) {
         self.tableHeaderView.titleLabel.text = @"GENRE";
+        [self.tableHeaderView.caretButton addTarget:self
+                                             action:@selector(showMenu:)
+                                   forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     MPMediaQuery *genresQuery = [MPMediaQuery genresQuery];
     NSArray *genres = [genresQuery items];
     
@@ -43,13 +46,14 @@
     }
     
     NSArray *uniqueGenres = [[NSSet setWithArray:allGenres] allObjects];
-    [self _fetchSongsForGenre:[uniqueGenres firstObject]];
+    NSString *genre = [uniqueGenres firstObject];
+    self.tableHeaderView.titleLabel.text = [genre uppercaseString];
+    [self _fetchSongsForGenre:genre];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.menuViewController.genreSidePanelController showLeftPanelAnimated:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(genreSelected:)
@@ -132,6 +136,11 @@
 }
 
 #pragma mark - Selector
+
+- (void)showMenu:(id)sender
+{
+    [self.menuViewController.genreSidePanelController showLeftPanelAnimated:YES];
+}
 
 - (void)genreSelected:(NSNotification *)aNotification
 {

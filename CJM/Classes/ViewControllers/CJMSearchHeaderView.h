@@ -12,5 +12,6 @@
 
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UISearchBar *searchBar; 
+@property (nonatomic, weak) UIButton *caretButton;
 
 @end

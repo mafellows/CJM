@@ -20,7 +20,9 @@
 - (id)init
 {
     if ((self = [super init])) {
-        self.tableHeaderView.titleLabel.text = @"SONGS"; 
+        self.tableHeaderView.titleLabel.text = @"SONGS";
+        self.tableHeaderView.caretButton.hidden = YES;
+        [self.tableHeaderView updateConstraints]; 
     }
     return self;
 }

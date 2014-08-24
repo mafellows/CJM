@@ -24,14 +24,16 @@
 {
     if ((self = [super init])) {
         _menuController = menuController;
-        self.tableHeaderView.titleLabel.text = @"PERFORMANCE YEARS";
+        [self.tableHeaderView.caretButton addTarget:self
+                                             action:@selector(showMenu:)
+                                   forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
     MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
     NSArray *songs = [songsQuery items];
@@ -46,14 +48,13 @@
     NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
     NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
     NSNumber *firstYear = [sortedUniqueYears firstObject];
+    self.tableHeaderView.titleLabel.text = [NSString stringWithFormat:@"%@", firstYear];
     [self _fetchPerformancesForYear:firstYear];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.menuController.yearSidePanelController showLeftPanelAnimated:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yearSelected:)
@@ -68,6 +69,11 @@
 }
 
 #pragma mark - Selector
+
+- (void)showMenu:(id)sender
+{
+    [self.menuController.yearSidePanelController showLeftPanelAnimated:YES];
+}
 
 - (void)yearSelected:(NSNotification *)aNotification
 {

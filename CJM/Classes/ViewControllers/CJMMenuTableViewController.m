@@ -17,6 +17,7 @@
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
 #import "CJMMenuTableViewCell.h"
+#import "CJMArtistsMenuTableViewController.h"
 #import "JASidePanelController.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
@@ -35,6 +36,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
 @property (nonatomic, strong) CJMGenreMenuTableViewController *genreMenuTableViewController;
 @property (nonatomic, strong) CJMYearMenuTableViewController *yearMenuTableViewController;
+@property (nonatomic, strong) CJMArtistsMenuTableViewController *artistMenuTableViewController;
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
@@ -53,6 +55,12 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 - (BOOL)prefersStatusBarHidden
 {
     return YES; 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self _presentInitialViewController];
 }
 
 #pragma mark - Table view data source
@@ -108,10 +116,6 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.textLabel.bounds];
     imageView.image = [UIImage imageNamed:@"highlighted"];
     cell.selectedBackgroundView = imageView;
-    
-    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(140.0f, 56.0f, 40.0f, 4.0f)];
-    separatorView.backgroundColor = [UIColor whiteColor];
-    [cell addSubview:separatorView];
     return cell;
 }
 
@@ -126,7 +130,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
             break;
             
         case RowArtists:
-            presentingViewController = self.artistsVC;
+            self.artistSidePanelController.leftPanel = self.artistMenuTableViewController;
+            self.artistSidePanelController.centerPanel = self.artistsVC;
+            presentingViewController = self.artistSidePanelController;
             break;
             
         case RowGenre:
@@ -154,9 +160,24 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 #pragma mark - Private
 
+- (void)_presentInitialViewController
+{
+    id presentingViewController = nil;
+    
+    self.artistSidePanelController.leftPanel = self.artistMenuTableViewController;
+    self.artistSidePanelController.centerPanel = self.artistsVC;
+    presentingViewController = self.artistSidePanelController;
+    
+    CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSArray *newViewControllerStack = @[ [delegate.splitViewController.viewControllers firstObject], presentingViewController];
+    delegate.splitViewController.viewControllers = newViewControllerStack;
+    delegate.splitViewController.delegate = self;
+    [self.tableView reloadData];
+}
+
 - (void)_initialize
 {
-    _selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0]; 
+    _selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"sidebar"];
     self.tableView.backgroundView = imageView;
@@ -168,7 +189,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     if (!_artistsVC) {
-        _artistsVC = [[CJMArtistsViewController alloc] init];
+        _artistsVC = [[CJMArtistsViewController alloc] initWithMenuController:self];
     }
     
     if (!_songsVC) {
@@ -188,6 +209,10 @@ typedef NS_ENUM(NSInteger, RowTitle) {
         _genreSidePanelController.leftFixedWidth = 400.0f;
     }
     
+    if (!_genreMenuTableViewController) {
+        _genreMenuTableViewController = [[CJMGenreMenuTableViewController alloc] initWithMenuController:self];
+    }
+    
     if (!_yearSidePanelController) {
         _yearSidePanelController = [[JASidePanelController alloc] init];
         _yearSidePanelController.leftFixedWidth = 400.0f;
@@ -197,8 +222,13 @@ typedef NS_ENUM(NSInteger, RowTitle) {
         _yearMenuTableViewController = [[CJMYearMenuTableViewController alloc] initWithMenuController:self];
     }
     
-    if (!_genreMenuTableViewController) {
-        _genreMenuTableViewController = [[CJMGenreMenuTableViewController alloc] initWithMenuController:self];
+    if (!_artistSidePanelController) {
+        _artistSidePanelController = [[JASidePanelController alloc] init];
+        _artistSidePanelController.leftFixedWidth = 400.0f;
+    }
+    
+    if (!_artistMenuTableViewController) {
+        _artistMenuTableViewController = [[CJMArtistsMenuTableViewController alloc] initWithMenu:self];
     }
 }
 
