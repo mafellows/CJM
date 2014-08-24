@@ -54,7 +54,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
         if (genre) [allGenres addObject:genre];
     }
     
-    self.genres = [[NSSet setWithArray:allGenres] allObjects];    
+    self.genres = [[NSSet setWithArray:allGenres] allObjects];
 }
 
 #pragma mark - Table view data source
@@ -77,6 +77,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     }
     
     cell.itemLabel.text = [[self.genres objectAtIndex:indexPath.row] uppercaseString];
+    [cell.itemLabel sizeToFit];
     return cell;
 }
 

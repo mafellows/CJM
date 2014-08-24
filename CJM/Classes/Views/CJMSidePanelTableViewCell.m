@@ -39,7 +39,7 @@
     _itemLabel = itemLabel;
     
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(itemLabel);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[itemLabel(==390)]"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[itemLabel(==290)]"
                                                                              options:0
                                                                              metrics:nil
                                                                                views:viewsDictionary]];

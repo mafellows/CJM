@@ -69,7 +69,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = self.artists[indexPath.row]; 
+    cell.textLabel.text = self.artists[indexPath.row];
     return cell;
 }
 

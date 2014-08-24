@@ -206,7 +206,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     if (!_genreSidePanelController) {
         _genreSidePanelController = [[JASidePanelController alloc] init];
-        _genreSidePanelController.leftFixedWidth = 400.0f;
+        _genreSidePanelController.leftFixedWidth = 300.0f;
     }
     
     if (!_genreMenuTableViewController) {
@@ -215,7 +215,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     if (!_yearSidePanelController) {
         _yearSidePanelController = [[JASidePanelController alloc] init];
-        _yearSidePanelController.leftFixedWidth = 400.0f;
+        _yearSidePanelController.leftFixedWidth = 300.0f;
     }
     
     if (!_yearMenuTableViewController) {
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     
     if (!_artistSidePanelController) {
         _artistSidePanelController = [[JASidePanelController alloc] init];
-        _artistSidePanelController.leftFixedWidth = 400.0f;
+        _artistSidePanelController.leftFixedWidth = 300.0f;
     }
     
     if (!_artistMenuTableViewController) {
