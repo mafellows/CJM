@@ -9,6 +9,7 @@
 #import "CJMArtistsMenuTableViewController.h"
 #import "CJMMenuTableViewController.h"
 #import "CJMSidePanelTableViewCell.h"
+#import "JASidePanelController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 static NSString * const CellIdentifier = @"MenuCellIdentifier";
@@ -85,6 +86,14 @@ static NSString * const CellIdentifier = @"MenuCellIdentifier";
     
     cell.itemLabel.text = self.artists[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.menuController.artistSidePanelController showCenterPanelAnimated:YES];
+    NSString *artist = self.artists[indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedArtist"
+                                                        object:@{ @"artist" : artist }];
 }
 
 #pragma mark - Private

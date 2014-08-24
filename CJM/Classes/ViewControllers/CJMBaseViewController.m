@@ -182,6 +182,7 @@
     if ([[aNotification name] isEqualToString:Next_Pressed_Notification]) {
         [[CJMAudioController sharedController] nextItem];
         [self populateTrackView];
+        [self.tableView reloadData];
     }
 }
 
@@ -190,6 +191,7 @@
     if ([[aNotification name] isEqualToString:Back_Pressed_Notification]) {
         [[CJMAudioController sharedController] previousItem];
         [self populateTrackView];
+        [self.tableView reloadData];    
     }
 }
 

@@ -14,9 +14,7 @@
 
 @interface CJMArtistsViewController ()
 
-@property (nonatomic, copy) NSArray *artists;
-@property (nonatomic, copy) NSArray *dictionaryArray;
-@property (nonatomic, copy) NSArray *sectionHeaders;
+@property (nonatomic, copy) NSArray *songs;
 @property (nonatomic, strong) CJMMenuTableViewController *menuController;
 
 @end
@@ -27,7 +25,6 @@
 {
     if ((self = [super init])) {
         _menuController = menuController;
-        self.tableHeaderView.titleLabel.text = @"ARTISTS";
     }
     return self;
 }
@@ -35,13 +32,7 @@
 - (id)init
 {
     return [self initWithMenuController:nil];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self _fetchArtists];
-}
+}   
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -50,9 +41,48 @@
     [self.tableHeaderView.caretButton addTarget:self
                                          action:@selector(showMenu:)
                                forControlEvents:UIControlEventTouchUpInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(artistSelected:)
+                                                 name:@"selectedArtist"
+                                               object:nil];
+    
+    MPMediaQuery *artistsQuery = [MPMediaQuery artistsQuery];
+    NSArray *artists = [artistsQuery items];
+    
+    NSMutableArray *allArtists = [NSMutableArray array];
+    for (MPMediaItem *item in artists) {
+        NSString *song = [item valueForKey:MPMediaItemPropertyAlbumArtist];
+        if (song) [allArtists addObject:song];
+    }
+    
+    NSArray *uniqueArtists = [[NSSet setWithArray:allArtists] allObjects];
+    NSMutableArray *sortedArtists = [NSMutableArray arrayWithArray:uniqueArtists];
+    [sortedArtists sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSString *artist = [sortedArtists firstObject];
+    if (artist) {
+        [self _fetchArtistNamed:artist];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"selectedArtist"
+                                                  object:nil];
 }
 
 #pragma mark - Selector
+
+- (void)artistSelected:(NSNotification *)aNotification
+{
+    if ([aNotification.name isEqualToString:@"selectedArtist"]) {
+        NSString *artist = [[aNotification object] objectForKey:@"artist"];
+        [self _fetchArtistNamed:artist];
+    }
+}
 
 - (void)showMenu:(id)sender
 {
@@ -61,40 +91,14 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (tableView == self.tableView) {
-        return [self.sectionHeaders objectAtIndex:section];
-    }
-    return nil; 
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
-        return [self.sectionHeaders count];
-    }
     return 1;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView == self.tableView) {
-        CJMTableHeaderView *tableHeaderView = [[CJMTableHeaderView alloc] init];
-        tableHeaderView.sectionTitleLabel.text = [self.sectionHeaders objectAtIndex:section];
-        return tableHeaderView;
-    }
-    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-        NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:section];
-        NSArray *songs = [dictionary objectForKey:[self.sectionHeaders objectAtIndex:section]];
-        return songs.count;
-    }
-    return 0;
+    return self.songs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,11 +108,8 @@
         if (!cell) {
             cell = [[CJMTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier];
         }
-        
-        NSString *key = [self.sectionHeaders objectAtIndex:indexPath.section];
-        NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
-        NSArray *songs = [dictionary objectForKey:key];
-        MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+    
+        MPMediaItem *song = [self.songs objectAtIndex:indexPath.row];
         
         if (song == [[CJMAudioController sharedController] currentItem]) {
             cell.trackLengthLabel.hidden = YES;
@@ -126,13 +127,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *artist = [self.sectionHeaders objectAtIndex:indexPath.section];
-    NSDictionary *dictionary = [self.dictionaryArray objectAtIndex:indexPath.section];
-    NSArray *songs = [dictionary objectForKey:artist];
-    MPMediaItem *song = [songs objectAtIndex:indexPath.row];
+
+    MPMediaItem *song = [self.songs objectAtIndex:indexPath.row];
     CJMAudioController *controller = [CJMAudioController sharedController];
     controller.currentItem = song;
-    [controller setArrayOfSongs:songs withCurrentIndex:indexPath.row]; 
+    [controller setArrayOfSongs:self.songs withCurrentIndex:indexPath.row];
     [controller playItem];
     
     [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
@@ -144,38 +143,17 @@
 
 #pragma mark - Private
 
-- (void)_fetchArtists
+- (void)_fetchArtistNamed:(NSString *)artist
 {
-    NSMutableArray *arrayOfDictionaries = [NSMutableArray array];
-    MPMediaQuery *artistsQuery = [MPMediaQuery artistsQuery];
-    NSArray *artists = [artistsQuery items];
+    self.tableHeaderView.titleLabel.text = [artist uppercaseString];
+    MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:artist
+                                                                                 forProperty:MPMediaItemPropertyAlbumArtist
+                                                                              comparisonType:MPMediaPredicateComparisonEqualTo];
     
-    NSMutableArray *allArtists = [NSMutableArray array];
-    for (MPMediaItem *item in artists) {
-        NSString *song = [item valueForKey:MPMediaItemPropertyAlbumArtist];
-        if (song) [allArtists addObject:song];
-    }
-    
-    NSArray *uniqueArtists = [[NSSet setWithArray:allArtists] allObjects];
-    NSMutableArray *sortedArtists = [NSMutableArray arrayWithArray:uniqueArtists];
-    [sortedArtists sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    uniqueArtists = [sortedArtists copy]; 
-    
-    for (NSString *artist in uniqueArtists) {
-        MPMediaPropertyPredicate *artistPredicate = [MPMediaPropertyPredicate predicateWithValue:artist
-                                                                                     forProperty:MPMediaItemPropertyAlbumArtist
-                                                                                  comparisonType:MPMediaPredicateComparisonEqualTo];
-        
-        MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
-        [songsQuery addFilterPredicate:artistPredicate];
-        NSArray *songsArray = [songsQuery items];
-        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:songsArray forKey:artist];
-        [arrayOfDictionaries addObject:dictionary];
-    }
-    
-    self.dictionaryArray = [arrayOfDictionaries copy];
-    self.sectionHeaders = [uniqueArtists copy];
+    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+    [songsQuery addFilterPredicate:artistPredicate];
+    self.songs = [songsQuery items];
+    [self.tableView reloadData];
 }
-
 
 @end
