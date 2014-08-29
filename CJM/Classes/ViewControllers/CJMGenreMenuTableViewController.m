@@ -76,8 +76,9 @@ static NSString * const CellIdentifier = @"CellIdentifier";
         cell = [[CJMSidePanelTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.itemLabel.text = [[self.genres objectAtIndex:indexPath.row] uppercaseString];
-    [cell.itemLabel sizeToFit];
+    NSString *genre = self.genres[indexPath.row];
+    NSString *trimmedString = [genre stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    cell.itemLabel.text = [trimmedString uppercaseString];
     return cell;
 }
 

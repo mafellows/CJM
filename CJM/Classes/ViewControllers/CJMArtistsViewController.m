@@ -65,6 +65,14 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UITapGestureRecognizer *tapRecogznier = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(showMenu:)];
+    [self.tableHeaderView.titleLabel addGestureRecognizer:tapRecogznier];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];

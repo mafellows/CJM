@@ -16,9 +16,9 @@
 #import "CJMGenreMenuTableViewController.h"
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
-#import "CJMMenuTableViewCell.h"
 #import "CJMArtistsMenuTableViewController.h"
 #import "JASidePanelController.h"
+#import "CJMMenuTableViewCell.h"
 
 typedef NS_ENUM(NSInteger, RowTitle) {
     RowArtists,
@@ -93,29 +93,17 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CellIdentifier";
+    static NSString *CellIdentifier = @"MenuCellIdentifier";
     CJMMenuTableViewCell *cell = (CJMMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[CJMMenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = [self _titleForIndexPath:indexPath];
-    cell.textLabel.font = [UIFont menuFont];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [cell bringSubviewToFront:cell.textLabel];
-    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.menuTitleLabel.text = [self _titleForIndexPath:indexPath];
+    cell.highlightedView.backgroundColor = [UIColor clearColor];
     
     if (self.selectedIndex == indexPath) {
-        cell.textLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"highlighted"]];
+        cell.highlightedView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:170.0f / 255.0f blue:2.0f / 255.0f alpha:1.0f];
     }
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.textLabel.bounds];
-    imageView.image = [UIImage imageNamed:@"highlighted"];
-    cell.selectedBackgroundView = imageView;
     return cell;
 }
 
@@ -184,7 +172,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     CJMMenuHeaderView *headerView = [[CJMMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     self.tableView.tableHeaderView = headerView;
     
-    [self.tableView registerClass:[CJMMenuTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+    [self.tableView registerClass:[CJMMenuTableViewCell class] forCellReuseIdentifier:@"MenuCellIdentifier"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

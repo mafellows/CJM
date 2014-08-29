@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CJMMenuTableViewCell : UITableViewCell
-@property (nonatomic, weak) UIImageView *highlightedImageView;
+@property (nonatomic, weak) UIView *highlightedView;
 @property (nonatomic, weak) UILabel *menuTitleLabel; 
 @end

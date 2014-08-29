@@ -60,6 +60,10 @@
                                              selector:@selector(yearSelected:)
                                                  name:@"selectedYear"
                                                object:nil];
+    
+    UITapGestureRecognizer *tapRecogznier = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(showMenu:)];
+    [self.tableHeaderView.titleLabel addGestureRecognizer:tapRecogznier];
 }
 
 - (void)dealloc

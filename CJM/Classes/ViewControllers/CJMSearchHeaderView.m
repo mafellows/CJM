@@ -48,6 +48,7 @@
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     titleLabel.font = [UIFont titleFont];
     titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0f];
+    titleLabel.userInteractionEnabled = YES; 
     [self addSubview:titleLabel];
     _titleLabel = titleLabel;
     
