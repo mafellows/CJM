@@ -11,6 +11,12 @@
 #import "CJMAudioController.h"
 #import "CJMAudioController.h"
 
+@interface CJMTrackPlayingView () {
+    NSDictionary *_viewsDictionary;
+}
+
+@end
+
 @implementation CJMTrackPlayingView
 
 - (id)init
@@ -61,6 +67,51 @@
 
 }
 
+- (void)updateConstraints
+{
+    [super updateConstraints];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[artistLabel(==20)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-44-[songTitleLabel(==20)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[artistLabel]|"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-60-[songTitleLabel]|"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[trackImageView(==44)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[trackImageView(==44)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:_viewsDictionary]];
+    
+    [self.trackImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[imagePressedButton]|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:_viewsDictionary]];
+    
+    [self.trackImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imagePressedButton]|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:_viewsDictionary]];
+}
+
 #pragma mark - Private
 
 - (void)_initialize
@@ -75,16 +126,36 @@
     separatorView.backgroundColor = [UIColor darkGrayColor];
     [self addSubview:separatorView];
     
-    _artistLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20.0f, 610.0f, 20.0f)];
-    _artistLabel.textAlignment = NSTextAlignmentCenter;
-    _artistLabel.font = [UIFont nowPlayingArtistFont];
-    _artistLabel.text = @"Select A Song"; 
-    [self addSubview:_artistLabel];
+    UILabel *artistLabel = [[UILabel alloc] init]; // WithFrame:CGRectMake(0, 20.0f, 610.0f, 20.0f)];
+    artistLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    artistLabel.textAlignment = NSTextAlignmentLeft;
+    artistLabel.font = [UIFont nowPlayingArtistFont];
+    artistLabel.text = @"Select A Song";
+    [self addSubview:artistLabel];
+    _artistLabel = artistLabel;
     
-    _songTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 44.0f, 610.0f, 20.0f)];
-    _songTitleLabel.textAlignment = NSTextAlignmentCenter;
-    _songTitleLabel.font = [UIFont nowPlayingTitleFont]; 
-    [self addSubview:_songTitleLabel];
+    UILabel *songTitleLabel = [[UILabel alloc] init]; //WithFrame:CGRectMake(0, 44.0f, 610.0f, 20.0f)];
+    songTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    songTitleLabel.textAlignment = NSTextAlignmentLeft;
+    songTitleLabel.font = [UIFont nowPlayingTitleFont];
+    [self addSubview:songTitleLabel];
+    _songTitleLabel = songTitleLabel;
+    
+    UIImageView *trackImageView = [[UIImageView alloc] init];
+    trackImageView.image = [UIImage imageNamed:@"logo"];
+    trackImageView.clipsToBounds = YES;
+    trackImageView.contentMode = UIViewContentModeScaleAspectFill;
+    trackImageView.layer.cornerRadius = 2.0f;
+    trackImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    trackImageView.userInteractionEnabled = YES;
+    [self addSubview:trackImageView];
+    _trackImageView = trackImageView;
+    
+    UIButton *imagePressedButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    imagePressedButton.translatesAutoresizingMaskIntoConstraints = NO;
+    imagePressedButton.backgroundColor = [UIColor clearColor];
+    [trackImageView addSubview:imagePressedButton];
+    _imagePressedButton = imagePressedButton;
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [previousButton setImage:[UIImage imageNamed:@"previous"] forState:UIControlStateNormal];
@@ -153,6 +224,8 @@
     UIImageView *maximumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(586.0f, 100.0f, 24.0f, 24.0f)];
     maximumImageView.image = maximumVolumeImage;
     [self addSubview:maximumImageView];
+    
+    _viewsDictionary = NSDictionaryOfVariableBindings(trackImageView, artistLabel, songTitleLabel, imagePressedButton);
 }
 
 - (void)_sendNotification:(NSInteger)notificationType

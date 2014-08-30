@@ -17,14 +17,16 @@ typedef NS_ENUM(NSInteger, CJMSongControl) {
 
 @interface CJMTrackPlayingView : UIView
 
-@property (nonatomic, strong) UILabel *artistLabel;
-@property (nonatomic, strong) UILabel *songTitleLabel;
+@property (nonatomic, weak) UILabel *artistLabel;
+@property (nonatomic, weak) UILabel *songTitleLabel;
 @property (nonatomic, weak) UIButton *playButton;
 @property (nonatomic, weak) UIButton *previouisButton;
 @property (nonatomic, weak) UIButton *nextButton;
 @property (nonatomic, weak) UISlider *volumeSlider;
 @property (nonatomic, weak) UISlider *timeSlider;
 @property (nonatomic, weak) UILabel *secondsRemainingLabel;
-@property (nonatomic, strong) MPMediaItem *currentSong; 
+@property (nonatomic, strong) MPMediaItem *currentSong;
+@property (nonatomic, weak) UIImageView *trackImageView;
+@property (nonatomic, weak) UIButton *imagePressedButton; 
 
 @end
