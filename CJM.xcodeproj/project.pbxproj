@@ -33,7 +33,6 @@
 		8F30994C1990534500798902 /* CJMQueryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F30994B1990534500798902 /* CJMQueryStore.m */; };
 		8F3CE10D1994427800D99C74 /* CJMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
-		8FA4D77C19AA468D00E1F198 /* CJMArtistsMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA4D77B19AA468D00E1F198 /* CJMArtistsMenuTableViewController.m */; };
 		8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */; };
 		8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */; };
 		8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */; };
@@ -106,8 +105,6 @@
 		8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMMenuTableViewCell.m; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
 		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
-		8FA4D77A19AA468D00E1F198 /* CJMArtistsMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMArtistsMenuTableViewController.h; sourceTree = "<group>"; };
-		8FA4D77B19AA468D00E1F198 /* CJMArtistsMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMArtistsMenuTableViewController.m; sourceTree = "<group>"; };
 		8FAD0BD6198ADB4B002B0603 /* CJMSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchDisplayController.h; sourceTree = "<group>"; };
 		8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSearchDisplayController.m; sourceTree = "<group>"; };
 		8FAD0BD9198AED65002B0603 /* CJMSearchResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchResultsDataSource.h; sourceTree = "<group>"; };
@@ -307,8 +304,6 @@
 		8FEAC08D19A3A05200FCB86C /* Menus */ = {
 			isa = PBXGroup;
 			children = (
-				8FA4D77A19AA468D00E1F198 /* CJMArtistsMenuTableViewController.h */,
-				8FA4D77B19AA468D00E1F198 /* CJMArtistsMenuTableViewController.m */,
 				8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */,
 				8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */,
 				8FEAC08A19A3A04900FCB86C /* CJMGenreMenuTableViewController.h */,
@@ -571,7 +566,6 @@
 				8F3CE10D1994427800D99C74 /* CJMMenuTableViewCell.m in Sources */,
 				8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */,
 				8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */,
-				8FA4D77C19AA468D00E1F198 /* CJMArtistsMenuTableViewController.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
 				8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */,
 				8FEAC08919A3941E00FCB86C /* UIViewController+JASidePanel.m in Sources */,

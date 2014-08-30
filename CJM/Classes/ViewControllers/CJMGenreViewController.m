@@ -36,6 +36,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showMenu:)
+                                                 name:@"genreMenuTapped"
+                                               object:nil];
+    
     MPMediaQuery *genresQuery = [MPMediaQuery genresQuery];
     NSArray *genres = [genresQuery items];
     
@@ -54,7 +59,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self performSelector:@selector(showMenu:) withObject:self];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(genreSelected:)
                                                  name:@"selectedGenre"
@@ -69,6 +74,10 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"selectedGenre"
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"genreMenuTapped"
                                                   object:nil];
 }
 

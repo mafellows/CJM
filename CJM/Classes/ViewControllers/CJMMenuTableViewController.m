@@ -16,7 +16,6 @@
 #import "CJMGenreMenuTableViewController.h"
 #import "CJMSongsViewController.h"
 #import "CJMGenreViewController.h"
-#import "CJMArtistsMenuTableViewController.h"
 #import "JASidePanelController.h"
 #import "CJMMenuTableViewCell.h"
 
@@ -36,7 +35,6 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMPerformanceYearViewController *performanceYearVC;
 @property (nonatomic, strong) CJMGenreMenuTableViewController *genreMenuTableViewController;
 @property (nonatomic, strong) CJMYearMenuTableViewController *yearMenuTableViewController;
-@property (nonatomic, strong) CJMArtistsMenuTableViewController *artistMenuTableViewController;
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
@@ -101,7 +99,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.menuTitleLabel.text = [self _titleForIndexPath:indexPath];
     cell.highlightedView.backgroundColor = [UIColor clearColor];
     
-    if (self.selectedIndex == indexPath) {
+    if (self.selectedIndex.row == indexPath.row) {
         cell.highlightedView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:170.0f / 255.0f blue:2.0f / 255.0f alpha:1.0f];
     }
     return cell;
@@ -118,21 +116,25 @@ typedef NS_ENUM(NSInteger, RowTitle) {
             break;
             
         case RowArtists:
-            self.artistSidePanelController.leftPanel = self.artistMenuTableViewController;
-            self.artistSidePanelController.centerPanel = self.artistsVC;
-            presentingViewController = self.artistSidePanelController;
+            presentingViewController = self.artistsVC;
             break;
             
         case RowGenre:
             self.genreSidePanelController.leftPanel = self.genreMenuTableViewController;
             self.genreSidePanelController.centerPanel = self.genreVC;
             presentingViewController = self.genreSidePanelController;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"genreMenuTapped"
+                                                                object:self
+                                                              userInfo:nil];
             break;
             
         case RowYear:
             self.yearSidePanelController.leftPanel = self.yearMenuTableViewController;
             self.yearSidePanelController.centerPanel = self.performanceYearVC;
             presentingViewController = self.yearSidePanelController;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"yearMenuTapped"
+                                                                object:self
+                                                              userInfo:nil];
             break;
             
         default:
@@ -151,10 +153,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 - (void)_presentInitialViewController
 {
     id presentingViewController = nil;
-    
-    self.artistSidePanelController.leftPanel = self.artistMenuTableViewController;
-    self.artistSidePanelController.centerPanel = self.artistsVC;
-    presentingViewController = self.artistSidePanelController;
+    presentingViewController = self.artistsVC;
     
     CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     NSArray *newViewControllerStack = @[ [delegate.splitViewController.viewControllers firstObject], presentingViewController];
@@ -177,7 +176,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     if (!_artistsVC) {
-        _artistsVC = [[CJMArtistsViewController alloc] initWithMenuController:self];
+        _artistsVC = [[CJMArtistsViewController alloc] init];
     }
     
     if (!_songsVC) {
@@ -213,10 +212,6 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     if (!_artistSidePanelController) {
         _artistSidePanelController = [[JASidePanelController alloc] init];
         _artistSidePanelController.leftFixedWidth = 300.0f;
-    }
-    
-    if (!_artistMenuTableViewController) {
-        _artistMenuTableViewController = [[CJMArtistsMenuTableViewController alloc] initWithMenu:self];
     }
 }
 

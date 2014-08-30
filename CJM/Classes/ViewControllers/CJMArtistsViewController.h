@@ -12,6 +12,4 @@
 
 @interface CJMArtistsViewController : CJMBaseViewController
 
-- (instancetype)initWithMenuController:(CJMMenuTableViewController *)menuController; 
-
 @end

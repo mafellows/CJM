@@ -35,6 +35,11 @@
 {
     [super viewWillAppear:animated];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showMenu:)
+                                                 name:@"yearMenuTapped"
+                                               object:nil];
+    
     MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
     NSArray *songs = [songsQuery items];
     
@@ -55,7 +60,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self performSelector:@selector(showMenu:) withObject:self];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yearSelected:)
                                                  name:@"selectedYear"
@@ -70,6 +75,10 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                               forKeyPath:@"selectedYear"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"yearMenuTapped"
+                                                  object:nil];
 }
 
 #pragma mark - Selector
