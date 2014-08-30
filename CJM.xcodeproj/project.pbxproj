@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E67BF58BC542476B9B5D34E5 /* CJMAppDelegate.m */; };
 		4A0125744D6F4DE387555EF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DAF96C405247F292DF842B /* UIKit.framework */; };
+		4C3C925EC8414BDF9714D459 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6E9F7DFB7641BAA8B86CFC /* libPods.a */; };
 		6C8580E9433D4949BE12EDF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3118CAD3F2374DF1875B9B2F /* CoreGraphics.framework */; };
 		824AAC9B2D154FFDA1B16F7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A04529585CA542C1B292B3B8 /* main.m */; };
 		8D5DEF1486934D3B8B9E6004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB3E3257C7E4852AB3F03F2 /* Foundation.framework */; };
@@ -33,6 +34,12 @@
 		8F30994C1990534500798902 /* CJMQueryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F30994B1990534500798902 /* CJMQueryStore.m */; };
 		8F3CE10D1994427800D99C74 /* CJMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
+		8FA610B619B2587600F17AC1 /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610AB19B2587600F17AC1 /* JTSAnimatedGIFUtility.m */; };
+		8FA610B719B2587600F17AC1 /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610AD19B2587600F17AC1 /* JTSImageInfo.m */; };
+		8FA610B819B2587600F17AC1 /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610AF19B2587600F17AC1 /* JTSImageViewController.m */; };
+		8FA610B919B2587600F17AC1 /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610B119B2587600F17AC1 /* JTSSimpleImageDownloader.m */; };
+		8FA610BA19B2587600F17AC1 /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610B319B2587600F17AC1 /* UIApplication+JTSImageViewController.m */; };
+		8FA610BB19B2587600F17AC1 /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA610B519B2587600F17AC1 /* UIImage+JTSImageEffects.m */; };
 		8FAD0BD8198ADB4B002B0603 /* CJMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */; };
 		8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDA198AED65002B0603 /* CJMSearchResultsDataSource.m */; };
 		8FAD0BDE198AF2A1002B0603 /* CJMSearchControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD0BDD198AF2A1002B0603 /* CJMSearchControllerDelegate.m */; };
@@ -61,6 +68,7 @@
 		2DB3E3257C7E4852AB3F03F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3118CAD3F2374DF1875B9B2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		45FD7EA321594EF1B62B765D /* CJM-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CJM-Prefix.pch"; sourceTree = "<group>"; };
+		4E6E9F7DFB7641BAA8B86CFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		682304D381F24A7C8BBBD214 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6DB6004BBA314B83A9940C0A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F073AD819760EF9000B15B6 /* CJMMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMMenuTableViewController.h; sourceTree = "<group>"; };
@@ -105,6 +113,18 @@
 		8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMMenuTableViewCell.m; sourceTree = "<group>"; };
 		8F3EA4E31980A1310019DB87 /* CJMMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJMMenuHeaderView.h; path = ../../../CJMMenuHeaderView.h; sourceTree = "<group>"; };
 		8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJMMenuHeaderView.m; path = ../../../CJMMenuHeaderView.m; sourceTree = "<group>"; };
+		8FA610AA19B2587600F17AC1 /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		8FA610AB19B2587600F17AC1 /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		8FA610AC19B2587600F17AC1 /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		8FA610AD19B2587600F17AC1 /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		8FA610AE19B2587600F17AC1 /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		8FA610AF19B2587600F17AC1 /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		8FA610B019B2587600F17AC1 /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		8FA610B119B2587600F17AC1 /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		8FA610B219B2587600F17AC1 /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		8FA610B319B2587600F17AC1 /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		8FA610B419B2587600F17AC1 /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		8FA610B519B2587600F17AC1 /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		8FAD0BD6198ADB4B002B0603 /* CJMSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchDisplayController.h; sourceTree = "<group>"; };
 		8FAD0BD7198ADB4B002B0603 /* CJMSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSearchDisplayController.m; sourceTree = "<group>"; };
 		8FAD0BD9198AED65002B0603 /* CJMSearchResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSearchResultsDataSource.h; sourceTree = "<group>"; };
@@ -122,6 +142,7 @@
 		8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMYearMenuTableViewController.h; sourceTree = "<group>"; };
 		8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMYearMenuTableViewController.m; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A87B02CE9FF74078A672889F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
 		D0D8198CFBF04F0DB6EF45CD /* CJM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CJM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +159,7 @@
 				8D5DEF1486934D3B8B9E6004 /* Foundation.framework in Frameworks */,
 				4A0125744D6F4DE387555EF1 /* UIKit.framework in Frameworks */,
 				6C8580E9433D4949BE12EDF9 /* CoreGraphics.framework in Frameworks */,
+				4C3C925EC8414BDF9714D459 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +275,7 @@
 			children = (
 				D9B2E10EF925446E9DFD7B96 /* iOS */,
 				682304D381F24A7C8BBBD214 /* XCTest.framework */,
+				4E6E9F7DFB7641BAA8B86CFC /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,6 +311,25 @@
 				8F23F29F1989D556002648CE /* CJMArtistsViewController.m */,
 			);
 			name = "Subclassed From Base";
+			sourceTree = "<group>";
+		};
+		8FA610A919B2587600F17AC1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8FA610AA19B2587600F17AC1 /* JTSAnimatedGIFUtility.h */,
+				8FA610AB19B2587600F17AC1 /* JTSAnimatedGIFUtility.m */,
+				8FA610AC19B2587600F17AC1 /* JTSImageInfo.h */,
+				8FA610AD19B2587600F17AC1 /* JTSImageInfo.m */,
+				8FA610AE19B2587600F17AC1 /* JTSImageViewController.h */,
+				8FA610AF19B2587600F17AC1 /* JTSImageViewController.m */,
+				8FA610B019B2587600F17AC1 /* JTSSimpleImageDownloader.h */,
+				8FA610B119B2587600F17AC1 /* JTSSimpleImageDownloader.m */,
+				8FA610B219B2587600F17AC1 /* UIApplication+JTSImageViewController.h */,
+				8FA610B319B2587600F17AC1 /* UIApplication+JTSImageViewController.m */,
+				8FA610B419B2587600F17AC1 /* UIImage+JTSImageEffects.h */,
+				8FA610B519B2587600F17AC1 /* UIImage+JTSImageEffects.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		8FEAC08319A3941E00FCB86C /* JASidePanels */ = {
@@ -411,12 +453,14 @@
 		FDD7770F36E94E189413202E = {
 			isa = PBXGroup;
 			children = (
+				8FA610A919B2587600F17AC1 /* Source */,
 				8FEAC08319A3941E00FCB86C /* JASidePanels */,
 				8F23F24F19834AD7002648CE /* Blur */,
 				4BE8E659EA624CDD84899175 /* CJM */,
 				9AE67DD9CDC8433493A71FF1 /* UnitTests */,
 				7747BCACCD6746ECBB8AC86C /* Frameworks */,
 				18A02C9F5F1E4D349986A697 /* Products */,
+				A87B02CE9FF74078A672889F /* Pods.xcconfig */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -458,10 +502,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A16EC958CEB84FD6921FD4B4 /* Build configuration list for PBXNativeTarget "CJM" */;
 			buildPhases = (
+				EFDAFC22A4E0476AB5D2BCCC /* Check Pods Manifest.lock */,
 				56D9404E1870497DBF1ED80C /* Sources */,
 				6D63ADBC0B8E494D9753E6EA /* Frameworks */,
 				A1714D1A3BFB46D585AB51E3 /* Resources */,
 				1ABB14E042054E999BCD7C36 /* Warn for TODO and FIXME comments */,
+				75F82ECE94004661949C0ED3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -538,6 +584,36 @@
 			shellPath = /bin/sh;
 			shellScript = "KEYWORDS=\"TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:\"\nFILE_EXTENSIONS=\"h|m|mm|c|cpp\"\nfind -E \"${SRCROOT}\" -ipath \"${SRCROOT}/pods\" -prune -o \\( -regex \".*\\.($FILE_EXTENSIONS)$\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
 		};
+		75F82ECE94004661949C0ED3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFDAFC22A4E0476AB5D2BCCC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -553,13 +629,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */,
+				8FA610BA19B2587600F17AC1 /* UIApplication+JTSImageViewController.m in Sources */,
 				8FEAC0A719A410C300FCB86C /* CJMYearMenuTableViewController.m in Sources */,
 				8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */,
 				8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */,
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
+				8FA610BB19B2587600F17AC1 /* UIImage+JTSImageEffects.m in Sources */,
 				8F23F28119888AAD002648CE /* CJMBaseViewController.m in Sources */,
 				8F073AE019761002000B15B6 /* CJMBaseNavigationController.m in Sources */,
 				8F23F2371982EA75002648CE /* CJMTableViewCell.m in Sources */,
+				8FA610B919B2587600F17AC1 /* JTSSimpleImageDownloader.m in Sources */,
 				8F23F25219835186002648CE /* CJMTaglineView.m in Sources */,
 				8F23F24D19834ACD002648CE /* UIERealTimeBlurView.m in Sources */,
 				8F23F27B19887ED4002648CE /* CJMAudioController.m in Sources */,
@@ -568,12 +647,15 @@
 				8FAD0BDB198AED65002B0603 /* CJMSearchResultsDataSource.m in Sources */,
 				8F23F24319834037002648CE /* CJMSearchHeaderView.m in Sources */,
 				8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */,
+				8FA610B619B2587600F17AC1 /* JTSAnimatedGIFUtility.m in Sources */,
 				8FEAC08919A3941E00FCB86C /* UIViewController+JASidePanel.m in Sources */,
 				8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */,
 				8F30994C1990534500798902 /* CJMQueryStore.m in Sources */,
 				8F23F24819834723002648CE /* CJMSplitViewController.m in Sources */,
 				8F23F23D198329FA002648CE /* CJMTableHeaderView.m in Sources */,
+				8FA610B819B2587600F17AC1 /* JTSImageViewController.m in Sources */,
 				8F23F27E1988874C002648CE /* CJMTrackPlayingView.m in Sources */,
+				8FA610B719B2587600F17AC1 /* JTSImageInfo.m in Sources */,
 				8F073ADD19760F08000B15B6 /* CJMDetailTableViewController.m in Sources */,
 				8F073ADA19760EF9000B15B6 /* CJMMenuTableViewController.m in Sources */,
 				824AAC9B2D154FFDA1B16F7C /* main.m in Sources */,
@@ -599,6 +681,7 @@
 /* Begin XCBuildConfiguration section */
 		11FA3C0195CE4388ADD459F0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
@@ -633,6 +716,7 @@
 		};
 		3B053A998A2B47BD88D21678 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";

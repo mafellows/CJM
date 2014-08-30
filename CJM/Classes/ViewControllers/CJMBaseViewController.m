@@ -9,6 +9,7 @@
 #import "CJMBaseViewController.h"
 #import "CJMSearchResultsDataSource.h"
 #import "CJMSearchControllerDelegate.h"
+#import "JTSImageViewController.h"
 #import "CJMQueryStore.h"
 
 @interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, CJMSearchSelectedDelegate> {
@@ -147,6 +148,19 @@
 
 #pragma mark - Selector
 
+- (void)imageButtonPressed:(id)sender
+{
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = [UIImage imageNamed:@"logo"];
+    imageInfo.referenceRect = self.trackPlayingView.trackImageView.bounds;
+    imageInfo.referenceView = self.trackPlayingView;
+    
+    JTSImageViewController *imageViewController = [[JTSImageViewController alloc] initWithImageInfo:imageInfo
+                                                                                               mode:JTSImageViewControllerMode_Image
+                                                                                    backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    [imageViewController showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+}
+
 - (void)updateTimeSlider:(id)sender
 {
     AVAudioPlayer *player = [[CJMAudioController sharedController] audioPlayer];
@@ -246,6 +260,9 @@
     _tableHeaderView = tableHeaderView;
     
     CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
+    [trackPlayingView.imagePressedButton addTarget:self
+                                            action:@selector(imageButtonPressed:)
+                                  forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:trackPlayingView];
     _trackPlayingView = trackPlayingView;
     
