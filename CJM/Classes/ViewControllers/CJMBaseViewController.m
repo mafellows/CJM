@@ -7,14 +7,18 @@
 //
 
 #import "CJMBaseViewController.h"
+#import "CJMMenuTableViewController.h"
 #import "CJMSearchResultsDataSource.h"
 #import "CJMSearchControllerDelegate.h"
 #import "JTSImageViewController.h"
 #import "CJMQueryStore.h"
+#import "CJMAppDelegate.h"
 
 @interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, CJMSearchSelectedDelegate> {
     NSTimer *_timer;
 }
+
+@property (nonatomic, assign) BOOL imageButtonPressed;
 
 @end
 
@@ -36,8 +40,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self populateTrackView];
+    CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate.menuTableViewController showScreenAtCurrentIndex];
     
     AVAudioPlayer *sharedPlayer = [[CJMAudioController sharedController] audioPlayer];
     if (sharedPlayer.isPlaying) {
@@ -67,8 +72,8 @@
 
 - (void)selectedSongFromSearch:(MPMediaItem *)song
 {
-    [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
-    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+    [[CJMAudioController sharedController] setCurrentItem:song];
+    [self populateTrackView];
     
     [self.tableHeaderView.searchBar resignFirstResponder];
     [self.searchPopoverController dismissPopoverAnimated:YES];
@@ -151,13 +156,13 @@
 - (void)imageButtonPressed:(id)sender
 {
     JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-    imageInfo.image = [UIImage imageNamed:@"logo"];
+    imageInfo.image = self.trackPlayingView.trackImageView.image; 
     imageInfo.referenceRect = self.trackPlayingView.trackImageView.bounds;
     imageInfo.referenceView = self.trackPlayingView;
-    
     JTSImageViewController *imageViewController = [[JTSImageViewController alloc] initWithImageInfo:imageInfo
                                                                                                mode:JTSImageViewControllerMode_Image
                                                                                     backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    self.imageButtonPressed = YES;
     [imageViewController showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
@@ -225,6 +230,10 @@
     if (song) {
         self.trackPlayingView.artistLabel.text = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
         self.trackPlayingView.songTitleLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
+        NSNumber *year = [song valueForProperty:@"year"];
+        NSString *imageFileString = [NSString stringWithFormat:@"%@.png", year];
+        UIImage *image = [UIImage imageNamed:imageFileString];
+        self.trackPlayingView.trackImageView.image = image;
     }
     self.trackPlayingView.volumeSlider.value = [[CJMAudioController sharedController] currentVolume];
     
@@ -236,6 +245,7 @@
 
 - (void)_initialize
 {
+    _imageButtonPressed = NO;
     self.view.backgroundColor = [UIColor whiteColor]; 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds]; 
     imageView.image = [UIImage imageNamed:@"detail-background"];

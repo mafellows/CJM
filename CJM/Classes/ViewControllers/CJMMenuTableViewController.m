@@ -148,6 +148,50 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     [self.tableView reloadData];
 }
 
+#pragma mark - Helper
+
+- (void)showScreenAtCurrentIndex
+{
+    id presentingViewController = nil;
+    
+    switch (self.selectedIndex.row) {
+        case RowSongs:
+            presentingViewController = self.songsVC;
+            break;
+            
+        case RowArtists:
+            presentingViewController = self.artistsVC;
+            break;
+            
+        case RowGenre:
+            self.genreSidePanelController.leftPanel = self.genreMenuTableViewController;
+            self.genreSidePanelController.centerPanel = self.genreVC;
+            presentingViewController = self.genreSidePanelController;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"genreMenuTapped"
+                                                                object:self
+                                                              userInfo:nil];
+            break;
+            
+        case RowYear:
+            self.yearSidePanelController.leftPanel = self.yearMenuTableViewController;
+            self.yearSidePanelController.centerPanel = self.performanceYearVC;
+            presentingViewController = self.yearSidePanelController;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"yearMenuTapped"
+                                                                object:self
+                                                              userInfo:nil];
+            break;
+            
+        default:
+            break;
+    }
+    
+    CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSArray *newViewControllerStack = @[ [delegate.splitViewController.viewControllers firstObject], presentingViewController];
+    delegate.splitViewController.viewControllers = newViewControllerStack;
+    delegate.splitViewController.delegate = self;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Private
 
 - (void)_presentInitialViewController

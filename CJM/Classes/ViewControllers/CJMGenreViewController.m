@@ -11,11 +11,14 @@
 #import "UIViewController+JASidePanel.h"
 #import "JASidePanelController.h"
 
+static NSString * const GenreStorageKey = @"savedGenre";
+
 @interface CJMGenreViewController ()
 
 @property (nonatomic, copy) NSArray *dictionaryArray;
 @property (nonatomic, copy) NSArray *sectionHeaders;
 @property (nonatomic, strong) CJMMenuTableViewController *menuViewController;
+@property (nonatomic, assign) BOOL sidePanelIsOpen;
 
 @end
 
@@ -23,8 +26,9 @@
 
 - (instancetype)initWithMenuViewController:(CJMMenuTableViewController *)menuViewController
 {
-    _menuViewController = menuViewController;
     if ((self = [super init])) {
+        _menuViewController = menuViewController;
+        _sidePanelIsOpen = NO;
         self.tableHeaderView.titleLabel.text = @"GENRE";
         [self.tableHeaderView.caretButton addTarget:self
                                              action:@selector(showMenu:)
@@ -52,8 +56,14 @@
     
     NSArray *uniqueGenres = [[NSSet setWithArray:allGenres] allObjects];
     NSString *genre = [uniqueGenres firstObject];
-    self.tableHeaderView.titleLabel.text = [genre uppercaseString];
-    [self _fetchSongsForGenre:genre];
+    
+    NSString *savedGenre = [[NSUserDefaults standardUserDefaults] objectForKey:GenreStorageKey];
+    if (!savedGenre) {
+        savedGenre = genre;
+    }
+    
+    self.tableHeaderView.titleLabel.text = [savedGenre uppercaseString];
+    [self _fetchSongsForGenre:savedGenre];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,8 +80,14 @@
     [self.tableHeaderView.titleLabel addGestureRecognizer:tapRecogznier];
 }
 
-- (void)dealloc
+- (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    if (self.sidePanelIsOpen) {
+        [self.menuViewController.genreSidePanelController toggleLeftPanel:self];
+        self.sidePanelIsOpen = NO;
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"selectedGenre"
                                                   object:nil];
@@ -140,19 +156,25 @@
     [controller setArrayOfSongs:songs withCurrentIndex:indexPath.row];
     [controller playItem];
     
-    [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
-    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+    [self populateTrackView]; 
     [self.tableView reloadData];
     
     [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
                                       forState:UIControlStateNormal];
+    
+    self.sidePanelIsOpen = NO; 
 }
 
 #pragma mark - Selector
 
 - (void)showMenu:(id)sender
 {
-    [self.menuViewController.genreSidePanelController showLeftPanelAnimated:YES];
+    if (self.sidePanelIsOpen) {
+        self.sidePanelIsOpen = NO;
+    } else {
+        self.sidePanelIsOpen = YES;
+    }
+    [self.menuViewController.genreSidePanelController toggleLeftPanel:self];
 }
 
 - (void)genreSelected:(NSNotification *)aNotification
@@ -161,6 +183,7 @@
         NSString *genre = [[aNotification object] objectForKey:@"genre"];
         self.tableHeaderView.titleLabel.text = [genre uppercaseString];
         [self _fetchSongsForGenre:genre];
+        self.sidePanelIsOpen = NO;
     }
 }
 

@@ -99,14 +99,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MPMediaItem *song = [self.songs objectAtIndex:indexPath.row];
+    MPMediaItem *song = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     CJMAudioController *controller = [CJMAudioController sharedController];
     controller.currentItem = song;
     [controller setArrayOfSongs:self.songs withCurrentIndex:indexPath.row];
     [controller playItem];
     
-    [self.trackPlayingView.songTitleLabel setText:[song valueForProperty:MPMediaItemPropertyTitle]];
-    [self.trackPlayingView.artistLabel setText:[song valueForProperty:MPMediaItemPropertyArtist]];
+    [self populateTrackView]; 
     [self.tableView reloadData];
     
     [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]

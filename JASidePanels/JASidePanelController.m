@@ -131,6 +131,7 @@ static char ja_kvoContext;
 }
 
 - (void)_baseInit {
+    self.view.backgroundColor = [UIColor whiteColor];
     self.style = JASidePanelSingleActive;
     self.leftGapPercentage = 0.8f;
     self.rightGapPercentage = 0.8f;
@@ -140,7 +141,7 @@ static char ja_kvoContext;
     self.bouncePercentage = 0.075f;
     self.panningLimitedToTopViewController = YES;
     self.recognizesPanGesture = YES;
-    self.allowLeftOverpan = YES;
+    self.allowLeftOverpan = NO;
     self.allowRightOverpan = YES;
     self.bounceOnSidePanelOpen = YES;
     self.bounceOnSidePanelClose = NO;

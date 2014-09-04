@@ -7,11 +7,13 @@
 //
 
 #import "CJMSplitViewController.h"
+#import "CJMMenuTableViewController.h"
 
 @interface CJMAppDelegate : UIResponder <UIApplicationDelegate>
 
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CJMSplitViewController *splitViewController;
+@property (strong, nonatomic) CJMMenuTableViewController *menuTableViewController;
 
 @end

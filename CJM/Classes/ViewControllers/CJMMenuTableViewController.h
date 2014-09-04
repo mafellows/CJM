@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) JASidePanelController *genreSidePanelController;
 @property (nonatomic, strong) JASidePanelController *yearSidePanelController;
-@property (nonatomic, strong) JASidePanelController *artistSidePanelController; 
+@property (nonatomic, strong) JASidePanelController *artistSidePanelController;
+
+- (void)showScreenAtCurrentIndex;
 
 @end
