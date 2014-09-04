@@ -55,10 +55,10 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     return YES; 
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
-    [self _presentInitialViewController];
+    [super viewDidLoad];
+
 }
 
 #pragma mark - Table view data source
@@ -193,18 +193,6 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 }
 
 #pragma mark - Private
-
-- (void)_presentInitialViewController
-{
-    id presentingViewController = nil;
-    presentingViewController = self.artistsVC;
-    
-    CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    NSArray *newViewControllerStack = @[ [delegate.splitViewController.viewControllers firstObject], presentingViewController];
-    delegate.splitViewController.viewControllers = newViewControllerStack;
-    delegate.splitViewController.delegate = self;
-    [self.tableView reloadData];
-}
 
 - (void)_initialize
 {

@@ -18,8 +18,6 @@
     NSTimer *_timer;
 }
 
-@property (nonatomic, assign) BOOL imageButtonPressed;
-
 @end
 
 @implementation CJMBaseViewController
@@ -41,8 +39,6 @@
 {
     [super viewWillAppear:animated];
     [self populateTrackView];
-    CJMAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate.menuTableViewController showScreenAtCurrentIndex];
     
     AVAudioPlayer *sharedPlayer = [[CJMAudioController sharedController] audioPlayer];
     if (sharedPlayer.isPlaying) {
@@ -162,8 +158,7 @@
     JTSImageViewController *imageViewController = [[JTSImageViewController alloc] initWithImageInfo:imageInfo
                                                                                                mode:JTSImageViewControllerMode_Image
                                                                                     backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
-    self.imageButtonPressed = YES;
-    [imageViewController showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    [imageViewController showFromViewController:self.splitViewController transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
 - (void)updateTimeSlider:(id)sender
@@ -245,7 +240,6 @@
 
 - (void)_initialize
 {
-    _imageButtonPressed = NO;
     self.view.backgroundColor = [UIColor whiteColor]; 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds]; 
     imageView.image = [UIImage imageNamed:@"detail-background"];

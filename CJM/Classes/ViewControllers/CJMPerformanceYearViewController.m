@@ -70,7 +70,9 @@ static NSString * const YearStorageKey = @"yearKey";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self performSelector:@selector(showMenu:) withObject:self];
+    if (!self.sidePanelIsOpen) {
+        [self performSelector:@selector(showMenu:) withObject:self];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yearSelected:)
                                                  name:@"selectedYear"
