@@ -100,7 +100,7 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     cell.highlightedView.backgroundColor = [UIColor clearColor];
     
     if (self.selectedIndex.row == indexPath.row) {
-        cell.highlightedView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:170.0f / 255.0f blue:2.0f / 255.0f alpha:1.0f];
+        cell.highlightedView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:170.0f / 255.0f blue:2.0f / 255.0f alpha:0.8f];
     }
     return cell;
 }

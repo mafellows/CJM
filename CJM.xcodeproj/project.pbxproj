@@ -31,6 +31,7 @@
 		8F23F2A31989DC40002648CE /* CJMPerformanceYearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A21989DC40002648CE /* CJMPerformanceYearViewController.m */; };
 		8F23F2A61989DD73002648CE /* CJMSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A51989DD73002648CE /* CJMSongsViewController.m */; };
 		8F23F2A91989DEF8002648CE /* CJMGenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */; };
+		8F26A55B19BDDB700047DCF6 /* CJMSongsMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26A55A19BDDB700047DCF6 /* CJMSongsMenuTableViewController.m */; };
 		8F30994C1990534500798902 /* CJMQueryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F30994B1990534500798902 /* CJMQueryStore.m */; };
 		8F3CE10D1994427800D99C74 /* CJMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CE10C1994427800D99C74 /* CJMMenuTableViewCell.m */; };
 		8F3EA4E51980A1310019DB87 /* CJMMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3EA4E41980A1310019DB87 /* CJMMenuHeaderView.m */; };
@@ -107,6 +108,8 @@
 		8F23F2A51989DD73002648CE /* CJMSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSongsViewController.m; sourceTree = "<group>"; };
 		8F23F2A71989DEF8002648CE /* CJMGenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMGenreViewController.h; sourceTree = "<group>"; };
 		8F23F2A81989DEF8002648CE /* CJMGenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMGenreViewController.m; sourceTree = "<group>"; };
+		8F26A55919BDDB700047DCF6 /* CJMSongsMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMSongsMenuTableViewController.h; sourceTree = "<group>"; };
+		8F26A55A19BDDB700047DCF6 /* CJMSongsMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSongsMenuTableViewController.m; sourceTree = "<group>"; };
 		8F30994A1990534500798902 /* CJMQueryStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMQueryStore.h; sourceTree = "<group>"; };
 		8F30994B1990534500798902 /* CJMQueryStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMQueryStore.m; sourceTree = "<group>"; };
 		8F3CE10B1994427800D99C74 /* CJMMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMMenuTableViewCell.h; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 		8FEAC08D19A3A05200FCB86C /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				8F26A55919BDDB700047DCF6 /* CJMSongsMenuTableViewController.h */,
+				8F26A55A19BDDB700047DCF6 /* CJMSongsMenuTableViewController.m */,
 				8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */,
 				8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */,
 				8FEAC08A19A3A04900FCB86C /* CJMGenreMenuTableViewController.h */,
@@ -632,6 +637,7 @@
 				8FA610BA19B2587600F17AC1 /* UIApplication+JTSImageViewController.m in Sources */,
 				8FEAC0A719A410C300FCB86C /* CJMYearMenuTableViewController.m in Sources */,
 				8F23F23A198328AD002648CE /* UIFont+CJMFonts.m in Sources */,
+				8F26A55B19BDDB700047DCF6 /* CJMSongsMenuTableViewController.m in Sources */,
 				8F23F24E19834ACD002648CE /* UIImage+BoxBlur.m in Sources */,
 				385AEE6DB5CE45939E260089 /* CJMAppDelegate.m in Sources */,
 				8FA610BB19B2587600F17AC1 /* UIImage+JTSImageEffects.m in Sources */,
