@@ -80,4 +80,33 @@ static NSString * const CJMSongMenuCellIdentifier = @"SongMenuCellIdentifier";
 //                                                        object:@{ @"year" : year }];
 }
 
+#pragma mark - Private
+
+- (NSArray *)_partitionObjects:(NSArray *)objects collationStringSelector:(SEL)selector
+{
+    UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+    
+    NSInteger sectionCount = [[collation sectionTitles] count];
+    NSMutableArray *unsortedSections = [NSMutableArray arrayWithCapacity:sectionCount];
+    
+    // Create an array to hold data from each section
+    for (int i = 0; i < sectionCount; i++) {
+        [unsortedSections addObject:[NSMutableArray array]];
+    }
+    
+    // Put each object into a section
+    for (id object in objects) {
+        NSInteger index = [collation sectionForObject:object collationStringSelector:selector];
+        [[unsortedSections objectAtIndex:index] addObject:object];
+    }
+    
+    NSMutableArray *sections = [NSMutableArray arrayWithCapacity:sectionCount];
+    
+    // Sort each section
+    for (NSMutableArray *section in unsortedSections) {
+        [sections addObject:[collation sortedArrayFromArray:section collationStringSelector:selector]];
+    }
+    return sections;
+}
+
 @end

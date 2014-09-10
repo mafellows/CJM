@@ -67,6 +67,13 @@
     [self addSubview:caretButton];
     _caretButton = caretButton;
     
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(40.0f,
+                                                                     CGRectGetHeight(self.frame) - 1.0f,
+                                                                     610.0f,
+                                                                     1.0f)];
+    separatorView.backgroundColor = [UIColor colorWithRed:229.0f / 255.0f green:227.0f / 255.0f blue:193.0f / 255.0f alpha:0.8f];
+    [self addSubview:separatorView];
+    
     _viewsDictionary = NSDictionaryOfVariableBindings(titleLabel, searchBar, caretButton);
     
     _constraintWithCaret = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[caretButton(==24)]-[titleLabel]-[searchBar(==200)]-110-|"

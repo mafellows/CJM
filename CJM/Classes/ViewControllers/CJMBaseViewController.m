@@ -144,7 +144,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return nil; 
+    return nil;
 }
 
 #pragma mark - Selector
@@ -245,10 +245,8 @@
     imageView.image = [UIImage imageNamed:@"detail-background"];
     [self.view addSubview:imageView];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    CGRect newFrame = tableView.frame;
-    newFrame.size.height = [[UIScreen mainScreen] bounds].size.width - 150.0f;
-    tableView.frame = newFrame;
+    CGRect tableViewFrame = CGRectMake(CGRectGetMinX(self.view.frame), 80.0f, CGRectGetWidth(self.view.frame), CGRectGetWidth(self.view.frame) - 230.0f);
+    UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
@@ -258,9 +256,9 @@
     [tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
     _tableView = tableView;
     
-    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(100.0f, 100.0f, 550.0f, 80.0f)];
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 80.0f)];
     tableHeaderView.searchBar.delegate = self; 
-    tableView.tableHeaderView = tableHeaderView;
+    [self.view addSubview:tableHeaderView];
     _tableHeaderView = tableHeaderView;
     
     CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
