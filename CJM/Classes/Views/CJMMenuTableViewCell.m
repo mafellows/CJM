@@ -25,40 +25,40 @@
     self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    UIView *highlightedView = [[UIView alloc] init];
-    highlightedView.translatesAutoresizingMaskIntoConstraints = NO;
-    highlightedView.layer.cornerRadius = 5.0f;
-    [self.contentView addSubview:highlightedView];
-    _highlightedView = highlightedView;
+    UIImageView *highlightedImageView = [[UIImageView alloc] init];
+    highlightedImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    highlightedImageView.layer.cornerRadius = 5.0f;
+    [self.contentView addSubview:highlightedImageView];
+    _highlightedImageView = highlightedImageView;
     
     UILabel *menuTitleLabel = [[UILabel alloc] init];
     menuTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     menuTitleLabel.textColor = [UIColor whiteColor];
     menuTitleLabel.textAlignment = NSTextAlignmentCenter;
-    menuTitleLabel.font = [UIFont menuFont];
-    [highlightedView addSubview:menuTitleLabel];
+    menuTitleLabel.font = [UIFont fontWithName:@"AvenirNext-Light" size:28.0f];
+    [self.contentView addSubview:menuTitleLabel];
     _menuTitleLabel = menuTitleLabel;
     
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(highlightedView, menuTitleLabel);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[highlightedView]|"
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(highlightedImageView, menuTitleLabel);
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[highlightedImageView]|"
                                                                              options:0
                                                                              metrics:nil
                                                                                views:viewsDictionary]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[highlightedView]-|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[highlightedImageView]-|"
                                                                              options:0
                                                                              metrics:nil
                                                                                views:viewsDictionary]];
     
-    [highlightedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[menuTitleLabel]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:viewsDictionary]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[menuTitleLabel]|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:viewsDictionary]];
     
-    [highlightedView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[menuTitleLabel]|"
-                                                                                 options:0
-                                                                                 metrics:nil
-                                                                                   views:viewsDictionary]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[menuTitleLabel]|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:viewsDictionary]];
     
     
 }

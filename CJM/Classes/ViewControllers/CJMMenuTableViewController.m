@@ -36,6 +36,9 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 @property (nonatomic, strong) CJMGenreMenuTableViewController *genreMenuTableViewController;
 @property (nonatomic, strong) CJMYearMenuTableViewController *yearMenuTableViewController;
 @property (nonatomic, strong) NSIndexPath *selectedIndex;
+@property (nonatomic, copy) NSArray *selectedImages;
+@property (nonatomic, copy) NSArray *standardImages;
+
 
 @end
 
@@ -96,11 +99,13 @@ typedef NS_ENUM(NSInteger, RowTitle) {
     if (!cell) {
         cell = [[CJMMenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.menuTitleLabel.text = [self _titleForIndexPath:indexPath];
-    cell.highlightedView.backgroundColor = [UIColor clearColor];
+
+    cell.highlightedImageView.image = nil;
     
     if (self.selectedIndex.row == indexPath.row) {
-        cell.highlightedView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:170.0f / 255.0f blue:2.0f / 255.0f alpha:0.8f];
+        cell.highlightedImageView.image = self.selectedImages[indexPath.row];
+    } else {
+        cell.highlightedImageView.image = self.standardImages[indexPath.row];
     }
     return cell;
 }
@@ -196,6 +201,16 @@ typedef NS_ENUM(NSInteger, RowTitle) {
 
 - (void)_initialize
 {
+    _selectedImages = @[ [UIImage imageNamed:@"artists"],
+                         [UIImage imageNamed:@"performance_years"],
+                         [UIImage imageNamed:@"songs"],
+                         [UIImage imageNamed:@"genres"]];
+    
+    _standardImages = @[ [UIImage imageNamed:@"artists-normal"],
+                         [UIImage imageNamed:@"years-normal"],
+                         [UIImage imageNamed:@"songs-normal"],
+                         [UIImage imageNamed:@"genre-normal"] ];
+    
     _selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"sidebar"];
