@@ -142,7 +142,7 @@
     _songTitleLabel = songTitleLabel;
     
     UIImageView *trackImageView = [[UIImageView alloc] init];
-    trackImageView.image = [UIImage imageNamed:@"logo"];
+    trackImageView.image = [UIImage imageNamed:@"HELLMAN_icon_01"];
     trackImageView.clipsToBounds = YES;
     trackImageView.contentMode = UIViewContentModeScaleAspectFill;
     trackImageView.layer.cornerRadius = 2.0f;

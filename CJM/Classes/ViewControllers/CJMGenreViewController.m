@@ -18,7 +18,6 @@ static NSString * const GenreStorageKey = @"savedGenre";
 @property (nonatomic, copy) NSArray *dictionaryArray;
 @property (nonatomic, copy) NSArray *sectionHeaders;
 @property (nonatomic, strong) CJMMenuTableViewController *menuViewController;
-@property (nonatomic, assign) BOOL sidePanelIsOpen;
 
 @end
 
@@ -28,7 +27,6 @@ static NSString * const GenreStorageKey = @"savedGenre";
 {
     if ((self = [super init])) {
         _menuViewController = menuViewController;
-        _sidePanelIsOpen = NO;
         self.tableHeaderView.titleLabel.text = @"GENRE";
         [self.tableHeaderView.caretButton addTarget:self
                                              action:@selector(showMenu:)
@@ -69,7 +67,10 @@ static NSString * const GenreStorageKey = @"savedGenre";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self performSelector:@selector(showMenu:) withObject:self];
+    if (self.menuViewController.genreSidePanelController.state == JASidePanelCenterVisible) {
+        [self performSelector:@selector(showMenu:) withObject:self];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(genreSelected:)
                                                  name:@"selectedGenre"
@@ -80,13 +81,17 @@ static NSString * const GenreStorageKey = @"savedGenre";
     [self.tableHeaderView.titleLabel addGestureRecognizer:tapRecogznier];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.menuViewController.genreSidePanelController.state == JASidePanelLeftVisible) {
+        [self performSelector:@selector(showMenu:) withObject:self];
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if (self.sidePanelIsOpen) {
-        [self.menuViewController.genreSidePanelController toggleLeftPanel:self];
-        self.sidePanelIsOpen = NO;
-    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"selectedGenre"
@@ -161,19 +166,12 @@ static NSString * const GenreStorageKey = @"savedGenre";
     
     [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
                                       forState:UIControlStateNormal];
-    
-    self.sidePanelIsOpen = NO; 
 }
 
 #pragma mark - Selector
 
 - (void)showMenu:(id)sender
 {
-    if (self.sidePanelIsOpen) {
-        self.sidePanelIsOpen = NO;
-    } else {
-        self.sidePanelIsOpen = YES;
-    }
     [self.menuViewController.genreSidePanelController toggleLeftPanel:self];
 }
 
@@ -182,8 +180,7 @@ static NSString * const GenreStorageKey = @"savedGenre";
     if ([[aNotification name] isEqualToString:@"selectedGenre"]) {
         NSString *genre = [[aNotification object] objectForKey:@"genre"];
         self.tableHeaderView.titleLabel.text = [genre uppercaseString];
-        [self _fetchSongsForGenre:genre];
-        self.sidePanelIsOpen = NO;
+    [self _fetchSongsForGenre:genre];
     }
 }
 

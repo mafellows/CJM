@@ -149,6 +149,16 @@
 
 #pragma mark - Selector
 
+- (void)scrollToTop:(UITapGestureRecognizer *)aRecognizer
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    if (indexPath) {
+        [self.tableView scrollToRowAtIndexPath:indexPath
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:YES];
+    }
+}
+
 - (void)imageButtonPressed:(id)sender
 {
     JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
@@ -228,12 +238,17 @@
         NSNumber *year = [song valueForProperty:@"year"];
         NSString *imageFileString = [NSString stringWithFormat:@"%@.png", year];
         UIImage *image = [UIImage imageNamed:imageFileString];
+        if (!image) {
+            image = [UIImage imageNamed:@"HELLMAN_icon_01"]; 
+        }
         self.trackPlayingView.trackImageView.image = image;
     }
     self.trackPlayingView.volumeSlider.value = [[CJMAudioController sharedController] currentVolume];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeSlider:) userInfo:nil repeats:YES];
     [_timer fire];
+    
+    [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal]; 
 }
 
 #pragma mark - Private
@@ -257,7 +272,9 @@
     _tableView = tableView;
     
     CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 80.0f)];
-    tableHeaderView.searchBar.delegate = self; 
+    tableHeaderView.searchBar.delegate = self;
+    [tableHeaderView.scrollToTopTapRecognizer addTarget:self
+                                                 action:@selector(scrollToTop:)];
     [self.view addSubview:tableHeaderView];
     _tableHeaderView = tableHeaderView;
     

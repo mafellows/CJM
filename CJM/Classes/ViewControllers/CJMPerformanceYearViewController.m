@@ -17,7 +17,6 @@ static NSString * const YearStorageKey = @"yearKey";
 @property (nonatomic, copy) NSArray *sectionHeaders;
 @property (nonatomic, copy) NSArray *dictionaryArray;
 @property (nonatomic, strong) CJMMenuTableViewController *menuController;
-@property (nonatomic, assign) BOOL sidePanelIsOpen;
 
 @end
 
@@ -27,7 +26,6 @@ static NSString * const YearStorageKey = @"yearKey";
 {
     if ((self = [super init])) {
         _menuController = menuController;
-        _sidePanelIsOpen = NO;
         [self.tableHeaderView.caretButton addTarget:self
                                              action:@selector(showMenu:)
                                    forControlEvents:UIControlEventTouchUpInside];
@@ -70,9 +68,10 @@ static NSString * const YearStorageKey = @"yearKey";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (!self.sidePanelIsOpen) {
+    if (self.menuController.yearSidePanelController.state == JASidePanelCenterVisible) {
         [self performSelector:@selector(showMenu:) withObject:self];
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yearSelected:)
                                                  name:@"selectedYear"
@@ -83,13 +82,23 @@ static NSString * const YearStorageKey = @"yearKey";
     [self.tableHeaderView.titleLabel addGestureRecognizer:tapRecogznier];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.menuController.yearSidePanelController.state == JASidePanelLeftVisible) {
+        [self performSelector:@selector(showMenu:) withObject:self];
+    }
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if (self.sidePanelIsOpen) {
-        [self.menuController.yearSidePanelController toggleLeftPanel:self];
-        self.sidePanelIsOpen = NO;
-    }
+
+    // [self.menuController.yearSidePanelController toggleLeftPanel:self];
+//    if (menuOpened) {
+//        [self.menuController.yearSidePanelController toggleLeftPanel:self];
+//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CJMMenuAppearedKey];
+//    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"selectedYear"
@@ -104,11 +113,6 @@ static NSString * const YearStorageKey = @"yearKey";
 
 - (void)showMenu:(id)sender
 {
-    if (self.sidePanelIsOpen) {
-        self.sidePanelIsOpen = NO;
-    } else {
-        self.sidePanelIsOpen = YES;
-    }
     [self.menuController.yearSidePanelController toggleLeftPanel:self];
 }
 
@@ -119,7 +123,6 @@ static NSString * const YearStorageKey = @"yearKey";
         [[NSUserDefaults standardUserDefaults] setObject:year forKey:YearStorageKey];
         self.tableHeaderView.titleLabel.text = [[NSString stringWithFormat:@"%@", year] uppercaseString];
         [self _fetchPerformancesForYear:year];
-        self.sidePanelIsOpen = NO; // Side panel will always close after reloading data...
     }
 }
 
@@ -190,8 +193,6 @@ static NSString * const YearStorageKey = @"yearKey";
     
     [self.trackPlayingView.playButton setImage:[UIImage imageNamed:@"pause"]
                                       forState:UIControlStateNormal];
-    
-    self.sidePanelIsOpen = NO; 
 }
 
 #pragma mark - Private

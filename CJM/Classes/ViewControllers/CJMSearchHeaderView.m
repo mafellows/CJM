@@ -67,6 +67,10 @@
     [self addSubview:caretButton];
     _caretButton = caretButton;
     
+    UITapGestureRecognizer *scrollToTopTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+    [self addGestureRecognizer:scrollToTopTapGestureRecognizer];
+    _scrollToTopTapRecognizer = scrollToTopTapGestureRecognizer; 
+    
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(40.0f,
                                                                      CGRectGetHeight(self.frame) - 1.0f,
                                                                      610.0f,
