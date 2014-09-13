@@ -14,10 +14,12 @@
 #import "CJMTableHeaderView.h"
 #import "CJMTrackPlayingView.h"
 
+#define kCellIdentifier @"CellIdentifier"
+
 @class CJMSearchControllerDelegate;
 @class CJMSearchResultsDataSource;
 
-#define kCellIdentifier @"CellIdentifier"
+extern NSString * const CJMButtonPressedKey; 
 
 @interface CJMBaseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

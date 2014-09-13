@@ -68,9 +68,11 @@ static NSString * const YearStorageKey = @"yearKey";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.menuController.yearSidePanelController.state == JASidePanelCenterVisible) {
+    BOOL buttonPressed = [[NSUserDefaults standardUserDefaults] boolForKey:CJMButtonPressedKey];
+    if (self.menuController.yearSidePanelController.state == JASidePanelCenterVisible && !buttonPressed) {
         [self performSelector:@selector(showMenu:) withObject:self];
     }
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CJMButtonPressedKey]; 
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yearSelected:)

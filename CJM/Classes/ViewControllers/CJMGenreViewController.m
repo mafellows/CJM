@@ -67,9 +67,11 @@ static NSString * const GenreStorageKey = @"savedGenre";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.menuViewController.genreSidePanelController.state == JASidePanelCenterVisible) {
+    BOOL buttonPressed = [[NSUserDefaults standardUserDefaults] boolForKey:CJMButtonPressedKey];
+    if (self.menuViewController.genreSidePanelController.state == JASidePanelCenterVisible && !buttonPressed) {
         [self performSelector:@selector(showMenu:) withObject:self];
     }
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CJMButtonPressedKey]; 
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(genreSelected:)

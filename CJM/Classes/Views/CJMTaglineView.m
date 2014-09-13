@@ -25,7 +25,7 @@
     UILabel *label = [[UILabel alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.numberOfLines = 3;
-    label.text = @"LISTEN TO SONGS BY EVERY\nARTIST WHO PERFORMED AT\nHARDLY STRICTLY BLUEGRASS";
+    label.text = @"SONGS BY EVERY\nARTIST WHO PERFORMED AT\nHARDLY STRICTLY BLUEGRASS";
     label.font = [UIFont menuHeaderFont];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;

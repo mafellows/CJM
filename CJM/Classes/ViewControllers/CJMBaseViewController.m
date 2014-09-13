@@ -14,6 +14,8 @@
 #import "CJMQueryStore.h"
 #import "CJMAppDelegate.h"
 
+NSString * const CJMButtonPressedKey = @"imageButtonPressed";
+
 @interface CJMBaseViewController() <UISearchDisplayDelegate, UISearchBarDelegate, UIPopoverControllerDelegate, CJMSearchSelectedDelegate> {
     NSTimer *_timer;
 }
@@ -161,6 +163,7 @@
 
 - (void)imageButtonPressed:(id)sender
 {
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:CJMButtonPressedKey];
     JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
     imageInfo.image = self.trackPlayingView.trackImageView.image; 
     imageInfo.referenceRect = self.trackPlayingView.trackImageView.bounds;
