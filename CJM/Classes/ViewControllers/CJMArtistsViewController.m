@@ -88,6 +88,16 @@
         NSArray *songs = [dictionary objectForKey:key];
         MPMediaItem *song = [songs objectAtIndex:indexPath.row];
         
+        NSNumber *year = [song valueForProperty:@"year"];
+        NSString *yearString;
+        if (year) {
+            yearString = [NSString stringWithFormat:@"(%@)", year];
+        } else {
+            yearString = @""; 
+        }
+        
+        cell.songLabel.text = [NSString stringWithFormat:@"%@ %@", [song valueForProperty:MPMediaItemPropertyTitle], yearString];
+        
         if (song == [[CJMAudioController sharedController] currentItem]) {
             cell.trackLengthLabel.hidden = YES;
             cell.speakerImageView.hidden = NO;
@@ -95,7 +105,7 @@
             cell.trackLengthLabel.hidden = NO;
             cell.speakerImageView.hidden = YES;
         }
-        cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+        
         cell.trackLengthLabel.text = [self timeRemainingForDuration:[song valueForProperty:MPMediaItemPropertyPlaybackDuration]];
         cell.backgroundColor = [UIColor clearColor];
         return cell;

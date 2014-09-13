@@ -138,7 +138,15 @@ static NSString * const GenreStorageKey = @"savedGenre";
     int songDuration = [duration intValue];
     int minutes = songDuration / 60;
     int seconds = songDuration % 60;
-    cell.songLabel.text = [NSString stringWithFormat:@"%@", [song valueForProperty:MPMediaItemPropertyTitle]];
+    
+    NSNumber *year = [song valueForProperty:@"year"];
+    NSString *yearString;
+    if (year) {
+        yearString = [NSString stringWithFormat:@"(%@)", year];
+    } else {
+        yearString = @"";
+    }
+    cell.songLabel.text = [NSString stringWithFormat:@"%@ %@", [song valueForProperty:MPMediaItemPropertyTitle], yearString];
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     if (song == [[CJMAudioController sharedController] currentItem]) {

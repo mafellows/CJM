@@ -79,11 +79,11 @@
     NSNumber *year = [song valueForProperty:@"year"];
     NSString *yearString;
     if (year) {
-        yearString = [NSString stringWithFormat:@"%@", year];
+        yearString = [NSString stringWithFormat:@"(%@)", year];
     } else {
-        yearString = @"2004";
+        yearString = @"";
     }
-    cell.songLabel.text = [NSString stringWithFormat:@"%@ (%@)", [song valueForProperty:MPMediaItemPropertyTitle], yearString];
+    cell.songLabel.text = [NSString stringWithFormat:@"%@ %@", [song valueForProperty:MPMediaItemPropertyTitle], yearString];
     cell.trackLengthLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
     
     if (song == [[CJMAudioController sharedController] currentItem]) {
