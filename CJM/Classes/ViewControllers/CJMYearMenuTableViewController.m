@@ -48,6 +48,7 @@ static NSString * const CellIdentifier = @"YearCellIdentifier";
     NSMutableArray *allYears = [NSMutableArray array];
     for (MPMediaItem *item in songs) {
         NSNumber *year = [item valueForKey:@"year"];
+        NSLog(@"%@", year);
         if (year) [allYears addObject:year];
     }
     

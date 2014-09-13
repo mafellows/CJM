@@ -65,6 +65,12 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    NSString *artist = [self.sectionHeaders objectAtIndex:section];
+    return [self _heightForString:artist];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
@@ -164,5 +170,15 @@
     self.sectionHeaders = [sortedArtists copy];
 }
 
+- (CGFloat)_heightForString:(NSString *)string
+{
+    CGSize labelConstraints = CGSizeMake(610, 9999.0f);
+    NSStringDrawingContext *context = [[NSStringDrawingContext alloc] init];
+    CGRect labelRect = [string boundingRectWithSize:labelConstraints
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{NSFontAttributeName : [UIFont cellHeaderFont]}
+                                            context:context];
+    return labelRect.size.height + 30;
+}
 
 @end

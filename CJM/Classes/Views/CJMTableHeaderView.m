@@ -24,13 +24,15 @@
     UILabel *sectionTitleLabel = [[UILabel alloc] init];
     sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     sectionTitleLabel.font = [UIFont cellHeaderFont];
+    sectionTitleLabel.numberOfLines = 0;
+    sectionTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self addSubview:sectionTitleLabel];
     _sectionTitleLabel = sectionTitleLabel;
     
     self.backgroundColor = [UIColor clearColor];
     
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(sectionTitleLabel);
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[sectionTitleLabel]-|"
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[sectionTitleLabel(==610)]-|"
                                                                  options:0
                                                                  metrics:nil
                                                                    views:viewsDictionary]];
