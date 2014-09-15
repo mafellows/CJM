@@ -189,8 +189,9 @@ static NSString * const GenreStorageKey = @"savedGenre";
 {
     if ([[aNotification name] isEqualToString:@"selectedGenre"]) {
         NSString *genre = [[aNotification object] objectForKey:@"genre"];
+        [[NSUserDefaults standardUserDefaults] setObject:genre forKey:GenreStorageKey];
         self.tableHeaderView.titleLabel.text = [genre uppercaseString];
-    [self _fetchSongsForGenre:genre];
+        [self _fetchSongsForGenre:genre];
     }
 }
 
