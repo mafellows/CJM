@@ -48,7 +48,7 @@ static NSString * const YearStorageKey = @"yearKey";
     NSMutableArray *allYears = [NSMutableArray array];
     for (MPMediaItem *item in songs) {
         NSNumber *year = [item valueForKey:@"year"];
-        if (year) [allYears addObject:year];
+        if (year && ![year isEqualToNumber:@0]) [allYears addObject:year];
     }
     
     NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
@@ -95,12 +95,6 @@ static NSString * const YearStorageKey = @"yearKey";
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-
-    // [self.menuController.yearSidePanelController toggleLeftPanel:self];
-//    if (menuOpened) {
-//        [self.menuController.yearSidePanelController toggleLeftPanel:self];
-//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CJMMenuAppearedKey];
-//    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"selectedYear"
@@ -218,7 +212,7 @@ static NSString * const YearStorageKey = @"yearKey";
     for (MPMediaItem *song in songs) {
         if ([[song valueForProperty:@"year"] isEqualToNumber:year]) {
             [songsForYear addObject:song];
-            NSString *artist = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+            NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
             if (![artistsForYear containsObject:artist] && artist != nil) {
                 [artistsForYear addObject:artist];
             }
@@ -229,7 +223,7 @@ static NSString * const YearStorageKey = @"yearKey";
     for (NSString *artist in artistsForYear) {
         MPMediaQuery *thisSongsQuery = [MPMediaQuery songsQuery];
         MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:artist
-                                                                               forProperty:MPMediaItemPropertyAlbumArtist
+                                                                               forProperty:MPMediaItemPropertyArtist
                                                                             comparisonType:MPMediaPredicateComparisonEqualTo];
         [thisSongsQuery addFilterPredicate:predicate];
         NSArray *results = [thisSongsQuery items];

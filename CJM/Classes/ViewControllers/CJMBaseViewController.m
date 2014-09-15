@@ -236,7 +236,11 @@ NSString * const CJMButtonPressedKey = @"imageButtonPressed";
 {
     MPMediaItem *song = [[CJMAudioController sharedController] currentItem];
     if (song) {
-        self.trackPlayingView.artistLabel.text = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+        NSString *artist = [song valueForProperty:MPMediaItemPropertyAlbumArtist];
+        if (!artist) {
+            artist = [song valueForProperty:MPMediaItemPropertyArtist];
+        }
+        self.trackPlayingView.artistLabel.text = artist; 
         self.trackPlayingView.songTitleLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
         NSNumber *year = [song valueForProperty:@"year"];
         NSString *imageFileString = [NSString stringWithFormat:@"%@.png", year];

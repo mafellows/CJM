@@ -42,20 +42,7 @@ static NSString * const CellIdentifier = @"YearCellIdentifier";
     headerView.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = headerView; 
     
-    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
-    NSArray *songs = [songsQuery items];
-    
-    NSMutableArray *allYears = [NSMutableArray array];
-    for (MPMediaItem *item in songs) {
-        NSNumber *year = [item valueForKey:@"year"];
-        NSLog(@"%@", year);
-        if (year) [allYears addObject:year];
-    }
-    
-    NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
-    NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
-    self.years = [sortedUniqueYears copy];
+    [self _fetchYears];
 }
 
 #pragma mark - Table view data source
@@ -94,4 +81,27 @@ static NSString * const CellIdentifier = @"YearCellIdentifier";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedYear"
                                                         object:@{ @"year" : year }];
 }
+
+- (void)_fetchYears
+{
+    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+    NSArray *songs = [songsQuery items];
+    
+    NSMutableArray *allYears = [NSMutableArray array];
+    for (MPMediaItem *item in songs) {
+        NSNumber *year = [item valueForKey:@"year"];
+        if ([year isEqualToNumber:@1956]) {
+            NSLog(@"%@", item);
+            NSLog(@"Name: %@", [item valueForProperty:MPMediaItemPropertyTitle]);
+            NSLog(@"Artist: %@", [item valueForProperty:MPMediaItemPropertyArtist]);
+        }
+        if (year && ![year isEqualToNumber:@0]) [allYears addObject:year];
+    }
+    
+    NSArray *uniqueYears = [[NSSet setWithArray:allYears] allObjects];
+    NSSortDescriptor *lowestToHighest = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+    NSArray *sortedUniqueYears = [uniqueYears sortedArrayUsingDescriptors:@[lowestToHighest]];
+    self.years = [sortedUniqueYears copy];
+}
+
 @end
