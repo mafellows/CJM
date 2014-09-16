@@ -690,7 +690,7 @@
 			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -711,7 +711,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -725,7 +725,7 @@
 			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -744,7 +744,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -771,8 +771,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -792,7 +792,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -835,8 +835,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -863,7 +863,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
 			};
 			name = Debug;
 		};
