@@ -11,11 +11,16 @@
 #import "CJMSplitViewController.h"
 #import "CJMArtistsViewController.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @implementation CJMAppDelegate 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [Fabric with:@[[CrashlyticsKit class]]];
     
     self.menuTableViewController = [[CJMMenuTableViewController alloc] init];
     CJMArtistsViewController *detailTableViewController = [[CJMArtistsViewController alloc] init];

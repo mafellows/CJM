@@ -49,6 +49,8 @@
 		8FEAC08C19A3A04900FCB86C /* CJMGenreMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08B19A3A04900FCB86C /* CJMGenreMenuTableViewController.m */; };
 		8FEAC09019A3A29600FCB86C /* CJMSidePanelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */; };
 		8FEAC0A719A410C300FCB86C /* CJMYearMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */; };
+		9D14C1CB1BACD55C0056C760 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D14C1C91BACD55C0056C760 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
+		9D14C1CC1BACD55C0056C760 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D14C1CA1BACD55C0056C760 /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
 		A3B9E5447B94415580E069A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682304D381F24A7C8BBBD214 /* XCTest.framework */; };
 		D52CA8877E844E93B1F079B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24369A181E4547DC860B538A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,7 @@
 /* Begin PBXFileReference section */
 		12DAF96C405247F292DF842B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		24369A181E4547DC860B538A /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		25F8925215AE8C1D4FEAD459 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2DB3E3257C7E4852AB3F03F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3118CAD3F2374DF1875B9B2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		45FD7EA321594EF1B62B765D /* CJM-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CJM-Prefix.pch"; sourceTree = "<group>"; };
@@ -144,8 +147,10 @@
 		8FEAC08F19A3A29600FCB86C /* CJMSidePanelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMSidePanelTableViewCell.m; sourceTree = "<group>"; };
 		8FEAC0A519A410C300FCB86C /* CJMYearMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJMYearMenuTableViewController.h; sourceTree = "<group>"; };
 		8FEAC0A619A410C300FCB86C /* CJMYearMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJMYearMenuTableViewController.m; sourceTree = "<group>"; };
+		9D14C1C91BACD55C0056C760 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		9D14C1CA1BACD55C0056C760 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A04529585CA542C1B292B3B8 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A87B02CE9FF74078A672889F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		AF2F987EF924183B2B7171C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BE4A33263AC24060967BCC33 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		C94CD229D10B4B4F995EC0CD /* CJM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CJM-Info.plist"; sourceTree = "<group>"; };
 		D0D8198CFBF04F0DB6EF45CD /* CJM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CJM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,8 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5DEF1486934D3B8B9E6004 /* Foundation.framework in Frameworks */,
+				9D14C1CB1BACD55C0056C760 /* Fabric.framework in Frameworks */,
 				4A0125744D6F4DE387555EF1 /* UIKit.framework in Frameworks */,
 				6C8580E9433D4949BE12EDF9 /* CoreGraphics.framework in Frameworks */,
+				9D14C1CC1BACD55C0056C760 /* Crashlytics.framework in Frameworks */,
 				4C3C925EC8414BDF9714D459 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +283,8 @@
 		7747BCACCD6746ECBB8AC86C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D14C1C91BACD55C0056C760 /* Fabric.framework */,
+				9D14C1CA1BACD55C0056C760 /* Crashlytics.framework */,
 				D9B2E10EF925446E9DFD7B96 /* iOS */,
 				682304D381F24A7C8BBBD214 /* XCTest.framework */,
 				4E6E9F7DFB7641BAA8B86CFC /* libPods.a */,
@@ -288,6 +297,15 @@
 			children = (
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		8EAAA2DBDAD19D625AE85A2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25F8925215AE8C1D4FEAD459 /* Pods.release.xcconfig */,
+				AF2F987EF924183B2B7171C7 /* Pods.debug.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		8F23F24F19834AD7002648CE /* Blur */ = {
@@ -465,7 +483,7 @@
 				9AE67DD9CDC8433493A71FF1 /* UnitTests */,
 				7747BCACCD6746ECBB8AC86C /* Frameworks */,
 				18A02C9F5F1E4D349986A697 /* Products */,
-				A87B02CE9FF74078A672889F /* Pods.xcconfig */,
+				8EAAA2DBDAD19D625AE85A2F /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -513,6 +531,7 @@
 				A1714D1A3BFB46D585AB51E3 /* Resources */,
 				1ABB14E042054E999BCD7C36 /* Warn for TODO and FIXME comments */,
 				75F82ECE94004661949C0ED3 /* Copy Pods Resources */,
+				9D14C1C81BACD3060056C760 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -601,8 +620,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9D14C1C81BACD3060056C760 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run d93567a439904b467b2a6a291a950c30e49c68e7 ca04ef0d09a658e066dd027fcaa0ed7a6d5e12d3d06e449e00d78f2288296451";
 		};
 		EFDAFC22A4E0476AB5D2BCCC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -687,12 +719,16 @@
 /* Begin XCBuildConfiguration section */
 		11FA3C0195CE4388ADD459F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
+			baseConfigurationReference = 25F8925215AE8C1D4FEAD459 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CJM/Resources/Other-Sources/CJM-Prefix.pch";
@@ -709,9 +745,9 @@
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"$(inherited)",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -722,12 +758,16 @@
 		};
 		3B053A998A2B47BD88D21678 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A87B02CE9FF74078A672889F /* Pods.xcconfig */;
+			baseConfigurationReference = AF2F987EF924183B2B7171C7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -742,9 +782,9 @@
 				INFOPLIST_FILE = "CJM/Resources/Other-Sources/CJM-Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -771,8 +811,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -792,7 +832,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -835,8 +875,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Contemporary Jewish Museum (ZUBB53CHS4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: michael fellows (D3F67U8S46)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: michael fellows (D3F67U8S46)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -863,7 +903,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4bb9c4ef-d654-48bc-8fe4-64aa10669e00";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};

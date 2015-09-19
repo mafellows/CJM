@@ -27,6 +27,15 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self _initialize]; 
+    }
+    return self;
+}
+
 #pragma mark - Selector
 
 - (void)backPressed:(id)sender
@@ -115,13 +124,7 @@
 #pragma mark - Private
 
 - (void)_initialize
-{    
-    CGFloat height = 150.0f;
-    self.frame = CGRectMake(40.0f,
-                            [[UIScreen mainScreen] bounds].size.width - height,
-                            610.0f,
-                            height);
-    
+{
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 610.0f, 2.0f)];
     separatorView.backgroundColor = [UIColor darkGrayColor];
     [self addSubview:separatorView];
@@ -142,6 +145,7 @@
     _songTitleLabel = songTitleLabel;
     
     UIImageView *trackImageView = [[UIImageView alloc] init];
+    trackImageView.translatesAutoresizingMaskIntoConstraints = NO;
     trackImageView.image = [UIImage imageNamed:@"HELLMAN_icon_01"];
     trackImageView.clipsToBounds = YES;
     trackImageView.contentMode = UIViewContentModeScaleAspectFill;

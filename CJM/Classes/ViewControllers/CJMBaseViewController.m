@@ -267,7 +267,17 @@ NSString * const CJMButtonPressedKey = @"imageButtonPressed";
     imageView.image = [UIImage imageNamed:@"detail-background"];
     [self.view addSubview:imageView];
     
-    CGRect tableViewFrame = CGRectMake(CGRectGetMinX(self.view.frame), 80.0f, CGRectGetWidth(self.view.frame), CGRectGetWidth(self.view.frame) - 230.0f);
+    
+    CGRect tableViewFrame;
+    
+    // Tableview hack for iOS7 and earlier
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0f) {
+        tableViewFrame = CGRectMake(CGRectGetMinX(self.view.frame), 80.0f, CGRectGetWidth(self.view.frame), CGRectGetWidth(self.view.frame) - 230.0f);
+    } else {
+        tableViewFrame = CGRectMake(CGRectGetMinX(self.view.frame), 80.0f, CGRectGetWidth(self.view.frame),
+                                    CGRectGetHeight(self.view.frame) - 230.0f);
+    }
+    
     UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -278,14 +288,37 @@ NSString * const CJMButtonPressedKey = @"imageButtonPressed";
     [tableView registerClass:[CJMTableViewCell class] forCellReuseIdentifier:kCellIdentifier];
     _tableView = tableView;
     
-    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 80.0f)];
+    CGRect tableHeaderViewFrame;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0f) {
+        tableHeaderViewFrame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), 80.0f);
+    } else {
+        tableHeaderViewFrame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame) - 254.0f, 80.0f);
+    }
+    
+    CJMSearchHeaderView *tableHeaderView = [[CJMSearchHeaderView alloc] initWithFrame:tableHeaderViewFrame];
     tableHeaderView.searchBar.delegate = self;
     [tableHeaderView.scrollToTopTapRecognizer addTarget:self
                                                  action:@selector(scrollToTop:)];
     [self.view addSubview:tableHeaderView];
     _tableHeaderView = tableHeaderView;
     
-    CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] init];
+    CGFloat height = 150.0f;
+    CGRect frame;
+    
+    // Frame hack
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0f) {
+        frame = CGRectMake(40.0f,
+                           [[UIScreen mainScreen] bounds].size.width - height,
+                           610.0f,
+                           height);
+    } else {
+        frame = CGRectMake(40.0f,
+                           [[UIScreen mainScreen] bounds].size.height - height,
+                           610.0f,
+                           height);
+    }
+
+    CJMTrackPlayingView *trackPlayingView = [[CJMTrackPlayingView alloc] initWithFrame:frame];
     [trackPlayingView.imagePressedButton addTarget:self
                                             action:@selector(imageButtonPressed:)
                                   forControlEvents:UIControlEventTouchUpInside];
